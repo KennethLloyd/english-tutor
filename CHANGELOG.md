@@ -1,9 +1,6 @@
 ## v1.1.0
 **2021-03-04**
 
-## v1.0.0
-**2021-03-04**
-
 #### :sparkles: New Features
 
 * [`36e57f8`](https://github.com/KennethLloyd/mern-mariadb-bootstrap-starter/commit/36e57f8074a370414244fa98049c4c27f121cee8)  proxy to client
