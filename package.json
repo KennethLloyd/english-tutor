@@ -1,8 +1,7 @@
 {
   "name": "mern-mariadb-bootstrap-starter",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "MERN Starter with MariaDB and React Bootstrap",
   "scripts": {
     "preinstall": "npm install --prefix client && npm install --prefix server",
     "client": "npm start --prefix client",
