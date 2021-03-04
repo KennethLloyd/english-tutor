@@ -1,5 +1,6 @@
 import { Container, Card, Button, Row, Col, Form } from 'react-bootstrap';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import ErrorAlert from './components/ErrorAlert';
 
 const Login = () => {
@@ -7,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [errorCode, setErrorCode] = useState(null);
+  const history = useHistory();
 
   const handleLogin = async () => {
     try {
@@ -31,6 +33,7 @@ const Login = () => {
       }
       else {
         localStorage.setItem('token', data.token);
+        history.push('/home');
       }
     } catch (e) {
       setErrorCode(500);
