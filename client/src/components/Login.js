@@ -1,6 +1,17 @@
 import { Container, Card, Button, Row, Col, Form } from 'react-bootstrap';
+import { useState } from 'react';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    console.log({
+      email,
+      password
+    });
+  };
+
   return (
     <Container className='vh-100'>
       <Row className='vh-100 align-items-center'>
@@ -8,18 +19,18 @@ const Login = () => {
           <Card style={{ width: '25rem' }} className='mx-auto'>
             <Card.Img variant="top" src="https://res.cloudinary.com/kennethlloyd/image/upload/v1614858760/mern-mariadb-bootstrap-starter/mern.png" />
             <Card.Body>
-              <Form>
+              <Form onSubmit={(e) => e.preventDefault()}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
                 <div className="text-center">
-                  <Button variant="primary" type="submit">
+                  <Button variant="primary" type="submit" onClick={handleLogin}>
                     Sign in
                   </Button>
                 </div>
