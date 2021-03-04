@@ -6,18 +6,30 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    const response = await fetch('api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email,
-        password
-      })
-    });
+    try {
+      const response = await fetch('api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          password
+        })
+      });
 
-    console.log(await response.json());
+      const data = await response.json();
+      console.log(data);
+      if (data.hasOwnProperty('error')) {
+        alert(data.error);
+        localStorage.removeItem('token');
+      }
+      else {
+        localStorage.setItem('token', data.token);
+      }
+    } catch (e) {
+      alert('An error occured');
+    }
   };
 
   return (
