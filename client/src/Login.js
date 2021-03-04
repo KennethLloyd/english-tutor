@@ -1,9 +1,12 @@
 import { Container, Card, Button, Row, Col, Form } from 'react-bootstrap';
 import { useState } from 'react';
+import ErrorAlert from './components/ErrorAlert';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorCode, setErrorCode] = useState(null);
 
   const handleLogin = async () => {
     try {
@@ -21,14 +24,16 @@ const Login = () => {
       const data = await response.json();
       console.log(data);
       if (data.hasOwnProperty('error')) {
-        alert(data.error);
+        setErrorMessage(data.error);
+        setErrorCode(response.status);
+
         localStorage.removeItem('token');
       }
       else {
         localStorage.setItem('token', data.token);
       }
     } catch (e) {
-      alert('An error occured');
+      setErrorCode(500);
     }
   };
 
@@ -54,6 +59,8 @@ const Login = () => {
                     Sign in
                   </Button>
                 </div>
+                &nbsp;
+                {errorMessage && <ErrorAlert msg={errorMessage} code={errorCode} />}
               </Form>
             </Card.Body>
           </Card>
