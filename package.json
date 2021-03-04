@@ -1,0 +1,36 @@
+{
+  "name": "mern-mariadb-bootstrap-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npm install --prefix client && npm install --prefix server",
+    "client": "npm start --prefix client",
+    "server": "npm start --prefix server",
+    "docs": "npm run docs --prefix server",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run client\"",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "version": "auto-changelog --template changelog-template.hbs -p && git add CHANGELOG.md"
+  },
+  "auto-changelog": {
+    "commitLimit": false,
+    "unreleased": true,
+    "replaceText": {
+      "[Cc]hanges": "",
+      "[Ff]ix": "",
+      "[Bb]reak": "",
+      "[Aa]dd": ""
+    },
+    "includeBranch": [
+      "master"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "auto-changelog": "^2.2.1",
+    "concurrently": "^6.0.0"
+  }
+}
