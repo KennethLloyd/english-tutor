@@ -1,3 +1,4 @@
-import User from './user.js';
+import Navigation from './navigation.js';
+import Hero from './hero.js';
 
-export { User };
+export { Navigation, Hero };

@@ -3,30 +3,30 @@ import sequelize from '../db/sequelize.js';
 
 const { DataTypes } = Sequelize;
 
-const User = sequelize.define(
-  'User',
+const Navigation = sequelize.define(
+  'Navigation',
   {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    username: {
+    logoUrl: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: 'username',
-      set(value) {
-        this.setDataValue('username', value.trim().toLowerCase());
-      },
     },
-    password: {
+    teachersLabel: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
+    pricingLabel: {
+      type: DataTypes.STRING,
+    },
+    contactLabel: {
+      type: DataTypes.STRING,
+    }
   },
   {
     timestamps: true, // adds createdAt and updatedAt for each new entry
   },
 );
 
-export default User;
+export default Navigation;
