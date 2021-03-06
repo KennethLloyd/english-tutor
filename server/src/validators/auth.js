@@ -37,7 +37,7 @@ const hashPassword = async (req, res, next) => {
 
 const authValidator = {
   logIn,
-  hashPassword
+  hashPassword,
 };
 
 export default authValidator;

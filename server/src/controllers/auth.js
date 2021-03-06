@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import config from 'config';
-import { err } from '../helpers/utils.js'
+import { err } from '../helpers/utils.js';
 
 /**
 @api {post} /api/auth/login Log In User
@@ -32,13 +32,24 @@ const logIn = (req, res) => {
       throw err(400, 'Invalid credentials');
     }
 
-    const hashedPassword = crypto.pbkdf2Sync(req.body.password, config.get('adminSalt'), 1000, 64, 'sha512').toString('hex');
+    const hashedPassword = crypto
+      .pbkdf2Sync(
+        req.body.password,
+        config.get('adminSalt'),
+        1000,
+        64,
+        'sha512',
+      )
+      .toString('hex');
 
     if (adminPasswordHash !== hashedPassword) {
       throw err(400, 'Invalid credentials');
     }
 
-    const token = jwt.sign({ username: adminUsername }, config.get('jwtSecret'));
+    const token = jwt.sign(
+      { username: adminUsername },
+      config.get('jwtSecret'),
+    );
 
     return res.send({ token });
   } catch (e) {
@@ -53,7 +64,15 @@ const logIn = (req, res) => {
 
 const hashPassword = (req, res) => {
   try {
-    const hashedPassword = crypto.pbkdf2Sync(req.body.password, config.get('adminSalt'), 1000, 64, 'sha512').toString('hex');
+    const hashedPassword = crypto
+      .pbkdf2Sync(
+        req.body.password,
+        config.get('adminSalt'),
+        1000,
+        64,
+        'sha512',
+      )
+      .toString('hex');
 
     return res.send({ hashedPassword });
   } catch (e) {
@@ -68,7 +87,7 @@ const hashPassword = (req, res) => {
 
 const authController = {
   logIn,
-  hashPassword
+  hashPassword,
 };
 
 export default authController;

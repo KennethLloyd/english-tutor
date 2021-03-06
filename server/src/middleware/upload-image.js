@@ -7,7 +7,7 @@ import storage from '../helpers/multer-storage.js';
 const upload = multer({ storage }).single('image');
 
 const uploadImage = (req, res, next) => {
-  upload(req, res, function(err) {
+  upload(req, res, function (err) {
     if (err) {
       console.log('Upload failed', err);
       return next(err);
@@ -19,15 +19,15 @@ const uploadImage = (req, res, next) => {
       cloud_name: config.get('cloudinaryName'),
       api_key: config.get('cloudinaryApiKey'),
       api_secret: config.get('cloudinaryApiSecret'),
-    })
+    });
 
-    const path = req.file.path
-    const uniqueFilename = `${new Date().getTime()}-${req.file.originalname}`
+    const path = req.file.path;
+    const uniqueFilename = `${new Date().getTime()}-${req.file.originalname}`;
 
     cloudinary.uploader.upload(
       path,
       { public_id: `${config.get('cloudinaryFolder')}/${uniqueFilename}` },
-      function(err, image) {
+      function (err, image) {
         if (err) {
           console.log(err);
           return next(err);
@@ -36,12 +36,12 @@ const uploadImage = (req, res, next) => {
         req.imageUrl = image.secure_url;
 
         // remove file from server
-        fs.unlinkSync(path)
+        fs.unlinkSync(path);
 
         next();
-      }
-    )
-  })
-}
+      },
+    );
+  });
+};
 
 export default uploadImage;

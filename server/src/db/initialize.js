@@ -9,7 +9,9 @@ const initializeDB = async () => {
     password: config.get('dbPassword'),
   });
 
-  await connection.query(`CREATE DATABASE IF NOT EXISTS ${config.get('dbName')}`);
+  await connection.query(
+    `CREATE DATABASE IF NOT EXISTS ${config.get('dbName')}`,
+  );
 
   await sequelize.authenticate();
   await sequelize.sync({ alter: true }); // update schema

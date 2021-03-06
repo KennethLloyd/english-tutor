@@ -45,7 +45,7 @@ const updateHeroSettings = async (req, res, next) => {
 
 const mainValidator = {
   updateNavigationSettings,
-  updateHeroSettings
+  updateHeroSettings,
 };
 
 export default mainValidator;

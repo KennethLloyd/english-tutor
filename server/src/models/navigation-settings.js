@@ -22,7 +22,7 @@ const NavigationSettings = sequelize.define(
     },
     contactLabel: {
       type: DataTypes.STRING,
-    }
+    },
   },
   {
     timestamps: true, // adds createdAt and updatedAt for each new entry

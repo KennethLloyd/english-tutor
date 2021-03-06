@@ -41,8 +41,7 @@ const updateNavigationSettings = async (req, res) => {
       settings.pricingLabel = req.body.pricingLabel;
       settings.contactLabel = req.body.contactLabel;
       settings.logoUrl = req.body.logoUrl ? req.body.logoUrl : settings.logoUrl;
-    }
-    else {
+    } else {
       settings = new NavigationSettings(req.body);
     }
 
@@ -52,7 +51,7 @@ const updateNavigationSettings = async (req, res) => {
 
     return res.send({
       message: 'Successfully updated navigation settings',
-      settings: updatedSettings
+      settings: updatedSettings,
     });
   } catch (e) {
     console.log(e);
@@ -119,9 +118,10 @@ const updateHeroSettings = async (req, res) => {
       settings.actionButtonText = req.body.actionButtonText;
       settings.actionButtonTextColor = req.body.actionButtonTextColor;
       settings.actionButtonColor = req.body.actionButtonColor;
-      settings.backgroundImageUrl = req.body.backgroundImageUrl ? req.body.backgroundImageUrl : settings.backgroundImageUrl;
-    }
-    else {
+      settings.backgroundImageUrl = req.body.backgroundImageUrl
+        ? req.body.backgroundImageUrl
+        : settings.backgroundImageUrl;
+    } else {
       settings = new HeroSettings(req.body);
     }
 
@@ -131,7 +131,7 @@ const updateHeroSettings = async (req, res) => {
 
     return res.send({
       message: 'Successfully updated hero settings',
-      settings: updatedSettings
+      settings: updatedSettings,
     });
   } catch (e) {
     console.log(e);
@@ -145,7 +145,7 @@ const updateHeroSettings = async (req, res) => {
 
 const mainController = {
   updateNavigationSettings,
-  updateHeroSettings
+  updateHeroSettings,
 };
 
 export default mainController;

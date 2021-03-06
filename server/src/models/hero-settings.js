@@ -24,19 +24,19 @@ const HeroSettings = sequelize.define(
       type: DataTypes.STRING,
     },
     subtitleText: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
     },
     subtitleTextColor: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     actionButtonText: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     actionButtonTextColor: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     actionButtonColor: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
   },
   {
