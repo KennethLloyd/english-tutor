@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import ErrorAlert from './components/ErrorAlert';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [errorCode, setErrorCode] = useState(null);
@@ -18,7 +18,7 @@ const Login = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email,
+          username,
           password
         })
       });
@@ -49,8 +49,8 @@ const Login = () => {
             <Card.Body>
               <Form onSubmit={(e) => e.preventDefault()}>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="string" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">

@@ -1,16 +1,15 @@
 import mariadb from 'mariadb';
+import config from 'config';
 import sequelize from './sequelize.js';
 
 const initializeDB = async () => {
-  const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
-
   const connection = await mariadb.createConnection({
-    host: DB_HOST,
-    user: DB_USER,
-    password: DB_PASSWORD,
+    host: config.get('dbHost'),
+    user: config.get('dbUser'),
+    password: config.get('dbPassword'),
   });
 
-  await connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`);
+  await connection.query(`CREATE DATABASE IF NOT EXISTS ${config.get('dbName')}`);
 
   await sequelize.authenticate();
   await sequelize.sync({ alter: true }); // update schema

@@ -1,10 +1,9 @@
 import { Sequelize } from 'sequelize';
+import config from 'config';
 
-const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
-
-const sequelize = new Sequelize(`mariadb://${DB_HOST}/${DB_NAME}`, {
-  username: DB_USER,
-  password: DB_PASSWORD,
+const sequelize = new Sequelize(`mariadb://${config.get('dbHost')}/${config.get('dbName')}`, {
+  username: config.get('dbUser'),
+  password: config.get('dbPassword'),
   dialectOptions: {
     timezone: 'Etc/GMT+8',
   },
