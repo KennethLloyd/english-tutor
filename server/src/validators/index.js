@@ -1,3 +1,4 @@
 import authValidator from './auth.js';
+import mainValidator from './main.js';
 
-export { authValidator };
+export { authValidator, mainValidator };
