@@ -3,8 +3,8 @@ import sequelize from '../db/sequelize.js';
 
 const { DataTypes } = Sequelize;
 
-const Hero = sequelize.define(
-  'Hero',
+const HeroSettings = sequelize.define(
+  'HeroSettings',
   {
     id: {
       type: DataTypes.UUID,
@@ -44,4 +44,4 @@ const Hero = sequelize.define(
   },
 );
 
-export default Hero;
+export default HeroSettings;

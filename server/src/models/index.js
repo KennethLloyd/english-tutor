@@ -1,4 +1,4 @@
-import Navigation from './navigation.js';
-import Hero from './hero.js';
+import NavigationSettings from './navigation-settings.js';
+import HeroSettings from './hero-settings.js';
 
-export { Navigation, Hero };
+export { NavigationSettings, HeroSettings };

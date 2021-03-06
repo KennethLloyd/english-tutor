@@ -3,8 +3,8 @@ import sequelize from '../db/sequelize.js';
 
 const { DataTypes } = Sequelize;
 
-const Navigation = sequelize.define(
-  'Navigation',
+const NavigationSettings = sequelize.define(
+  'NavigationSettings',
   {
     id: {
       type: DataTypes.UUID,
@@ -29,4 +29,4 @@ const Navigation = sequelize.define(
   },
 );
 
-export default Navigation;
+export default NavigationSettings;

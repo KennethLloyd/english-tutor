@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const updateNavigation = async (req, res, next) => {
+const updateNavigationSettings = async (req, res, next) => {
   const bodySchema = Joi.object({
     teachersLabel: Joi.string(),
     pricingLabel: Joi.string(),
@@ -19,7 +19,7 @@ const updateNavigation = async (req, res, next) => {
   }
 };
 
-const updateHero = async (req, res, next) => {
+const updateHeroSettings = async (req, res, next) => {
   const bodySchema = Joi.object({
     backgroundOpacity: Joi.number().max(100),
     titleText: Joi.string(),
@@ -44,8 +44,8 @@ const updateHero = async (req, res, next) => {
 };
 
 const mainValidator = {
-  updateNavigation,
-  updateHero
+  updateNavigationSettings,
+  updateHeroSettings
 };
 
 export default mainValidator;
