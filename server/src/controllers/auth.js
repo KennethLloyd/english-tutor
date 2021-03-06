@@ -51,8 +51,24 @@ const logIn = (req, res) => {
   }
 };
 
+const hashPassword = (req, res) => {
+  try {
+    const hashedPassword = crypto.pbkdf2Sync(req.body.password, config.get('adminSalt'), 1000, 64, 'sha512').toString('hex');
+
+    return res.send({ hashedPassword });
+  } catch (e) {
+    console.log(e);
+
+    if (e.status) {
+      return res.status(e.status).send({ error: e.message });
+    }
+    return res.status(500).send({ error: 'Internal Server Error' });
+  }
+};
+
 const authController = {
   logIn,
+  hashPassword
 };
 
 export default authController;
