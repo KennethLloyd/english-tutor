@@ -7,6 +7,6 @@ import { mainValidator } from '../validators/index.js';
 const router = new express.Router();
 
 router.put('/settings/navigation', authenticate, uploadImage, mainValidator.updateNavigationSettings, mainController.updateNavigationSettings);
-router.put('/settings/hero', authenticate, mainValidator.updateHeroSettings, mainController.updateHeroSettings);
+router.put('/settings/hero', authenticate, uploadImage, mainValidator.updateHeroSettings, mainController.updateHeroSettings);
 
 export default router;

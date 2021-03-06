@@ -1,9 +1,4 @@
-import crypto from 'crypto';
-import jwt from 'jsonwebtoken';
-import config from 'config';
-import { err } from '../helpers/utils.js';
-import sequelize from '../db/sequelize.js';
-import { NavigationSettings } from '../models/index.js';
+import { NavigationSettings, HeroSettings } from '../models/index.js';
 
 /**
 @api {put} /api/settings/navigation Update Navigation Settings
@@ -45,7 +40,7 @@ const updateNavigationSettings = async (req, res) => {
       settings.teachersLabel = req.body.teachersLabel;
       settings.pricingLabel = req.body.pricingLabel;
       settings.contactLabel = req.body.contactLabel;
-      settings.logoUrl = req.body.logoUrl;
+      settings.logoUrl = req.body.logoUrl ? req.body.logoUrl : settings.logoUrl;
     }
     else {
       settings = new NavigationSettings(req.body);
@@ -69,23 +64,75 @@ const updateNavigationSettings = async (req, res) => {
   }
 };
 
+/**
+@api {put} /api/settings/hero Update Hero Settings
+@apiVersion 1.0.0
+@apiName UpdateHeroSettings
+@apiGroup Settings
+
+@apiParam {File} [image] Background image to upload
+@apiParam {Number} [backgroundOpacity] Background opacity
+@apiParam {String} [titleText] Title text
+@apiParam {String} [titleTextColor] Title text color
+@apiParam {String} [subtitleText] Subtitle text
+@apiParam {String} [subtitleTextColor] Subtitle text color
+@apiParam {String} [actionButtonText] Action button text
+@apiParam {String} [actionButtonTextColor] Action button text color
+@apiParam {String} [actionButtonColor] Action button color
+
+@apiSuccess {String} token Auth token
+@apiSuccessExample {json} Success-Response:
+HTTP/1.1 200 OK
+{
+    "message": "Successfully updated hero settings",
+    "settings": {
+        "id": "a0139539-bb57-4b0f-9526-8f7b04626a36",
+        "backgroundImageUrl": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615042398/english-courses/1615042396604-idle.JPG.jpg",
+        "backgroundOpacity": 79,
+        "titleText": "Best of fourth generation",
+        "titleTextColor": "#FFFFFF",
+        "subtitleText": "HIgher and higher than my fire will grow",
+        "subtitleTextColor": "#FFFFFF",
+        "actionButtonText": "Subscribe now!",
+        "actionButtonTextColor": "#FFFFFF",
+        "actionButtonColor": "#751CBB",
+        "createdAt": "2021-03-06T14:53:19.000Z",
+        "updatedAt": "2021-03-06T14:56:10.000Z"
+    }
+}
+*/
+
 const updateHeroSettings = async (req, res) => {
   try {
-    const settings = await NavigationSettings.findOne();
-
-    if (!settings) {
-      const newSettings = new NavigationSettings(req.body);
-
-      await newSettings.save();
+    if (req.imageUrl) {
+      req.body.backgroundImageUrl = req.imageUrl;
     }
 
-    settings.teachersLabel = req.body.teachersLabel;
-    settings.pricingLabel = req.body.pricingLabel;
-    settings.contactLabel = req.body.contactLabel;
+    let settings = await HeroSettings.findOne();
+
+    if (settings) {
+      settings.backgroundOpacity = req.body.backgroundOpacity;
+      settings.titleText = req.body.titleText;
+      settings.titleTextColor = req.body.titleTextColor;
+      settings.subtitleText = req.body.subtitleText;
+      settings.subtitleTextColor = req.body.subtitleTextColor;
+      settings.actionButtonText = req.body.actionButtonText;
+      settings.actionButtonTextColor = req.body.actionButtonTextColor;
+      settings.actionButtonColor = req.body.actionButtonColor;
+      settings.backgroundImageUrl = req.body.backgroundImageUrl ? req.body.backgroundImageUrl : settings.backgroundImageUrl;
+    }
+    else {
+      settings = new HeroSettings(req.body);
+    }
 
     await settings.save();
 
-    return res.send({ token });
+    const updatedSettings = await HeroSettings.findOne();
+
+    return res.send({
+      message: 'Successfully updated hero settings',
+      settings: updatedSettings
+    });
   } catch (e) {
     console.log(e);
 

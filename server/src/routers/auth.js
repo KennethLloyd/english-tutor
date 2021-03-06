@@ -1,5 +1,4 @@
 import express from 'express';
-import authenticate from '../middleware/authenticate.js';
 import { authController } from '../controllers/index.js';
 import { authValidator } from '../validators/index.js';
 
