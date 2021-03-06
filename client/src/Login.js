@@ -15,12 +15,12 @@ const Login = () => {
       const response = await fetch('api/auth/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username,
-          password
-        })
+          password,
+        }),
       });
 
       const data = await response.json();
@@ -30,8 +30,7 @@ const Login = () => {
         setErrorCode(response.status);
 
         localStorage.removeItem('token');
-      }
-      else {
+      } else {
         localStorage.setItem('token', data.token);
         history.push('/home');
       }
@@ -42,36 +41,54 @@ const Login = () => {
 
   return (
     <div style={{ backgroundColor: '#F0F0F0' }}>
-      <Container className='vh-100'>
-      <Row className='vh-100 align-items-center'>
-        <Col>
-          <Card style={{ width: '25rem' }} className='mx-auto'>
-            <Card.Img variant="top" src="https://res.cloudinary.com/kennethlloyd/image/upload/v1615019479/english-courses/english-tutor.svg" />
-            <hr />
-            <Card.Body>
-              <Form onSubmit={(e) => e.preventDefault()}>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control type="string" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                </Form.Group>
-
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </Form.Group>
-                <div className="text-center">
-                  <Button variant="primary" type="submit" onClick={handleLogin}>
-                    Sign in
-                  </Button>
-                </div>
-                &nbsp;
-                {errorMessage && <ErrorAlert msg={errorMessage} code={errorCode} />}
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+      <Container className="vh-100">
+        <Row className="vh-100 align-items-center">
+          <Col>
+            <Card style={{ width: '25rem' }} className="mx-auto">
+              <Card.Img
+                variant="top"
+                src="https://res.cloudinary.com/kennethlloyd/image/upload/v1615019479/english-courses/english-tutor.svg"
+              />
+              <hr />
+              <Card.Body>
+                <Form onSubmit={(e) => e.preventDefault()}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      type="string"
+                      placeholder="Enter username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </Form.Group>
+                  <div className="text-center">
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      onClick={handleLogin}
+                    >
+                      Sign in
+                    </Button>
+                  </div>
+                  &nbsp;
+                  {errorMessage && (
+                    <ErrorAlert msg={errorMessage} code={errorCode} />
+                  )}
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
