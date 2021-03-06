@@ -41,11 +41,13 @@ const Login = () => {
   };
 
   return (
-    <Container className='vh-100'>
+    <div style={{ backgroundColor: '#F0F0F0' }}>
+      <Container className='vh-100'>
       <Row className='vh-100 align-items-center'>
         <Col>
           <Card style={{ width: '25rem' }} className='mx-auto'>
-            <Card.Img variant="top" src="https://res.cloudinary.com/kennethlloyd/image/upload/v1614858760/mern-mariadb-bootstrap-starter/mern.png" />
+            <Card.Img variant="top" src="https://res.cloudinary.com/kennethlloyd/image/upload/v1615019479/english-courses/english-tutor.svg" />
+            <hr />
             <Card.Body>
               <Form onSubmit={(e) => e.preventDefault()}>
                 <Form.Group controlId="formBasicEmail">
@@ -70,6 +72,7 @@ const Login = () => {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 };
 
