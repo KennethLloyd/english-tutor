@@ -2,9 +2,13 @@
   "dbHost": "localhost",
   "dbUser": "root",
   "dbPassword": "admin",
-  "dbName": "sample_db",
+  "dbName": "english_tutor",
   "jwtSecret": "english-tutor-secret",
   "adminSalt": "f844b09ff50c",
   "adminUsername": "mrtutor",
-  "adminPasswordHash": "7a7100b7a07e9763dccade64f0f37542cff9ae29dbfad2f1731f55e6d7a120f19e5586e113bc0332aad23e707fc68acef1df9cf1dd7229a71c8b0e0f9a0ee35b"
+  "adminPasswordHash": "7a7100b7a07e9763dccade64f0f37542cff9ae29dbfad2f1731f55e6d7a120f19e5586e113bc0332aad23e707fc68acef1df9cf1dd7229a71c8b0e0f9a0ee35b",
+  "cloudinaryName": "kennethlloyd",
+  "cloudinaryApiKey": "373772964774591",
+  "cloudinaryApiSecret": "DO8Pbx9iP0AXhK4UiSvTy8QoY3k",
+  "cloudinaryFolder": "english-courses"
 }

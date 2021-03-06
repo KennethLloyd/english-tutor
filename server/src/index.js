@@ -1,14 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { __dirname } from './helpers/utils.js';
 import initDB from './db/initialize.js';
 import initRouters from './routers/index.js';
 
 const app = express();
 const port = process.env.PORT || 3001;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 app.use(express.json()); // allows us to parse the request as json
 app.use(cors());

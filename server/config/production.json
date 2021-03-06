@@ -2,7 +2,7 @@
   "dbHost": "localhost",
   "dbUser": "root",
   "dbPassword": "admin",
-  "dbName": "sample_db",
+  "dbName": "english_tutor",
   "jwtSecret": "english-tutor-secret",
   "adminSalt": "f844b09ff50c",
   "adminUsername": "mrtutor",
