@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 // reactstrap components
 import { NavbarBrand, Navbar, Container } from 'reactstrap';
 
-const AdminNavbar = () => {
+const AuthNavbar = () => {
   return (
     <>
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md">
@@ -22,4 +22,4 @@ const AdminNavbar = () => {
   );
 };
 
-export default AdminNavbar;
+export default AuthNavbar;

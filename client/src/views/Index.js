@@ -13,15 +13,13 @@ import {
   Col,
 } from 'reactstrap';
 
-import Header from '../components/Header.js';
+import NavBarSettings from '../components/NavBarSettings.js';
 
 const Index = (props) => {
   return (
     <>
-      <Header />
-      {/* Page content */}
-      <Container className="mt--7" fluid>
-        <h1>Welcome!</h1>
+      <Container className="bg-gradient-info pt-5 pb-5" fluid>
+        <NavBarSettings />
       </Container>
     </>
   );

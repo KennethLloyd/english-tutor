@@ -16657,6 +16657,12 @@ a.btn-icon-only {
   font-weight: 600;
 }
 
+.form-control-label-settings {
+  color: #525f7f;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .form-control {
   font-size: 0.875rem;
 }
