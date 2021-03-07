@@ -12,9 +12,9 @@ import {
 import { useState, useRef } from 'react';
 
 import ColorPicker from './ColorPicker';
+import FileUploader from './FileUploader';
 
 const HeroSettings = () => {
-  const [backgroundImageName, setBackgroundImageName] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [backgroundOpacity, setBackgroundOpacity] = useState(80);
   const [titleText, setTitleText] = useState('English Tutor');
@@ -27,11 +27,8 @@ const HeroSettings = () => {
   const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
   const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
 
-  const inputFile = useRef(null);
-
   const handleNavUpdate = () => {
     console.log({
-      backgroundImageName,
       backgroundImage,
       backgroundOpacity,
       titleText,
@@ -70,45 +67,10 @@ const HeroSettings = () => {
                         </label>
                       </Col>
                       <Col md="6">
-                        <input
-                          type="file"
-                          id="file"
-                          ref={inputFile}
-                          onChange={(e) => {
-                            setBackgroundImageName(e.target.files[0].name);
-                            setBackgroundImage(
-                              URL.createObjectURL(e.target.files[0]),
-                            );
-                          }}
-                          style={{ display: 'none' }}
+                        <FileUploader
+                          image={backgroundImage}
+                          setImage={setBackgroundImage}
                         />
-                        <Button
-                          outline
-                          color="primary"
-                          onClick={(e) => inputFile.current.click()}
-                          size="sm"
-                        >
-                          Upload
-                        </Button>
-                        {backgroundImage ? (
-                          <>
-                            <img
-                              src={backgroundImage}
-                              width="120"
-                              height="85"
-                            />
-                            &nbsp;
-                          </>
-                        ) : (
-                          ''
-                        )}
-                        {backgroundImageName ? (
-                          <span className="thumbnail-name">
-                            {backgroundImageName}
-                          </span>
-                        ) : (
-                          ''
-                        )}
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">

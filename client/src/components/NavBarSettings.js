@@ -10,21 +10,19 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+import { useState } from 'react';
 
-import { useState, useRef } from 'react';
+import FileUploader from './FileUploader';
 
 const NavBarSettings = () => {
-  const [logoName, setLogoName] = useState(null);
   const [logo, setLogo] = useState(null);
   const [teachersLabel, setTeachersLabel] = useState('Teachers');
   const [pricingLabel, setPricingLabel] = useState('Pricing');
   const [contactLabel, setContactLabel] = useState('Contact');
-  const inputFile = useRef(null);
 
   const handleNavUpdate = () => {
     console.log({
       logo,
-      logoName,
       teachersLabel,
       pricingLabel,
       contactLabel,
@@ -57,37 +55,7 @@ const NavBarSettings = () => {
                         </label>
                       </Col>
                       <Col md="6">
-                        <input
-                          type="file"
-                          id="file"
-                          ref={inputFile}
-                          onChange={(e) => {
-                            setLogoName(e.target.files[0].name);
-                            setLogo(URL.createObjectURL(e.target.files[0]));
-                          }}
-                          style={{ display: 'none' }}
-                        />
-                        <Button
-                          outline
-                          color="primary"
-                          onClick={(e) => inputFile.current.click()}
-                          size="sm"
-                        >
-                          Upload
-                        </Button>
-                        {logo ? (
-                          <>
-                            <img src={logo} width="120" height="85" />
-                            &nbsp;
-                          </>
-                        ) : (
-                          ''
-                        )}
-                        {logoName ? (
-                          <span className="thumbnail-name">{logoName}</span>
-                        ) : (
-                          ''
-                        )}
+                        <FileUploader image={logo} setImage={setLogo} />
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">
