@@ -21536,4 +21536,8 @@ button:focus,
   margin-right: 10px;
 }
 
+.thumbnail-name {
+  font-size: 0.7rem;
+}
+
 /*# sourceMappingURL=argon-dashboard-react.css.map */

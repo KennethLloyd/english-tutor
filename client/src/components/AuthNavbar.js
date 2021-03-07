@@ -10,7 +10,9 @@ const AuthNavbar = () => {
           <NavbarBrand to="/" tag={Link}>
             <img
               alt="..."
-              src={require('../assets/img/brand/argon-react-white.png').default}
+              src={
+                'https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-light.svg'
+              }
             />
           </NavbarBrand>
           <button className="navbar-toggler" id="navbar-collapse-main">

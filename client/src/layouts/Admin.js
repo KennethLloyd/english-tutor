@@ -1,8 +1,6 @@
 import React from 'react';
 import { useLocation, Route, Switch, Redirect } from 'react-router-dom';
-// reactstrap components
 import { Container } from 'reactstrap';
-// core components
 import AdminNavbar from '../components/AdminNavbar.js';
 import AdminFooter from '../components/AdminFooter.js';
 import Sidebar from '../components/Sidebar.js';
@@ -54,7 +52,8 @@ const Admin = (props) => {
         routes={routes}
         logo={{
           innerLink: '/admin/index',
-          imgSrc: require('../assets/img/brand/argon-react.png').default,
+          imgSrc:
+            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-dark.svg',
           imgAlt: '...',
         }}
       />
