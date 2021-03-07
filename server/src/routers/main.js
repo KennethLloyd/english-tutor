@@ -20,5 +20,7 @@ router.put(
   mainValidator.updateHeroSettings,
   mainController.updateHeroSettings,
 );
+router.get('/settings/navigation', mainController.getNavigationSettings);
+router.get('/settings/hero', mainController.getHeroSettings);
 
 export default router;
