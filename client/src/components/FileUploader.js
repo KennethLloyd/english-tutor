@@ -27,7 +27,7 @@ const FileUploader = ({ image, setImage }) => {
       </Button>
       {image ? (
         <>
-          <img src={image} width="120" height="85" />
+          <img src={image} width="120" height="85" alt="thumbnail" />
           &nbsp;
         </>
       ) : (

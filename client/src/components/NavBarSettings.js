@@ -3,22 +3,24 @@ import {
   Card,
   CardHeader,
   CardBody,
-  FormGroup,
   Form,
   Input,
   Container,
   Row,
   Col,
 } from 'reactstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import FileUploader from './FileUploader';
+import ErrorAlert from './ErrorAlert';
+import api from '../api/api';
 
 const NavBarSettings = () => {
   const [logo, setLogo] = useState(null);
   const [teachersLabel, setTeachersLabel] = useState('Teachers');
   const [pricingLabel, setPricingLabel] = useState('Pricing');
   const [contactLabel, setContactLabel] = useState('Contact');
+  const [showError, setShowError] = useState(false);
 
   const handleNavUpdate = () => {
     console.log({
@@ -28,6 +30,22 @@ const NavBarSettings = () => {
       contactLabel,
     });
   };
+
+  useEffect(async () => {
+    const data = await api('/api/settings/navigation');
+    if (!data) {
+      setShowError(true);
+    } else {
+      setShowError(false);
+
+      const { settings } = data;
+
+      setLogo(settings.logoUrl);
+      setTeachersLabel(settings.teachersLabel);
+      setPricingLabel(settings.pricingLabel);
+      setContactLabel(settings.contactLabel);
+    }
+  }, []);
 
   return (
     <>
@@ -121,6 +139,19 @@ const NavBarSettings = () => {
                         />
                       </Col>
                     </Row>
+                    {showError ? (
+                      <Row className="align-items-center justify-content-center">
+                        <Col md="4">
+                          <ErrorAlert
+                            code={500}
+                            show={showError}
+                            setShow={setShowError}
+                          />
+                        </Col>
+                      </Row>
+                    ) : (
+                      ''
+                    )}
                     <Row className="justify-content-center">
                       <Button
                         color="primary"

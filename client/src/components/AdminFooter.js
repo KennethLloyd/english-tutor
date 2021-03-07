@@ -1,6 +1,6 @@
 import { Row, Col } from 'reactstrap';
 
-const Footer = () => {
+const AdminFooter = () => {
   return (
     <footer className="footer">
       <Row className="align-items-center justify-content-xl-between">
@@ -22,4 +22,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default AdminFooter;

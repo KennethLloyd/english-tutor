@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import { UncontrolledAlert } from 'reactstrap';
 
-const ErrorAlert = ({ msg, code }) => {
-  const [show, setShow] = useState(true);
-
+const ErrorAlert = ({ msg, code, show, setShow }) => {
   if (show) {
     return (
       <UncontrolledAlert

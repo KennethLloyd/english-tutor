@@ -9,7 +9,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 import ColorPicker from './ColorPicker';
 import FileUploader from './FileUploader';
