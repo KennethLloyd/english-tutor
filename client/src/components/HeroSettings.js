@@ -143,7 +143,6 @@ const HeroSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In hendrerit gravida rutrum quisque."
                           id="subtitle-text"
                           placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In hendrerit gravida rutrum quisque."
                           type="textarea"
