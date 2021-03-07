@@ -25,6 +25,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [errorCode, setErrorCode] = useState(null);
+  const [showError, setShowError] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -52,9 +53,11 @@ const Login = () => {
       if (data.hasOwnProperty('error')) {
         setErrorMessage(data.error);
         setErrorCode(response.status);
+        setShowError(true);
 
         localStorage.removeItem('token');
       } else {
+        setShowError(false);
         localStorage.setItem('token', data.token);
         history.push('/admin');
       }
@@ -142,8 +145,17 @@ const Login = () => {
                         Sign in
                       </Button>
                     </div>
-                    {errorMessage ? (
-                      <ErrorAlert msg={errorMessage} code={errorCode} />
+                    {showError ? (
+                      <Row className="align-items-center justify-content-center">
+                        <Col md="12">
+                          <ErrorAlert
+                            code={errorCode}
+                            msg={errorMessage}
+                            show={showError}
+                            setShow={setShowError}
+                          />
+                        </Col>
+                      </Row>
                     ) : (
                       ''
                     )}

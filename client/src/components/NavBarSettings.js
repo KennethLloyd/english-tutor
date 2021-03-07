@@ -139,8 +139,18 @@ const NavBarSettings = () => {
                         />
                       </Col>
                     </Row>
+                    <Row className="justify-content-center">
+                      <Button
+                        color="primary"
+                        href="#pablo"
+                        onClick={handleNavUpdate}
+                        size="md"
+                      >
+                        Save
+                      </Button>
+                    </Row>
                     {showError ? (
-                      <Row className="align-items-center justify-content-center">
+                      <Row className="align-items-center mt-4 justify-content-center">
                         <Col md="4">
                           <ErrorAlert
                             code={500}
@@ -152,16 +162,6 @@ const NavBarSettings = () => {
                     ) : (
                       ''
                     )}
-                    <Row className="justify-content-center">
-                      <Button
-                        color="primary"
-                        href="#pablo"
-                        onClick={handleNavUpdate}
-                        size="md"
-                      >
-                        Save
-                      </Button>
-                    </Row>
                   </div>
                 </Form>
               </CardBody>
