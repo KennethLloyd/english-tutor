@@ -1,4 +1,15 @@
-import { Container, Card, Button, Row, Col, Form } from 'react-bootstrap';
+import {
+  Container,
+  Card,
+  CardImg,
+  CardBody,
+  Button,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Input,
+} from 'reactstrap';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ErrorAlert from './components/ErrorAlert';
@@ -45,46 +56,50 @@ const Login = () => {
         <Row className="vh-100 align-items-center">
           <Col>
             <Card style={{ width: '25rem' }} className="mx-auto">
-              <Card.Img
-                variant="top"
+              <CardImg
+                top
                 src="https://res.cloudinary.com/kennethlloyd/image/upload/v1615019479/english-courses/english-tutor.svg"
               />
               <hr />
-              <Card.Body>
+              <CardBody>
                 <Form onSubmit={(e) => e.preventDefault()}>
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                      type="string"
-                      placeholder="Enter username"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </Form.Group>
-                  <div className="text-center">
-                    <Button
-                      variant="primary"
-                      type="submit"
-                      onClick={handleLogin}
-                    >
-                      Sign in
-                    </Button>
-                  </div>
-                  &nbsp;
-                  {errorMessage && (
-                    <ErrorAlert msg={errorMessage} code={errorCode} />
-                  )}
+                  <Row>
+                    <Col md="12">
+                      <FormGroup>
+                        <Input
+                          id="username"
+                          placeholder="Enter username"
+                          type="string"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Input
+                          id="password"
+                          placeholder="Password"
+                          type="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </FormGroup>
+                      <div className="text-center">
+                        <Button
+                          color="primary"
+                          type="submit"
+                          onClick={handleLogin}
+                        >
+                          Sign in
+                        </Button>
+                      </div>
+                      &nbsp;
+                      {errorMessage && (
+                        <ErrorAlert msg={errorMessage} code={errorCode} />
+                      )}
+                    </Col>
+                  </Row>
                 </Form>
-              </Card.Body>
+              </CardBody>
             </Card>
           </Col>
         </Row>
