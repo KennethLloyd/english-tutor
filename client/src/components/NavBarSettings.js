@@ -28,7 +28,7 @@ const NavBarSettings = () => {
 
   return (
     <>
-      <Container fluid>
+      <Container fluid className="pb-5">
         <Row>
           <Col className="order-xl-1" xl="12">
             <Card className="bg-secondary shadow">
