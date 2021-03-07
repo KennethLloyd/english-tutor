@@ -1,14 +1,20 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Login from './Login';
-import Home from './Home';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
+import Login from './layouts/Login';
+import Admin from './layouts/Admin';
 
 const App = () => {
   return (
     <Router>
-      <>
-        <Route exact path="/" component={Login} />
-        <Route path="/home" component={Home} />
-      </>
+      <Switch>
+        <Route path="/admin" render={(props) => <Admin {...props} />} />
+        <Route path="/auth" render={(props) => <Login {...props} />} />
+        <Redirect from="/" to="/admin/index" />
+      </Switch>
     </Router>
   );
 };

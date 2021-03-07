@@ -15,7 +15,10 @@ import {
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
-import ErrorAlert from './components/ErrorAlert';
+
+import AuthNavbar from '../components/AuthNavbar.js';
+import AuthFooter from '../components/AuthFooter.js';
+import ErrorAlert from '../components/ErrorAlert';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -53,7 +56,7 @@ const Login = () => {
         localStorage.removeItem('token');
       } else {
         localStorage.setItem('token', data.token);
-        history.push('/home');
+        history.push('/admin');
       }
     } catch (e) {
       setErrorCode(500);
@@ -63,7 +66,7 @@ const Login = () => {
   return (
     <>
       <div className="main-content">
-        {/* <AuthNavbar /> */}
+        <AuthNavbar />
         <div className="header bg-gradient-info py-7 py-lg-8">
           <Container>
             <div className="header-body text-center mb-7">
@@ -151,6 +154,7 @@ const Login = () => {
           </Row>
         </Container>
       </div>
+      <AuthFooter />
     </>
   );
 };
