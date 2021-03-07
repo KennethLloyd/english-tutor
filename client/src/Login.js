@@ -1,17 +1,20 @@
 import {
-  Container,
-  Card,
-  CardImg,
-  CardBody,
   Button,
+  Card,
+  CardBody,
+  FormGroup,
+  Form,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
   Row,
   Col,
-  Form,
-  FormGroup,
-  Input,
+  Container,
 } from 'reactstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { FaUser, FaLock } from 'react-icons/fa';
 import ErrorAlert from './components/ErrorAlert';
 
 const Login = () => {
@@ -20,6 +23,13 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [errorCode, setErrorCode] = useState(null);
   const history = useHistory();
+
+  useEffect(() => {
+    document.body.classList.add('bg-default');
+    return () => {
+      document.body.classList.remove('bg-default');
+    };
+  }, []);
 
   const handleLogin = async () => {
     try {
@@ -51,60 +61,97 @@ const Login = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#F0F0F0' }}>
-      <Container className="vh-100">
-        <Row className="vh-100 align-items-center">
-          <Col>
-            <Card style={{ width: '25rem' }} className="mx-auto">
-              <CardImg
-                top
-                src="https://res.cloudinary.com/kennethlloyd/image/upload/v1615019479/english-courses/english-tutor.svg"
+    <>
+      <div className="main-content">
+        {/* <AuthNavbar /> */}
+        <div className="header bg-gradient-info py-7 py-lg-8">
+          <Container>
+            <div className="header-body text-center mb-7">
+              <Row className="justify-content-center">
+                <Col lg="5" md="6">
+                  <h1 className="text-white">Welcome!</h1>
+                </Col>
+              </Row>
+            </div>
+          </Container>
+          <div className="separator separator-bottom separator-skew zindex-100">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              version="1.1"
+              viewBox="0 0 2560 100"
+              x="0"
+              y="0"
+            >
+              <polygon
+                className="fill-default"
+                points="2560 0 2560 100 0 100"
               />
-              <hr />
-              <CardBody>
-                <Form onSubmit={(e) => e.preventDefault()}>
-                  <Row>
-                    <Col md="12">
-                      <FormGroup>
+            </svg>
+          </div>
+        </div>
+        <Container className="mt--8 pb-5">
+          <Row className="justify-content-center">
+            <Col lg="5" md="7">
+              <Card className="bg-secondary shadow border-0">
+                <CardBody className="px-lg-5 py-lg-5">
+                  <div className="text-center text-muted mb-4">
+                    <small>Please use your admin credentials</small>
+                  </div>
+                  <Form onSubmit={(e) => e.preventDefault()}>
+                    <FormGroup className="mb-3">
+                      <InputGroup className="input-group-alternative">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <FaUser />
+                          </InputGroupText>
+                        </InputGroupAddon>
                         <Input
-                          id="username"
-                          placeholder="Enter username"
+                          placeholder="Username"
                           type="string"
                           value={username}
                           onChange={(e) => setUsername(e.target.value)}
                         />
-                      </FormGroup>
-                      <FormGroup>
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup className="input-group-alternative">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <FaLock />
+                          </InputGroupText>
+                        </InputGroupAddon>
                         <Input
-                          id="password"
                           placeholder="Password"
                           type="password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                         />
-                      </FormGroup>
-                      <div className="text-center">
-                        <Button
-                          color="primary"
-                          type="submit"
-                          onClick={handleLogin}
-                        >
-                          Sign in
-                        </Button>
-                      </div>
-                      &nbsp;
-                      {errorMessage && (
-                        <ErrorAlert msg={errorMessage} code={errorCode} />
-                      )}
-                    </Col>
-                  </Row>
-                </Form>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+                      </InputGroup>
+                    </FormGroup>
+                    <div className="text-center">
+                      <Button
+                        className="my-4"
+                        color="primary"
+                        type="button"
+                        onClick={handleLogin}
+                      >
+                        Sign in
+                      </Button>
+                    </div>
+                    {errorMessage ? (
+                      <ErrorAlert msg={errorMessage} code={errorCode} />
+                    ) : (
+                      ''
+                    )}
+                  </Form>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </>
   );
 };
 
