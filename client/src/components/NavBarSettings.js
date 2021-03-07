@@ -31,20 +31,23 @@ const NavBarSettings = () => {
     });
   };
 
-  useEffect(async () => {
-    const data = await api('/api/settings/navigation');
-    if (!data) {
-      setShowError(true);
-    } else {
-      setShowError(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await api('/api/settings/navigation');
+      if (!data) {
+        setShowError(true);
+      } else {
+        setShowError(false);
 
-      const { settings } = data;
+        const { settings } = data;
 
-      setLogo(settings.logoUrl);
-      setTeachersLabel(settings.teachersLabel);
-      setPricingLabel(settings.pricingLabel);
-      setContactLabel(settings.contactLabel);
-    }
+        setLogo(settings.logoUrl);
+        setTeachersLabel(settings.teachersLabel);
+        setPricingLabel(settings.pricingLabel);
+        setContactLabel(settings.contactLabel);
+      }
+    };
+    fetchData();
   }, []);
 
   return (
