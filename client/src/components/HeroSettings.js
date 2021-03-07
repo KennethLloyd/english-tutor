@@ -9,10 +9,12 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-
-import { useState } from 'react';
+import { SketchPicker } from 'react-color';
+import { useState, useRef } from 'react';
 
 const HeroSettings = () => {
+  const [backgroundImageName, setBackgroundImageName] = useState(null);
+  const [bakcgroundImage, setBackgroundImage] = useState(null);
   const [backgroundOpacity, setBackgroundOpacity] = useState(80);
   const [titleText, setTitleText] = useState('English Tutor');
   const [titleTextColor, setTitleTextColor] = useState('#000000');
@@ -24,8 +26,117 @@ const HeroSettings = () => {
   const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
   const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
 
+  const [displayTitleTextCP, setDisplayTitleTextCP] = useState(false);
+  const [displaySubtitleTextCP, setDisplaySubtitleTextCP] = useState(false);
+  const [displayActionButtonTextCP, setDisplayActionButtonTextCP] = useState(
+    false,
+  );
+  const [displayActionButtonCP, setDisplayActionButtonCP] = useState(false);
+
+  const inputFile = useRef(null);
+
+  const styles = {
+    titleTextColor: {
+      width: '36px',
+      height: '14px',
+      borderRadius: '2px',
+      background: titleTextColor,
+    },
+    subtitleTextColor: {
+      width: '36px',
+      height: '14px',
+      borderRadius: '2px',
+      background: subtitleTextColor,
+    },
+    actionButtonTextColor: {
+      width: '36px',
+      height: '14px',
+      borderRadius: '2px',
+      background: actionButtonTextColor,
+    },
+    actionButtonColor: {
+      width: '36px',
+      height: '14px',
+      borderRadius: '2px',
+      background: actionButtonColor,
+    },
+    swatch: {
+      padding: '5px',
+      background: '#fff',
+      borderRadius: '1px',
+      boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+      display: 'inline-block',
+      cursor: 'pointer',
+    },
+    popover: {
+      position: 'absolute',
+      zIndex: '2',
+    },
+    cover: {
+      position: 'fixed',
+      top: '0px',
+      right: '0px',
+      bottom: '0px',
+      left: '0px',
+    },
+  };
+
+  // title text color
+  const handleTitleTextCPClick = () => {
+    setDisplayTitleTextCP(!displayTitleTextCP);
+  };
+
+  const handleTitleTextCPClose = () => {
+    setDisplayTitleTextCP(false);
+  };
+
+  const handleTitleTextCPChange = (color) => {
+    setTitleTextColor(color.hex);
+  };
+
+  // subtitle text color
+  const handleSubtitleTextCPClick = () => {
+    setDisplaySubtitleTextCP(!displaySubtitleTextCP);
+  };
+
+  const handleSubtitleTextCPClose = () => {
+    setDisplaySubtitleTextCP(false);
+  };
+
+  const handleSubtitleTextCPChange = (color) => {
+    setSubtitleTextColor(color.hex);
+  };
+
+  // action button text color
+  const handleActionButtonTextCPClick = () => {
+    setDisplayActionButtonTextCP(!displayActionButtonTextCP);
+  };
+
+  const handleActionButtonTextCPClose = () => {
+    setDisplayActionButtonTextCP(false);
+  };
+
+  const handleActionButtonTextCPChange = (color) => {
+    setActionButtonTextColor(color.hex);
+  };
+
+  // action button color
+  const handleActionButtonCPClick = () => {
+    setDisplayActionButtonCP(!displayActionButtonCP);
+  };
+
+  const handleActionButtonCPClose = () => {
+    setDisplayActionButtonCP(false);
+  };
+
+  const handleActionButtonCPChange = (color) => {
+    setActionButtonColor(color.hex);
+  };
+
   const handleNavUpdate = () => {
     console.log({
+      backgroundImageName,
+      bakcgroundImage,
       backgroundOpacity,
       titleText,
       titleTextColor,
@@ -63,15 +174,45 @@ const HeroSettings = () => {
                         </label>
                       </Col>
                       <Col md="6">
+                        <input
+                          type="file"
+                          id="file"
+                          ref={inputFile}
+                          onChange={(e) => {
+                            setBackgroundImageName(e.target.files[0].name);
+                            setBackgroundImage(
+                              URL.createObjectURL(e.target.files[0]),
+                            );
+                          }}
+                          style={{ display: 'none' }}
+                        />
                         <Button
                           outline
                           color="primary"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={(e) => inputFile.current.click()}
                           size="sm"
                         >
                           Upload
                         </Button>
+                        {bakcgroundImage ? (
+                          <>
+                            <img
+                              src={bakcgroundImage}
+                              width="120"
+                              height="85"
+                            />
+                            &nbsp;
+                          </>
+                        ) : (
+                          ''
+                        )}
+                        {backgroundImageName ? (
+                          <span className="thumbnail-name">
+                            {backgroundImageName}
+                          </span>
+                        ) : (
+                          ''
+                        )}
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">
@@ -126,15 +267,26 @@ const HeroSettings = () => {
                         </label>
                       </Col>
                       <Col md="6">
-                        <Input
-                          className="form-control-alternative"
-                          defaultValue="Contact"
-                          id="title-text-color"
-                          placeholder="Contact"
-                          type="text"
-                          value={titleTextColor}
-                          onChange={(e) => setTitleTextColor(e.target.value)}
-                        />
+                        <div>
+                          <div
+                            style={styles.swatch}
+                            onClick={handleTitleTextCPClick}
+                          >
+                            <div style={styles.titleTextColor} />
+                          </div>
+                          {displayTitleTextCP ? (
+                            <div style={styles.popover}>
+                              <div
+                                style={styles.cover}
+                                onClick={handleTitleTextCPClose}
+                              />
+                              <SketchPicker
+                                color={titleTextColor}
+                                onChange={handleTitleTextCPChange}
+                              />
+                            </div>
+                          ) : null}
+                        </div>
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">
@@ -168,15 +320,26 @@ const HeroSettings = () => {
                         </label>
                       </Col>
                       <Col md="6">
-                        <Input
-                          className="form-control-alternative"
-                          defaultValue="Contact"
-                          id="title-text-color"
-                          placeholder="Contact"
-                          type="text"
-                          value={subtitleTextColor}
-                          onChange={(e) => setSubtitleTextColor(e.target.value)}
-                        />
+                        <div>
+                          <div
+                            style={styles.swatch}
+                            onClick={handleSubtitleTextCPClick}
+                          >
+                            <div style={styles.subtitleTextColor} />
+                          </div>
+                          {displaySubtitleTextCP ? (
+                            <div style={styles.popover}>
+                              <div
+                                style={styles.cover}
+                                onClick={handleSubtitleTextCPClose}
+                              />
+                              <SketchPicker
+                                color={subtitleTextColor}
+                                onChange={handleSubtitleTextCPChange}
+                              />
+                            </div>
+                          ) : null}
+                        </div>
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">
@@ -210,17 +373,26 @@ const HeroSettings = () => {
                         </label>
                       </Col>
                       <Col md="6">
-                        <Input
-                          className="form-control-alternative"
-                          defaultValue="Contact"
-                          id="action-button-text-color"
-                          placeholder="Contact"
-                          type="text"
-                          value={actionButtonTextColor}
-                          onChange={(e) =>
-                            setActionButtonTextColor(e.target.value)
-                          }
-                        />
+                        <div>
+                          <div
+                            style={styles.swatch}
+                            onClick={handleActionButtonTextCPClick}
+                          >
+                            <div style={styles.actionButtonTextColor} />
+                          </div>
+                          {displayActionButtonTextCP ? (
+                            <div style={styles.popover}>
+                              <div
+                                style={styles.cover}
+                                onClick={handleActionButtonTextCPClose}
+                              />
+                              <SketchPicker
+                                color={actionButtonTextColor}
+                                onChange={handleActionButtonTextCPChange}
+                              />
+                            </div>
+                          ) : null}
+                        </div>
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">
@@ -233,15 +405,26 @@ const HeroSettings = () => {
                         </label>
                       </Col>
                       <Col md="6">
-                        <Input
-                          className="form-control-alternative"
-                          defaultValue="Contact"
-                          id="action-button-color"
-                          placeholder="Contact"
-                          type="text"
-                          value={actionButtonColor}
-                          onChange={(e) => setActionButtonColor(e.target.value)}
-                        />
+                        <div>
+                          <div
+                            style={styles.swatch}
+                            onClick={handleActionButtonCPClick}
+                          >
+                            <div style={styles.actionButtonColor} />
+                          </div>
+                          {displayActionButtonCP ? (
+                            <div style={styles.popover}>
+                              <div
+                                style={styles.cover}
+                                onClick={handleActionButtonCPClose}
+                              />
+                              <SketchPicker
+                                color={actionButtonColor}
+                                onChange={handleActionButtonCPChange}
+                              />
+                            </div>
+                          ) : null}
+                        </div>
                       </Col>
                     </Row>
                     <Row className="justify-content-center">

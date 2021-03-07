@@ -70,7 +70,6 @@ const NavBarSettings = () => {
                         <Button
                           outline
                           color="primary"
-                          href="#pablo"
                           onClick={(e) => inputFile.current.click()}
                           size="sm"
                         >
@@ -78,7 +77,7 @@ const NavBarSettings = () => {
                         </Button>
                         {logo ? (
                           <>
-                            <img src={logo} width="100" height="85" />
+                            <img src={logo} width="120" height="85" />
                             &nbsp;
                           </>
                         ) : (
