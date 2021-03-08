@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react';
 
 import FileUploader from './FileUploader';
 import ErrorAlert from './ErrorAlert';
+import SuccessAlert from './SuccessAlert';
 import api from '../api/api';
 
 const NavBarSettings = () => {
@@ -22,6 +23,7 @@ const NavBarSettings = () => {
   const [pricingLabel, setPricingLabel] = useState('Pricing');
   const [contactLabel, setContactLabel] = useState('Contact');
   const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleNavUpdate = async () => {
     const formData = new FormData();
@@ -42,7 +44,9 @@ const NavBarSettings = () => {
 
     if (!data) {
       setShowError(true);
+      setShowSuccess(false);
     } else {
+      setShowSuccess(true);
       setShowError(false);
     }
   };
@@ -111,7 +115,6 @@ const NavBarSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="Teachers"
                           id="teachers-label"
                           placeholder="Teachers"
                           type="text"
@@ -132,7 +135,6 @@ const NavBarSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="Pricing"
                           id="pricing-label"
                           placeholder="Pricing"
                           type="text"
@@ -153,7 +155,6 @@ const NavBarSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="Contact"
                           id="contact-label"
                           placeholder="Contact"
                           type="text"
@@ -178,6 +179,19 @@ const NavBarSettings = () => {
                             code={500}
                             show={showError}
                             setShow={setShowError}
+                          />
+                        </Col>
+                      </Row>
+                    ) : (
+                      ''
+                    )}
+                    {showSuccess ? (
+                      <Row className="align-items-center mt-4 justify-content-center">
+                        <Col md="4">
+                          <SuccessAlert
+                            msg="Navbar settings updated"
+                            show={showSuccess}
+                            setShow={setShowSuccess}
                           />
                         </Col>
                       </Row>

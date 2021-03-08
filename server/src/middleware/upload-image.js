@@ -13,7 +13,10 @@ const uploadImage = (req, res, next) => {
       return next(err);
     }
 
-    if (!req.file) return next();
+    if (!req.file) {
+      delete req.body.image;
+      return next();
+    }
 
     cloudinary.config({
       cloud_name: config.get('cloudinaryName'),

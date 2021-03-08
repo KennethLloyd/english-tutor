@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import ColorPicker from './ColorPicker';
 import FileUploader from './FileUploader';
 import ErrorAlert from './ErrorAlert';
+import SuccessAlert from './SuccessAlert';
 import api from '../api/api';
 
 const HeroSettings = () => {
@@ -32,6 +33,7 @@ const HeroSettings = () => {
   const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
   const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
   const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleHeroUpdate = async () => {
     const formData = new FormData();
@@ -57,7 +59,9 @@ const HeroSettings = () => {
 
     if (!data) {
       setShowError(true);
+      setShowSuccess(false);
     } else {
+      setShowSuccess(true);
       setShowError(false);
     }
   };
@@ -131,7 +135,6 @@ const HeroSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="80"
                           id="background-opacity"
                           placeholder="80"
                           type="number"
@@ -152,7 +155,6 @@ const HeroSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="English Tutor"
                           id="title-text"
                           placeholder="English Tutor"
                           type="text"
@@ -225,7 +227,6 @@ const HeroSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="LEARN MORE"
                           id="action-button-text"
                           placeholder="LEARN MORE"
                           type="text"
@@ -282,6 +283,19 @@ const HeroSettings = () => {
                             code={500}
                             show={showError}
                             setShow={setShowError}
+                          />
+                        </Col>
+                      </Row>
+                    ) : (
+                      ''
+                    )}
+                    {showSuccess ? (
+                      <Row className="align-items-center mt-4 justify-content-center">
+                        <Col md="4">
+                          <SuccessAlert
+                            msg="Hero settings updated"
+                            show={showSuccess}
+                            setShow={setShowSuccess}
                           />
                         </Col>
                       </Row>
