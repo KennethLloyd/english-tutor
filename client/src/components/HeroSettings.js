@@ -18,6 +18,9 @@ import api from '../api/api';
 
 const HeroSettings = () => {
   const [backgroundImage, setBackgroundImage] = useState(null);
+  const [backgroundImageThumbnail, setBackgroundImageThumbnail] = useState(
+    null,
+  );
   const [backgroundOpacity, setBackgroundOpacity] = useState(80);
   const [titleText, setTitleText] = useState('English Tutor');
   const [titleTextColor, setTitleTextColor] = useState('#000000');
@@ -30,18 +33,33 @@ const HeroSettings = () => {
   const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
   const [showError, setShowError] = useState(false);
 
-  const handleNavUpdate = () => {
-    console.log({
-      backgroundImage,
-      backgroundOpacity,
-      titleText,
-      titleTextColor,
-      subtitleText,
-      subtitleTextColor,
-      actionButtonText,
-      actionButtonTextColor,
-      actionButtonColor,
+  const handleHeroUpdate = async () => {
+    const formData = new FormData();
+
+    formData.append('image', backgroundImage);
+    formData.append('backgroundOpacity', backgroundOpacity);
+    formData.append('titleText', titleText);
+    formData.append('titleTextColor', titleTextColor);
+    formData.append('subtitleText', subtitleText);
+    formData.append('subtitleTextColor', subtitleTextColor);
+    formData.append('actionButtonText', actionButtonText);
+    formData.append('actionButtonTextColor', actionButtonTextColor);
+    formData.append('actionButtonColor', actionButtonColor);
+
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    const data = await api('/api/settings/hero', {
+      method: 'PUT',
+      headers,
+      body: formData,
     });
+
+    if (!data) {
+      setShowError(true);
+    } else {
+      setShowError(false);
+    }
   };
 
   useEffect(() => {
@@ -54,7 +72,7 @@ const HeroSettings = () => {
 
         const { settings } = data;
 
-        setBackgroundImage(settings.backgroundImageUrl);
+        setBackgroundImageThumbnail(settings.backgroundImageUrl);
         setBackgroundOpacity(settings.backgroundOpacity);
         setTitleText(settings.titleText);
         setTitleTextColor(settings.titleTextColor);
@@ -95,8 +113,9 @@ const HeroSettings = () => {
                       </Col>
                       <Col md="6">
                         <FileUploader
-                          image={backgroundImage}
                           setImage={setBackgroundImage}
+                          thumbnail={backgroundImageThumbnail}
+                          setThumbnail={setBackgroundImageThumbnail}
                         />
                       </Col>
                     </Row>
@@ -250,8 +269,7 @@ const HeroSettings = () => {
                     <Row className="justify-content-center">
                       <Button
                         color="primary"
-                        href="#pablo"
-                        onClick={handleNavUpdate}
+                        onClick={handleHeroUpdate}
                         size="md"
                       >
                         Save

@@ -34,7 +34,7 @@ const NavBarSettings = () => {
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
-    const data = await api('/api/settings/navigations', {
+    const data = await api('/api/settings/navigation', {
       method: 'PUT',
       headers,
       body: formData,
@@ -165,7 +165,6 @@ const NavBarSettings = () => {
                     <Row className="justify-content-center">
                       <Button
                         color="primary"
-                        href="#pablo"
                         onClick={handleNavUpdate}
                         size="md"
                       >
