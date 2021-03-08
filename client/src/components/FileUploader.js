@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { Button } from 'reactstrap';
 
-const FileUploader = ({ image, setImage }) => {
+const FileUploader = ({ setImage, thumbnail, setThumbnail }) => {
   const [imageName, setImageName] = useState(null);
   const inputFile = useRef(null);
 
@@ -13,7 +13,8 @@ const FileUploader = ({ image, setImage }) => {
         ref={inputFile}
         onChange={(e) => {
           setImageName(e.target.files[0].name);
-          setImage(URL.createObjectURL(e.target.files[0]));
+          setThumbnail(URL.createObjectURL(e.target.files[0]));
+          setImage(e.target.files[0]);
         }}
         style={{ display: 'none' }}
       />
@@ -25,9 +26,9 @@ const FileUploader = ({ image, setImage }) => {
       >
         Upload
       </Button>
-      {image ? (
+      {thumbnail ? (
         <>
-          <img src={image} width="120" height="85" alt="thumbnail" />
+          <img src={thumbnail} width="120" height="85" alt="thumbnail" />
           &nbsp;
         </>
       ) : (

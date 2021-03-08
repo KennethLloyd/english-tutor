@@ -13,22 +13,42 @@ import { useState, useEffect } from 'react';
 
 import FileUploader from './FileUploader';
 import ErrorAlert from './ErrorAlert';
+import SuccessAlert from './SuccessAlert';
 import api from '../api/api';
 
 const NavBarSettings = () => {
   const [logo, setLogo] = useState(null);
+  const [logoThumbnail, setLogoThumbnail] = useState(null);
   const [teachersLabel, setTeachersLabel] = useState('Teachers');
   const [pricingLabel, setPricingLabel] = useState('Pricing');
   const [contactLabel, setContactLabel] = useState('Contact');
   const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleNavUpdate = () => {
-    console.log({
-      logo,
-      teachersLabel,
-      pricingLabel,
-      contactLabel,
+  const handleNavUpdate = async () => {
+    const formData = new FormData();
+
+    formData.append('image', logo);
+    formData.append('teachersLabel', teachersLabel);
+    formData.append('pricingLabel', pricingLabel);
+    formData.append('contactLabel', contactLabel);
+
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    const data = await api('/api/settings/navigation', {
+      method: 'PUT',
+      headers,
+      body: formData,
     });
+
+    if (!data) {
+      setShowError(true);
+      setShowSuccess(false);
+    } else {
+      setShowSuccess(true);
+      setShowError(false);
+    }
   };
 
   useEffect(() => {
@@ -41,7 +61,7 @@ const NavBarSettings = () => {
 
         const { settings } = data;
 
-        setLogo(settings.logoUrl);
+        setLogoThumbnail(settings.logoUrl);
         setTeachersLabel(settings.teachersLabel);
         setPricingLabel(settings.pricingLabel);
         setContactLabel(settings.contactLabel);
@@ -76,7 +96,11 @@ const NavBarSettings = () => {
                         </label>
                       </Col>
                       <Col md="6">
-                        <FileUploader image={logo} setImage={setLogo} />
+                        <FileUploader
+                          setImage={setLogo}
+                          thumbnail={logoThumbnail}
+                          setThumbnail={setLogoThumbnail}
+                        />
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">
@@ -91,7 +115,6 @@ const NavBarSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="Teachers"
                           id="teachers-label"
                           placeholder="Teachers"
                           type="text"
@@ -112,7 +135,6 @@ const NavBarSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="Pricing"
                           id="pricing-label"
                           placeholder="Pricing"
                           type="text"
@@ -133,7 +155,6 @@ const NavBarSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="Contact"
                           id="contact-label"
                           placeholder="Contact"
                           type="text"
@@ -145,7 +166,6 @@ const NavBarSettings = () => {
                     <Row className="justify-content-center">
                       <Button
                         color="primary"
-                        href="#pablo"
                         onClick={handleNavUpdate}
                         size="md"
                       >
@@ -159,6 +179,19 @@ const NavBarSettings = () => {
                             code={500}
                             show={showError}
                             setShow={setShowError}
+                          />
+                        </Col>
+                      </Row>
+                    ) : (
+                      ''
+                    )}
+                    {showSuccess ? (
+                      <Row className="align-items-center mt-4 justify-content-center">
+                        <Col md="4">
+                          <SuccessAlert
+                            msg="Navbar settings updated"
+                            show={showSuccess}
+                            setShow={setShowSuccess}
                           />
                         </Col>
                       </Row>

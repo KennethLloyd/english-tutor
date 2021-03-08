@@ -9,13 +9,19 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import ColorPicker from './ColorPicker';
 import FileUploader from './FileUploader';
+import ErrorAlert from './ErrorAlert';
+import SuccessAlert from './SuccessAlert';
+import api from '../api/api';
 
 const HeroSettings = () => {
   const [backgroundImage, setBackgroundImage] = useState(null);
+  const [backgroundImageThumbnail, setBackgroundImageThumbnail] = useState(
+    null,
+  );
   const [backgroundOpacity, setBackgroundOpacity] = useState(80);
   const [titleText, setTitleText] = useState('English Tutor');
   const [titleTextColor, setTitleTextColor] = useState('#000000');
@@ -26,20 +32,63 @@ const HeroSettings = () => {
   const [actionButtonText, setActionButtonText] = useState('LEARN MORE');
   const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
   const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleNavUpdate = () => {
-    console.log({
-      backgroundImage,
-      backgroundOpacity,
-      titleText,
-      titleTextColor,
-      subtitleText,
-      subtitleTextColor,
-      actionButtonText,
-      actionButtonTextColor,
-      actionButtonColor,
+  const handleHeroUpdate = async () => {
+    const formData = new FormData();
+
+    formData.append('image', backgroundImage);
+    formData.append('backgroundOpacity', backgroundOpacity);
+    formData.append('titleText', titleText);
+    formData.append('titleTextColor', titleTextColor);
+    formData.append('subtitleText', subtitleText);
+    formData.append('subtitleTextColor', subtitleTextColor);
+    formData.append('actionButtonText', actionButtonText);
+    formData.append('actionButtonTextColor', actionButtonTextColor);
+    formData.append('actionButtonColor', actionButtonColor);
+
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    const data = await api('/api/settings/hero', {
+      method: 'PUT',
+      headers,
+      body: formData,
     });
+
+    if (!data) {
+      setShowError(true);
+      setShowSuccess(false);
+    } else {
+      setShowSuccess(true);
+      setShowError(false);
+    }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await api('/api/settings/hero');
+      if (!data) {
+        setShowError(true);
+      } else {
+        setShowError(false);
+
+        const { settings } = data;
+
+        setBackgroundImageThumbnail(settings.backgroundImageUrl);
+        setBackgroundOpacity(settings.backgroundOpacity);
+        setTitleText(settings.titleText);
+        setTitleTextColor(settings.titleTextColor);
+        setSubtitleText(settings.subtitleText);
+        setSubtitleTextColor(settings.subtitleTextColor);
+        setActionButtonText(settings.actionButtonText);
+        setActionButtonTextColor(settings.actionButtonTextColor);
+        setActionButtonColor(settings.actionButtonColor);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -68,8 +117,9 @@ const HeroSettings = () => {
                       </Col>
                       <Col md="6">
                         <FileUploader
-                          image={backgroundImage}
                           setImage={setBackgroundImage}
+                          thumbnail={backgroundImageThumbnail}
+                          setThumbnail={setBackgroundImageThumbnail}
                         />
                       </Col>
                     </Row>
@@ -85,7 +135,6 @@ const HeroSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="80"
                           id="background-opacity"
                           placeholder="80"
                           type="number"
@@ -106,7 +155,6 @@ const HeroSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="English Tutor"
                           id="title-text"
                           placeholder="English Tutor"
                           type="text"
@@ -179,7 +227,6 @@ const HeroSettings = () => {
                       <Col md="6">
                         <Input
                           className="form-control-alternative"
-                          defaultValue="LEARN MORE"
                           id="action-button-text"
                           placeholder="LEARN MORE"
                           type="text"
@@ -223,13 +270,38 @@ const HeroSettings = () => {
                     <Row className="justify-content-center">
                       <Button
                         color="primary"
-                        href="#pablo"
-                        onClick={handleNavUpdate}
+                        onClick={handleHeroUpdate}
                         size="md"
                       >
                         Save
                       </Button>
                     </Row>
+                    {showError ? (
+                      <Row className="align-items-center mt-4 justify-content-center">
+                        <Col md="4">
+                          <ErrorAlert
+                            code={500}
+                            show={showError}
+                            setShow={setShowError}
+                          />
+                        </Col>
+                      </Row>
+                    ) : (
+                      ''
+                    )}
+                    {showSuccess ? (
+                      <Row className="align-items-center mt-4 justify-content-center">
+                        <Col md="4">
+                          <SuccessAlert
+                            msg="Hero settings updated"
+                            show={showSuccess}
+                            setShow={setShowSuccess}
+                          />
+                        </Col>
+                      </Row>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </Form>
               </CardBody>

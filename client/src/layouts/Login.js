@@ -35,8 +35,10 @@ const Login = () => {
     };
   }, []);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
     try {
+      e.preventDefault();
+
       const response = await fetch('api/auth/login', {
         method: 'POST',
         headers: {
@@ -104,7 +106,7 @@ const Login = () => {
                   <div className="text-center text-muted mb-4">
                     <small>Please use your admin credentials</small>
                   </div>
-                  <Form onSubmit={(e) => e.preventDefault()}>
+                  <Form onSubmit={handleLogin}>
                     <FormGroup className="mb-3">
                       <InputGroup className="input-group-alternative">
                         <InputGroupAddon addonType="prepend">
@@ -136,12 +138,7 @@ const Login = () => {
                       </InputGroup>
                     </FormGroup>
                     <div className="text-center">
-                      <Button
-                        className="my-4"
-                        color="primary"
-                        type="button"
-                        onClick={handleLogin}
-                      >
+                      <Button className="my-4" color="primary" type="submit">
                         Sign in
                       </Button>
                     </div>
