@@ -11,7 +11,6 @@ import { NavigationSettings, HeroSettings } from '../models/index.js';
 @apiParam {String} [pricingLabel] Pricing label
 @apiParam {String} [contactLabel] Contact label
 
-@apiSuccess {String} token Auth token
 @apiSuccessExample {json} Success-Response:
 HTTP/1.1 200 OK
 {
@@ -79,7 +78,6 @@ const updateNavigationSettings = async (req, res) => {
 @apiParam {String} [actionButtonTextColor] Action button text color
 @apiParam {String} [actionButtonColor] Action button color
 
-@apiSuccess {String} token Auth token
 @apiSuccessExample {json} Success-Response:
 HTTP/1.1 200 OK
 {
@@ -143,9 +141,96 @@ const updateHeroSettings = async (req, res) => {
   }
 };
 
+/**
+@api {get} /api/settings/navigation Get Navigation Settings
+@apiVersion 1.0.0
+@apiName GetNavigationSettings
+@apiGroup Settings
+
+@apiSuccessExample {json} Success-Response:
+HTTP/1.1 200 OK
+{
+    "message": "Successfully retrieved navigation settings",
+    "settings": {
+        "id": "36c66a0c-bb4e-430b-8f30-79e072f1662e",
+        "teachersLabel": "Mga Guro",
+        "pricingLabel": "Presyo",
+        "contactLabel": "Kontak",
+        "logoUrl": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615041337/english-courses/1615041336174-lelouch-geass.jpg.jpg",
+        "updatedAt": "2021-03-06T14:35:37.924Z",
+        "createdAt": "2021-03-06T14:35:37.924Z"
+    }
+}
+*/
+
+const getNavigationSettings = async (req, res) => {
+  try {
+    let settings = await NavigationSettings.findOne();
+
+    return res.send({
+      message: 'Successfully retrieved navigation settings',
+      settings,
+    });
+  } catch (e) {
+    console.log(e);
+
+    if (e.status) {
+      return res.status(e.status).send({ error: e.message });
+    }
+    return res.status(500).send({ error: 'Internal Server Error' });
+  }
+};
+
+/**
+@api {get} /api/settings/hero Get Hero Settings
+@apiVersion 1.0.0
+@apiName GetHeroSettings
+@apiGroup Settings
+
+@apiSuccessExample {json} Success-Response:
+HTTP/1.1 200 OK
+{
+    "message": "Successfully retrieved hero settings",
+    "settings": {
+        "id": "a0139539-bb57-4b0f-9526-8f7b04626a36",
+        "backgroundImageUrl": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615042398/english-courses/1615042396604-idle.JPG.jpg",
+        "backgroundOpacity": 79,
+        "titleText": "Best of fourth generation",
+        "titleTextColor": "#FFFFFF",
+        "subtitleText": "HIgher and higher than my fire will grow",
+        "subtitleTextColor": "#FFFFFF",
+        "actionButtonText": "Subscribe now!",
+        "actionButtonTextColor": "#FFFFFF",
+        "actionButtonColor": "#751CBB",
+        "createdAt": "2021-03-06T14:53:19.000Z",
+        "updatedAt": "2021-03-06T14:56:10.000Z"
+    }
+}
+*/
+
+const getHeroSettings = async (req, res) => {
+  try {
+    let settings = await HeroSettings.findOne();
+
+    return res.send({
+      message: 'Successfully retrieved hero settings',
+      settings,
+    });
+  } catch (e) {
+    console.log(e);
+
+    if (e.status) {
+      return res.status(e.status).send({ error: e.message });
+    }
+    return res.status(500).send({ error: 'Internal Server Error' });
+  }
+};
+
 const mainController = {
   updateNavigationSettings,
   updateHeroSettings,
+  getNavigationSettings,
+  getHeroSettings,
 };
 
 export default mainController;

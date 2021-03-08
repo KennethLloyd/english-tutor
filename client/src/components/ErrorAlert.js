@@ -1,17 +1,15 @@
-import { useState } from 'react';
-import { Alert } from 'react-bootstrap';
+import { Alert } from 'reactstrap';
 
-const ErrorAlert = ({ msg, code }) => {
-  const [show, setShow] = useState(true);
-
-  if (show) {
-    return (
-      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-        {code === 500 ? 'Internal Server Error. Please try again.' : msg}
-      </Alert>
-    );
-  }
-  return null;
+const ErrorAlert = ({ msg, code, show, setShow }) => {
+  return (
+    <Alert color="danger" fade={true} toggle={() => setShow(!show)}>
+      <span className="alert-inner--text">
+        <strong>
+          {code === 500 ? 'Internal Server Error. Please try again.' : msg}
+        </strong>
+      </span>
+    </Alert>
+  );
 };
 
 export default ErrorAlert;
