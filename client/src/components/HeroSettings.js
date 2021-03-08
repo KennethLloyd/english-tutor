@@ -9,10 +9,12 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import ColorPicker from './ColorPicker';
 import FileUploader from './FileUploader';
+import ErrorAlert from './ErrorAlert';
+import api from '../api/api';
 
 const HeroSettings = () => {
   const [backgroundImage, setBackgroundImage] = useState(null);
@@ -26,6 +28,7 @@ const HeroSettings = () => {
   const [actionButtonText, setActionButtonText] = useState('LEARN MORE');
   const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
   const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
+  const [showError, setShowError] = useState(false);
 
   const handleNavUpdate = () => {
     console.log({
@@ -40,6 +43,30 @@ const HeroSettings = () => {
       actionButtonColor,
     });
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await api('/api/settings/hero');
+      if (!data) {
+        setShowError(true);
+      } else {
+        setShowError(false);
+
+        const { settings } = data;
+
+        setBackgroundImage(settings.backgroundImageUrl);
+        setBackgroundOpacity(settings.backgroundOpacity);
+        setTitleText(settings.titleText);
+        setTitleTextColor(settings.titleTextColor);
+        setSubtitleText(settings.subtitleText);
+        setSubtitleTextColor(settings.subtitleTextColor);
+        setActionButtonText(settings.actionButtonText);
+        setActionButtonTextColor(settings.actionButtonTextColor);
+        setActionButtonColor(settings.actionButtonColor);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -230,6 +257,19 @@ const HeroSettings = () => {
                         Save
                       </Button>
                     </Row>
+                    {showError ? (
+                      <Row className="align-items-center mt-4 justify-content-center">
+                        <Col md="4">
+                          <ErrorAlert
+                            code={500}
+                            show={showError}
+                            setShow={setShowError}
+                          />
+                        </Col>
+                      </Row>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </Form>
               </CardBody>
