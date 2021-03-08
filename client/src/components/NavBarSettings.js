@@ -17,18 +17,34 @@ import api from '../api/api';
 
 const NavBarSettings = () => {
   const [logo, setLogo] = useState(null);
+  const [logoThumbnail, setLogoThumbnail] = useState(null);
   const [teachersLabel, setTeachersLabel] = useState('Teachers');
   const [pricingLabel, setPricingLabel] = useState('Pricing');
   const [contactLabel, setContactLabel] = useState('Contact');
   const [showError, setShowError] = useState(false);
 
-  const handleNavUpdate = () => {
-    console.log({
-      logo,
-      teachersLabel,
-      pricingLabel,
-      contactLabel,
+  const handleNavUpdate = async () => {
+    const formData = new FormData();
+
+    formData.append('image', logo);
+    formData.append('teachersLabel', teachersLabel);
+    formData.append('pricingLabel', pricingLabel);
+    formData.append('contactLabel', contactLabel);
+
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    const data = await api('/api/settings/navigations', {
+      method: 'PUT',
+      headers,
+      body: formData,
     });
+
+    if (!data) {
+      setShowError(true);
+    } else {
+      setShowError(false);
+    }
   };
 
   useEffect(() => {
@@ -41,7 +57,7 @@ const NavBarSettings = () => {
 
         const { settings } = data;
 
-        setLogo(settings.logoUrl);
+        setLogoThumbnail(settings.logoUrl);
         setTeachersLabel(settings.teachersLabel);
         setPricingLabel(settings.pricingLabel);
         setContactLabel(settings.contactLabel);
@@ -76,7 +92,11 @@ const NavBarSettings = () => {
                         </label>
                       </Col>
                       <Col md="6">
-                        <FileUploader image={logo} setImage={setLogo} />
+                        <FileUploader
+                          setImage={setLogo}
+                          thumbnail={logoThumbnail}
+                          setThumbnail={setLogoThumbnail}
+                        />
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">
