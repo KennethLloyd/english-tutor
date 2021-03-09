@@ -1,6 +1,7 @@
 import React from 'react';
-import { useLocation, Route, Switch, Redirect } from 'react-router-dom';
+import { useLocation, Switch, Redirect } from 'react-router-dom';
 import { Container } from 'reactstrap';
+import AuthenticatedRoute from '../AuthenticatedRoute';
 import AdminNavbar from '../components/AdminNavbar.js';
 import AdminFooter from '../components/AdminFooter.js';
 import Sidebar from '../components/Sidebar.js';
@@ -21,7 +22,7 @@ const Admin = (props) => {
     return routes.map((prop, key) => {
       if (prop.layout === '/admin') {
         return (
-          <Route
+          <AuthenticatedRoute
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}
@@ -51,7 +52,7 @@ const Admin = (props) => {
         {...props}
         routes={routes}
         logo={{
-          innerLink: '/admin/index',
+          innerLink: '/admin',
           imgSrc:
             'https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-dark.svg',
           imgAlt: '...',

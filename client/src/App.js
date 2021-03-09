@@ -9,15 +9,14 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <AuthenticatedRoute
-          path="/admin"
-          exact
-          render={(props) => <Admin {...props} />}
-        />
         <UnauthenticatedRoute
           path="/admin/login"
           exact
           render={(props) => <Login {...props} />}
+        />
+        <AuthenticatedRoute
+          path="/admin"
+          render={(props) => <Admin {...props} />}
         />
       </Switch>
     </Router>

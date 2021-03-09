@@ -2,7 +2,7 @@ import { FaHome, FaUsers, FaPhoneAlt } from 'react-icons/fa';
 import { GiPriceTag } from 'react-icons/gi';
 
 import Index from './views/Index.js';
-// import Profile from 'views/examples/Profile.js';
+import Teachers from './views/Teachers.js';
 // import Maps from 'views/examples/Maps.js';
 // import Register from 'views/examples/Register.js';
 // import Login from 'views/examples/Login.js';
@@ -11,28 +11,28 @@ import Index from './views/Index.js';
 
 var routes = [
   {
-    path: '/',
+    path: '/index',
     name: 'Main',
     icon: <FaHome />,
     component: Index,
     layout: '/admin',
   },
   {
-    path: '/icons',
+    path: '/teachers',
     name: 'Teachers',
     icon: <FaUsers />,
-    // component: Icons,
+    component: Teachers,
     layout: '/admin',
   },
   {
-    path: '/maps',
+    path: '/pricing',
     name: 'Pricing',
     icon: <GiPriceTag />,
     // component: Maps,
     layout: '/admin',
   },
   {
-    path: '/user-profile',
+    path: '/contact',
     name: 'Contact',
     icon: <FaPhoneAlt />,
     // component: Profile,
