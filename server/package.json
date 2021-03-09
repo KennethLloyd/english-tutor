@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node src/index.js",
+    "db-migrate": "sequelize-cli db:create && sequelize-cli db:migrate",
     "dev": "nodemon src/index.js",
     "docs": "./node_modules/.bin/apidoc -i src/controllers -o docs",
     "lint": "eslint src/**",
@@ -74,6 +75,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "nodemon": "^2.0.4",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "sequelize-cli": "^6.2.0"
   }
 }
