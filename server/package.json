@@ -5,9 +5,9 @@
   "description": "Simple NodeJS Express Boilerplate with Sequelize as ORM",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node src/index.js",
+    "start": "NODE_ENV=production node --experimental-json-modules src/index.js",
     "db-migrate": "sequelize-cli db:create && sequelize-cli db:migrate",
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon --experimental-json-modules src/index.js",
     "docs": "./node_modules/.bin/apidoc -i src/controllers -o docs",
     "lint": "eslint src/**",
     "lint-fix": "eslint src/** --fix",
@@ -48,7 +48,6 @@
   "dependencies": {
     "apidoc": "^0.26.0",
     "cloudinary": "^1.25.0",
-    "config": "^3.3.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "joi": "^17.4.0",

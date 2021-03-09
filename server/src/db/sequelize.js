@@ -1,16 +1,16 @@
 import { Sequelize } from 'sequelize';
-import config from 'config';
+import configFile from '../../config/config.json';
 
-const sequelize = new Sequelize(
-  `mysql://${config.get('dbHost')}/${config.get('dbName')}`,
-  {
-    username: config.get('dbUser'),
-    password: config.get('dbPassword'),
-    dialectOptions: {
-      timezone: 'local',
-    },
-    logging: false,
+const env = process.env.NODE_ENV || 'development';
+const config = configFile[env];
+
+const sequelize = new Sequelize(`mysql://${config.host}/${config.database}`, {
+  username: config.username,
+  password: config.password,
+  dialectOptions: {
+    timezone: 'local',
   },
-);
+  logging: false,
+});
 
 export default sequelize;

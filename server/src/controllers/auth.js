@@ -1,7 +1,6 @@
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-import config from 'config';
-import { err } from '../helpers/utils.js';
+import { err, loadConfig } from '../helpers/utils.js';
 
 /**
 @api {post} /api/auth/login Log In User
@@ -23,33 +22,26 @@ HTTP/1.1 200 OK
 }
 */
 
-const logIn = (req, res) => {
+const logIn = async (req, res) => {
   try {
-    const adminUsername = config.get('adminUsername');
-    const adminPasswordHash = config.get('adminPasswordHash');
+    const config = await loadConfig();
+
+    const adminUsername = config.adminUsername;
+    const adminPasswordHash = config.adminPasswordHash;
 
     if (adminUsername !== req.body.username) {
       throw err(400, 'Invalid credentials');
     }
 
     const hashedPassword = crypto
-      .pbkdf2Sync(
-        req.body.password,
-        config.get('adminSalt'),
-        1000,
-        64,
-        'sha512',
-      )
+      .pbkdf2Sync(req.body.password, config.adminSalt, 1000, 64, 'sha512')
       .toString('hex');
 
     if (adminPasswordHash !== hashedPassword) {
       throw err(400, 'Invalid credentials');
     }
 
-    const token = jwt.sign(
-      { username: adminUsername },
-      config.get('jwtSecret'),
-    );
+    const token = jwt.sign({ username: adminUsername }, config.jwtSecret);
 
     return res.send({ token });
   } catch (e) {
@@ -62,16 +54,12 @@ const logIn = (req, res) => {
   }
 };
 
-const hashPassword = (req, res) => {
+const hashPassword = async (req, res) => {
   try {
+    const config = await loadConfig();
+
     const hashedPassword = crypto
-      .pbkdf2Sync(
-        req.body.password,
-        config.get('adminSalt'),
-        1000,
-        64,
-        'sha512',
-      )
+      .pbkdf2Sync(req.body.password, config.adminSalt, 1000, 64, 'sha512')
       .toString('hex');
 
     return res.send({ hashedPassword });

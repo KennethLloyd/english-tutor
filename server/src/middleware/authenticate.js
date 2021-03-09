@@ -1,11 +1,13 @@
 import jwt from 'jsonwebtoken';
-import config from 'config';
+import { loadConfig } from '../helpers/utils.js';
 
 const authenticate = async (req, res, next) => {
   try {
+    const config = await loadConfig();
+
     const token = req.header('Authorization').replace('Bearer ', '');
-    const decoded = jwt.verify(token, config.get('jwtSecret'));
-    const adminUsername = config.get('adminUsername');
+    const decoded = jwt.verify(token, config.jwtSecret);
+    const adminUsername = config.adminUsername;
 
     if (adminUsername !== decoded.username) {
       throw new Error();

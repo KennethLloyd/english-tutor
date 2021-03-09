@@ -1,12 +1,14 @@
 import multer from 'multer';
-import config from 'config';
 import fs from 'fs';
 import { v2 as cloudinary } from 'cloudinary';
 import storage from '../helpers/multer-storage.js';
+import { loadConfig } from '../helpers/utils.js';
 
 const upload = multer({ storage }).single('image');
 
-const uploadImage = (req, res, next) => {
+const uploadImage = async (req, res, next) => {
+  const config = await loadConfig();
+
   upload(req, res, function (err) {
     if (err) {
       console.log('Upload failed', err);
@@ -19,9 +21,9 @@ const uploadImage = (req, res, next) => {
     }
 
     cloudinary.config({
-      cloud_name: config.get('cloudinaryName'),
-      api_key: config.get('cloudinaryApiKey'),
-      api_secret: config.get('cloudinaryApiSecret'),
+      cloud_name: config.cloudinaryName,
+      api_key: config.cloudinaryApiKey,
+      api_secret: config.cloudinaryApiSecret,
     });
 
     const path = req.file.path;
@@ -29,7 +31,7 @@ const uploadImage = (req, res, next) => {
 
     cloudinary.uploader.upload(
       path,
-      { public_id: `${config.get('cloudinaryFolder')}/${uniqueFilename}` },
+      { public_id: `${config.cloudinaryFolder}/${uniqueFilename}` },
       function (err, image) {
         if (err) {
           console.log(err);
