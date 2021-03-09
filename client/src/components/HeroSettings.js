@@ -51,7 +51,7 @@ const HeroSettings = () => {
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
-    const data = await api('/api/settings/hero', {
+    const data = await api('/settings/hero', {
       method: 'PUT',
       headers,
       body: formData,
@@ -68,7 +68,7 @@ const HeroSettings = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await api('/api/settings/hero');
+      const data = await api('/settings/hero');
       if (!data) {
         setShowError(true);
       } else {
@@ -279,11 +279,7 @@ const HeroSettings = () => {
                     {showError ? (
                       <Row className="align-items-center mt-4 justify-content-center">
                         <Col md="4">
-                          <ErrorAlert
-                            code={500}
-                            show={showError}
-                            setShow={setShowError}
-                          />
+                          <ErrorAlert show={showError} setShow={setShowError} />
                         </Col>
                       </Row>
                     ) : (

@@ -20,11 +20,12 @@ import AuthNavbar from '../components/AuthNavbar.js';
 import AuthFooter from '../components/AuthFooter.js';
 import ErrorAlert from '../components/ErrorAlert';
 
+import api from '../api/api';
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
-  const [errorCode, setErrorCode] = useState(null);
   const [showError, setShowError] = useState(false);
   const history = useHistory();
 
@@ -39,7 +40,7 @@ const Login = () => {
     try {
       e.preventDefault();
 
-      const response = await fetch('api/auth/login', {
+      const data = await api('/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,11 +51,8 @@ const Login = () => {
         }),
       });
 
-      const data = await response.json();
-      console.log(data);
       if (data.hasOwnProperty('error')) {
         setErrorMessage(data.error);
-        setErrorCode(response.status);
         setShowError(true);
 
         localStorage.removeItem('token');
@@ -64,7 +62,7 @@ const Login = () => {
         history.push('/admin');
       }
     } catch (e) {
-      setErrorCode(500);
+      setShowError(true);
     }
   };
 
@@ -146,7 +144,6 @@ const Login = () => {
                       <Row className="align-items-center justify-content-center">
                         <Col md="12">
                           <ErrorAlert
-                            code={errorCode}
                             msg={errorMessage}
                             show={showError}
                             setShow={setShowError}

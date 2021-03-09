@@ -11,7 +11,7 @@ import Index from './views/Index.js';
 
 var routes = [
   {
-    path: '/index',
+    path: '/',
     name: 'Main',
     icon: <FaHome />,
     component: Index,
