@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "admin",
-    "database": "tutor_english",
+    "database": "english_tutor",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "jwtSecret": "english-tutor-secret",

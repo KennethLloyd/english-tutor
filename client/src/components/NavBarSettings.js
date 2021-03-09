@@ -19,9 +19,10 @@ import api from '../api/api';
 const NavBarSettings = () => {
   const [logo, setLogo] = useState(null);
   const [logoThumbnail, setLogoThumbnail] = useState(null);
-  const [teachersLabel, setTeachersLabel] = useState('Teachers');
-  const [pricingLabel, setPricingLabel] = useState('Pricing');
-  const [contactLabel, setContactLabel] = useState('Contact');
+  const [teachersLabel, setTeachersLabel] = useState('');
+  const [pricingLabel, setPricingLabel] = useState('');
+  const [contactLabel, setContactLabel] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -42,7 +43,8 @@ const NavBarSettings = () => {
       body: formData,
     });
 
-    if (!data) {
+    if (!data || data.error) {
+      setErrorMsg(data ? data.error : '');
       setShowError(true);
       setShowSuccess(false);
     } else {
@@ -116,7 +118,6 @@ const NavBarSettings = () => {
                         <Input
                           className="form-control-alternative"
                           id="teachers-label"
-                          placeholder="Teachers"
                           type="text"
                           value={teachersLabel}
                           onChange={(e) => setTeachersLabel(e.target.value)}
@@ -136,7 +137,6 @@ const NavBarSettings = () => {
                         <Input
                           className="form-control-alternative"
                           id="pricing-label"
-                          placeholder="Pricing"
                           type="text"
                           value={pricingLabel}
                           onChange={(e) => setPricingLabel(e.target.value)}
@@ -156,7 +156,6 @@ const NavBarSettings = () => {
                         <Input
                           className="form-control-alternative"
                           id="contact-label"
-                          placeholder="Contact"
                           type="text"
                           value={contactLabel}
                           onChange={(e) => setContactLabel(e.target.value)}
@@ -175,7 +174,11 @@ const NavBarSettings = () => {
                     {showError ? (
                       <Row className="align-items-center mt-4 justify-content-center">
                         <Col md="4">
-                          <ErrorAlert show={showError} setShow={setShowError} />
+                          <ErrorAlert
+                            msg={errorMsg}
+                            show={showError}
+                            setShow={setShowError}
+                          />
                         </Col>
                       </Row>
                     ) : (

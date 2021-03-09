@@ -23,16 +23,15 @@ const HeroSettings = () => {
     null,
   );
   const [backgroundOpacity, setBackgroundOpacity] = useState(80);
-  const [titleText, setTitleText] = useState('English Tutor');
-  const [titleTextColor, setTitleTextColor] = useState('#000000');
-  const [subtitleText, setSubtitleText] = useState(
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In hendrerit gravida rutrum quisque.',
-  );
-  const [subtitleTextColor, setSubtitleTextColor] = useState('#000000');
-  const [actionButtonText, setActionButtonText] = useState('LEARN MORE');
-  const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
-  const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
+  const [titleText, setTitleText] = useState('');
+  const [titleTextColor, setTitleTextColor] = useState('');
+  const [subtitleText, setSubtitleText] = useState('');
+  const [subtitleTextColor, setSubtitleTextColor] = useState('');
+  const [actionButtonText, setActionButtonText] = useState('');
+  const [actionButtonTextColor, setActionButtonTextColor] = useState('');
+  const [actionButtonColor, setActionButtonColor] = useState('');
   const [showError, setShowError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
 
   const handleHeroUpdate = async () => {
@@ -57,7 +56,8 @@ const HeroSettings = () => {
       body: formData,
     });
 
-    if (!data) {
+    if (!data || data.error) {
+      setErrorMsg(data ? data.error : '');
       setShowError(true);
       setShowSuccess(false);
     } else {
@@ -136,7 +136,6 @@ const HeroSettings = () => {
                         <Input
                           className="form-control-alternative"
                           id="background-opacity"
-                          placeholder="80"
                           type="number"
                           value={backgroundOpacity}
                           onChange={(e) => setBackgroundOpacity(e.target.value)}
@@ -156,7 +155,6 @@ const HeroSettings = () => {
                         <Input
                           className="form-control-alternative"
                           id="title-text"
-                          placeholder="English Tutor"
                           type="text"
                           value={titleText}
                           onChange={(e) => setTitleText(e.target.value)}
@@ -192,7 +190,6 @@ const HeroSettings = () => {
                         <Input
                           className="form-control-alternative"
                           id="subtitle-text"
-                          placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In hendrerit gravida rutrum quisque."
                           type="textarea"
                           value={subtitleText}
                           onChange={(e) => setSubtitleText(e.target.value)}
@@ -228,7 +225,6 @@ const HeroSettings = () => {
                         <Input
                           className="form-control-alternative"
                           id="action-button-text"
-                          placeholder="LEARN MORE"
                           type="text"
                           value={actionButtonText}
                           onChange={(e) => setActionButtonText(e.target.value)}
@@ -279,7 +275,11 @@ const HeroSettings = () => {
                     {showError ? (
                       <Row className="align-items-center mt-4 justify-content-center">
                         <Col md="4">
-                          <ErrorAlert show={showError} setShow={setShowError} />
+                          <ErrorAlert
+                            msg={errorMsg}
+                            show={showError}
+                            setShow={setShowError}
+                          />
                         </Col>
                       </Row>
                     ) : (
