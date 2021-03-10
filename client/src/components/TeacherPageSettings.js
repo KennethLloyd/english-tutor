@@ -33,11 +33,12 @@ const TeachersPageSettings = () => {
 
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    headers.append('Content-Type', 'application/json');
 
     const data = await api('/settings/teachers', {
       method: 'PUT',
       headers,
-      body,
+      body: JSON.stringify(body),
     });
 
     if (!data || data.error) {
