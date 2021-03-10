@@ -1,6 +1,6 @@
 import { Container } from 'reactstrap';
 
-// import NavBarSettings from '../components/NavBarSettings.js';
+import TeacherPageSettings from '../components/TeacherPageSettings.js';
 // import HeroSettings from '../components/HeroSettings.js';
 
 const Teachers = () => {
@@ -8,9 +8,8 @@ const Teachers = () => {
   return (
     <>
       <Container className="bg-gradient-info pt-5 pb-5" fluid>
-        <h1>Teachers page</h1>
-        {/* <NavBarSettings />
-        <HeroSettings /> */}
+        <TeacherPageSettings />
+        {/* <HeroSettings /> */}
       </Container>
     </>
   );
