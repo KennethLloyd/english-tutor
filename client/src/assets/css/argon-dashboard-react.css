@@ -21540,4 +21540,16 @@ button:focus,
   font-size: 0.7rem;
 }
 
+.icon-primary {
+  color: var(--primary);
+  filter: drop-shadow(0 4px 6px rgba(50, 50, 93, 0.11))
+    drop-shadow(0 1px 3px rgba(0, 0, 0, 0.08));
+  cursor: pointer;
+}
+.icon-primary:hover,
+.icon-primary:focus {
+  filter: drop-shadow(0 0.5em 0.5em -0.4em rgba(50, 50, 93, 0.11));
+  transform: translateY(-0.1em);
+}
+
 /*# sourceMappingURL=argon-dashboard-react.css.map */
