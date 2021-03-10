@@ -59,10 +59,31 @@ const editTeacher = async (req, res, next) => {
   }
 };
 
+const getTeachers = async (req, res, next) => {
+  const querySchema = Joi.object({
+    page: Joi.string().empty(''),
+    limit: Joi.string().empty(''),
+    sortBy: Joi.string().empty(''),
+    sortOrder: Joi.string().uppercase().valid('ASC', 'DESC').empty(''),
+  });
+
+  try {
+    const query = await querySchema.validateAsync(req.query);
+    req.query = query;
+
+    return next();
+  } catch (err) {
+    return res.status(400).send({
+      error: err.details[0].message,
+    });
+  }
+};
+
 const teacherValidator = {
   updateTeacherPageSettings,
   addTeacher,
   editTeacher,
+  getTeachers,
 };
 
 export default teacherValidator;

@@ -113,14 +113,16 @@ const getTeacherPageSettings = async (req, res) => {
 @apiSuccessExample {json} Success-Response:
 HTTP/1.1 200 OK
 {
-    "message": "Successfully updated teacher page settings",
-    "settings": {
-        "id": "5cb2551a-a383-465c-94b2-7d63013d49bc",
-        "backgroundColor": "#F4F4F4",
-        "titleLabel": "Ang Ating Mga Guro",
-        "titleLabelColor": "#000000",
-        "createdAt": "2021-03-10T02:18:04.000Z",
-        "updatedAt": "2021-03-10T02:18:04.000Z"
+    "message": "Successfully added teacher",
+    "teacher": {
+        "id": "413a14bf-5c0c-49d7-b0f5-371b896debbb",
+        "order": 1,
+        "firstName": "Minnie",
+        "lastName": "Kim",
+        "status": true,
+        "photoUrl": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615362964/english-courses/1615362962532-ypQiRrj.jpeg.jpg",
+        "updatedAt": "2021-03-10T07:56:04.790Z",
+        "createdAt": "2021-03-10T07:56:04.790Z"
     }
 }
 */
@@ -164,14 +166,16 @@ const addTeacher = async (req, res) => {
 @apiSuccessExample {json} Success-Response:
 HTTP/1.1 200 OK
 {
-    "message": "Successfully updated teacher page settings",
-    "settings": {
-        "id": "5cb2551a-a383-465c-94b2-7d63013d49bc",
-        "backgroundColor": "#F4F4F4",
-        "titleLabel": "Ang Ating Mga Guro",
-        "titleLabelColor": "#000000",
-        "createdAt": "2021-03-10T02:18:04.000Z",
-        "updatedAt": "2021-03-10T02:18:04.000Z"
+    "message": "Successfully updated teacher",
+    "teacher": {
+        "id": "a7698bc3-619e-494e-aa48-214c51fdd10a",
+        "order": 2,
+        "firstName": "Shuhua",
+        "lastName": "Yeh",
+        "status": true,
+        "photoUrl": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615363042/english-courses/1615363040813-l1xCFvU.jpeg.jpg",
+        "createdAt": "2021-03-10T07:57:22.000Z",
+        "updatedAt": "2021-03-10T07:59:11.102Z"
     }
 }
 */
@@ -210,9 +214,9 @@ const editTeacher = async (req, res) => {
 };
 
 /**
-@api {get} /api/teachers Get All Teachers
+@api {get} /api/teachers Get Teachers
 @apiVersion 1.0.0
-@apiName GetAllTeachers
+@apiName GetTeachers
 @apiGroup Teachers
 
 @apiParam {String} [page] Page
@@ -227,58 +231,30 @@ const editTeacher = async (req, res) => {
 @apiSuccessExample {json} Success-Response:
 HTTP/1.1 200 Success
 {
-    "message": "Successfully retrieved case types",
-    "case_types": [
+    "message": "Successfully retrieved teachers",
+    "teachers": [
         {
-            "id": "7fb52090-f529-4bcb-853b-97b24a8d14fc",
-            "name": "Attempted Rape",
-            "description": "",
-            "deleted_at": null,
-            "created_at": "2020-10-02T13:40:32.000Z",
-            "updated_at": "2020-10-02T13:40:32.000Z"
+            "id": "413a14bf-5c0c-49d7-b0f5-371b896debbb",
+            "order": 1,
+            "firstName": "Minnie",
+            "lastName": "Kim",
+            "status": true,
+            "photoUrl": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615362964/english-courses/1615362962532-ypQiRrj.jpeg.jpg",
+            "createdAt": "2021-03-10T07:56:04.000Z",
+            "updatedAt": "2021-03-10T07:56:04.000Z"
         },
         {
-            "id": "91ff3f75-23f4-49ed-a3f3-1322eca8bebe",
-            "name": "Attempted Trafficking",
-            "description": "",
-            "deleted_at": null,
-            "created_at": "2020-10-02T13:40:32.000Z",
-            "updated_at": "2020-10-02T13:40:32.000Z"
-        },
-        {
-            "id": "4ec0c09f-f45a-415f-8df3-01d4bd6bad9a",
-            "name": "Rape",
-            "description": "",
-            "deleted_at": null,
-            "created_at": "2020-10-02T13:40:32.000Z",
-            "updated_at": "2020-10-02T13:40:32.000Z"
-        },
-        {
-            "id": "4b35aa74-d617-4a0a-8d76-c0cbea481eba",
-            "name": "Threat of VAWC",
-            "description": "",
-            "deleted_at": null,
-            "created_at": "2020-10-02T13:40:32.000Z",
-            "updated_at": "2020-10-02T13:40:32.000Z"
-        },
-        {
-            "id": "863f612a-5549-49f0-a792-c256c61215fb",
-            "name": "Trafficking",
-            "description": "",
-            "deleted_at": null,
-            "created_at": "2020-10-02T13:40:32.000Z",
-            "updated_at": "2020-10-02T13:40:32.000Z"
-        },
-        {
-            "id": "4c645f39-3611-4cf2-a488-5981cd293c17",
-            "name": "VAWC",
-            "description": "Physical, Sexual, Psychological/Emotional, Economic",
-            "deleted_at": null,
-            "created_at": "2020-10-02T13:40:32.000Z",
-            "updated_at": "2020-10-02T13:40:32.000Z"
+            "id": "a7698bc3-619e-494e-aa48-214c51fdd10a",
+            "order": 2,
+            "firstName": "Shuhua",
+            "lastName": "Yeh",
+            "status": false,
+            "photoUrl": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615363042/english-courses/1615363040813-l1xCFvU.jpeg.jpg",
+            "createdAt": "2021-03-10T07:57:22.000Z",
+            "updatedAt": "2021-03-10T07:57:22.000Z"
         }
     ],
-    "total": 6,
+    "total": 2,
     "page": 1,
     "limit": 10
 }

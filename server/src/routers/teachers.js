@@ -15,4 +15,26 @@ router.put(
 
 router.get('/settings/teachers', teacherController.getTeacherPageSettings);
 
+router.post(
+  '/teachers',
+  authenticate,
+  uploadImage,
+  teacherValidator.addTeacher,
+  teacherController.addTeacher,
+);
+
+router.put(
+  '/teachers/:id',
+  authenticate,
+  uploadImage,
+  teacherValidator.editTeacher,
+  teacherController.editTeacher,
+);
+
+router.get(
+  '/teachers',
+  teacherValidator.getTeachers,
+  teacherController.getTeachers,
+);
+
 export default router;
