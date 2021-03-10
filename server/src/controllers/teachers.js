@@ -13,15 +13,14 @@ import { TeacherPageSettings } from '../models/index.js';
 @apiSuccessExample {json} Success-Response:
 HTTP/1.1 200 OK
 {
-    "message": "Successfully updated navigation settings",
+    "message": "Successfully updated teacher page settings",
     "settings": {
-        "id": "36c66a0c-bb4e-430b-8f30-79e072f1662e",
-        "teachersLabel": "Mga Guro",
-        "pricingLabel": "Presyo",
-        "contactLabel": "Kontak",
-        "logoUrl": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615041337/english-courses/1615041336174-lelouch-geass.jpg.jpg",
-        "updatedAt": "2021-03-06T14:35:37.924Z",
-        "createdAt": "2021-03-06T14:35:37.924Z"
+        "id": "5cb2551a-a383-465c-94b2-7d63013d49bc",
+        "backgroundColor": "#F4F4F4",
+        "titleLabel": "Ang Ating Mga Guro",
+        "titleLabelColor": "#000000",
+        "createdAt": "2021-03-10T02:18:04.000Z",
+        "updatedAt": "2021-03-10T02:18:04.000Z"
     }
 }
 */
@@ -65,15 +64,14 @@ const updateTeacherPageSettings = async (req, res) => {
 @apiSuccessExample {json} Success-Response:
 HTTP/1.1 200 OK
 {
-    "message": "Successfully retrieved navigation settings",
+    "message": "Successfully retrieved teacher page settings",
     "settings": {
-        "id": "36c66a0c-bb4e-430b-8f30-79e072f1662e",
-        "teachersLabel": "Mga Guro",
-        "pricingLabel": "Presyo",
-        "contactLabel": "Kontak",
-        "logoUrl": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615041337/english-courses/1615041336174-lelouch-geass.jpg.jpg",
-        "updatedAt": "2021-03-06T14:35:37.924Z",
-        "createdAt": "2021-03-06T14:35:37.924Z"
+        "id": "5cb2551a-a383-465c-94b2-7d63013d49bc",
+        "backgroundColor": "#F4F4F4",
+        "titleLabel": "Ang Ating Mga Guro",
+        "titleLabelColor": "#000000",
+        "createdAt": "2021-03-10T02:18:04.000Z",
+        "updatedAt": "2021-03-10T02:18:04.000Z"
     }
 }
 */
