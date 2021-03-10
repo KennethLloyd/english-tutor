@@ -7,36 +7,25 @@ import {
   Row,
   Col,
   Table,
-  Badge,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   CardFooter,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
 } from 'reactstrap';
 import { useState, useEffect } from 'react';
-import {
-  FaPlusCircle,
-  FaEllipsisV,
-  FaChevronLeft,
-  FaChevronRight,
-} from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 
-import ColorPicker from './ColorPicker';
 import ErrorAlert from './ErrorAlert';
 import SuccessAlert from './SuccessAlert';
+import Pagination from './Pagination';
+import Teacher from './Teacher';
 import api from '../api/api';
 
 const TeacherList = () => {
-  const [backgroundColor, setBackgroundColor] = useState('');
-  const [titleLabel, setTitleLabel] = useState('');
-  const [titleLabelColor, setTitleLabelColor] = useState('');
+  const [total, setTotal] = useState(0);
+  const [teachers, setTeachers] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [activePage, setActivePage] = useState(1);
+  const pageLimit = 10;
 
   const handleAdd = () => {
     console.log('add');
@@ -69,23 +58,22 @@ const TeacherList = () => {
   //   }
   // };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await api('/settings/teachers');
-  //     if (!data) {
-  //       setShowError(true);
-  //     } else {
-  //       setShowError(false);
+  useEffect(() => {
+    let queryString = `?page=${activePage}&limit=${pageLimit}`;
 
-  //       const { settings } = data;
+    const fetchData = async () => {
+      const data = await api(`/teachers${queryString}`);
+      if (!data) {
+        setShowError(true);
+      } else {
+        setShowError(false);
 
-  //       setBackgroundColor(settings.backgroundColor);
-  //       setTitleLabel(settings.titleLabel);
-  //       setTitleLabelColor(settings.titleLabelColor);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+        setTotal(data.total);
+        setTeachers(data.teachers);
+      }
+    };
+    fetchData();
+  }, [activePage]);
 
   return (
     <>
@@ -108,6 +96,19 @@ const TeacherList = () => {
                     onClick={handleAdd}
                   />
                 </Row>
+                {showError ? (
+                  <Row className="align-items-center mt-4 justify-content-center">
+                    <Col md="4">
+                      <ErrorAlert
+                        msg={errorMsg}
+                        show={showError}
+                        setShow={setShowError}
+                      />
+                    </Col>
+                  </Row>
+                ) : (
+                  ''
+                )}
                 <Table
                   className="align-items-center table-flush mt-3"
                   responsive
@@ -123,133 +124,19 @@ const TeacherList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="align-items-center">
-                      <td>
-                        <p className="mb-0">1</p>
-                      </td>
-                      <td>
-                        <p className="mb-0">Skywalker</p>
-                      </td>
-                      <td>
-                        <p className="mb-0">Luke</p>
-                      </td>
-                      <td>
-                        <Badge color="" className="badge-dot mr-4">
-                          <i className="bg-success" />
-                          To Show
-                        </Badge>
-                      </td>
-                      <td>
-                        <Button outline color="danger" size="sm">
-                          Hide
-                        </Button>
-                      </td>
-                      <td className="text-right">
-                        <UncontrolledDropdown>
-                          <DropdownToggle
-                            className="btn-icon-only text-light"
-                            role="button"
-                            size="sm"
-                            color=""
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            <FaEllipsisV />
-                          </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
-                            <DropdownItem onClick={(e) => e.preventDefault()}>
-                              Edit
-                            </DropdownItem>
-                            <DropdownItem onClick={(e) => e.preventDefault()}>
-                              Delete
-                            </DropdownItem>
-                          </DropdownMenu>
-                        </UncontrolledDropdown>
-                      </td>
-                    </tr>
-                    <tr className="align-items-center">
-                      <td>
-                        <p className="mb-0">2</p>
-                      </td>
-                      <td>
-                        <p className="mb-0">Skywalker</p>
-                      </td>
-                      <td>
-                        <p className="mb-0">Leia</p>
-                      </td>
-                      <td>
-                        <Badge color="" className="badge-dot mr-4">
-                          <i className="bg-danger" />
-                          Hidden
-                        </Badge>
-                      </td>
-                      <td>
-                        <Button outline color="success" size="sm">
-                          Show
-                        </Button>
-                      </td>
-                      <td className="text-right">
-                        <UncontrolledDropdown>
-                          <DropdownToggle
-                            className="btn-icon-only text-light"
-                            role="button"
-                            size="sm"
-                            color=""
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            <FaEllipsisV />
-                          </DropdownToggle>
-                          <DropdownMenu className="dropdown-menu-arrow" right>
-                            <DropdownItem onClick={(e) => e.preventDefault()}>
-                              Edit
-                            </DropdownItem>
-                            <DropdownItem onClick={(e) => e.preventDefault()}>
-                              Delete
-                            </DropdownItem>
-                          </DropdownMenu>
-                        </UncontrolledDropdown>
-                      </td>
-                    </tr>
+                    {teachers.map((item) => {
+                      return <Teacher details={item} key={item.id} />;
+                    })}
                   </tbody>
                 </Table>
               </CardBody>
               <CardFooter className="py-3">
-                <nav aria-label="...">
-                  <Pagination
-                    className="pagination justify-content-end mb-0"
-                    listClassName="justify-content-end mb-0"
-                  >
-                    <PaginationItem className="disabled">
-                      <PaginationLink
-                        onClick={(e) => e.preventDefault()}
-                        tabIndex="-1"
-                      >
-                        <FaChevronLeft />
-                        <span className="sr-only">Previous</span>
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem className="active">
-                      <PaginationLink onClick={(e) => e.preventDefault()}>
-                        1
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink onClick={(e) => e.preventDefault()}>
-                        2 <span className="sr-only">(current)</span>
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink onClick={(e) => e.preventDefault()}>
-                        3
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink onClick={(e) => e.preventDefault()}>
-                        <FaChevronRight />
-                        <span className="sr-only">Next</span>
-                      </PaginationLink>
-                    </PaginationItem>
-                  </Pagination>
-                </nav>
+                <Pagination
+                  total={total}
+                  pageLimit={pageLimit}
+                  activePage={activePage}
+                  setActivePage={setActivePage}
+                />
               </CardFooter>
             </Card>
           </Col>
