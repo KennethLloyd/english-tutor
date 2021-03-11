@@ -21552,4 +21552,8 @@ button:focus,
   transform: translateY(-0.1em);
 }
 
+.modal-label {
+  font-size: 0.9rem;
+}
+
 /*# sourceMappingURL=argon-dashboard-react.css.map */

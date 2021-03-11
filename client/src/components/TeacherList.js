@@ -16,6 +16,7 @@ import ErrorAlert from './ErrorAlert';
 import SuccessAlert from './SuccessAlert';
 import Pagination from './Pagination';
 import Teacher from './Teacher';
+import AddTeacherModal from './AddTeacherModal';
 import api from '../api/api';
 
 const TeacherList = () => {
@@ -25,10 +26,11 @@ const TeacherList = () => {
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [activePage, setActivePage] = useState(1);
+  const [showAddModal, setShowAddModal] = useState(false);
   const pageLimit = 10;
 
-  const handleAdd = () => {
-    console.log('add');
+  const toggleAddModal = () => {
+    setShowAddModal(!showAddModal);
   };
 
   // const handleUpdate = async () => {
@@ -93,7 +95,11 @@ const TeacherList = () => {
                   <FaPlusCircle
                     className="icon-primary ml-4"
                     size="35px"
-                    onClick={handleAdd}
+                    onClick={toggleAddModal}
+                  />
+                  <AddTeacherModal
+                    show={showAddModal}
+                    setShow={setShowAddModal}
                   />
                 </Row>
                 {showError ? (
