@@ -1,36 +1,76 @@
 import {
   Button,
   Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
+  Row,
+  Col,
   Form,
   FormGroup,
   InputGroup,
-  InputGroupAddon,
-  InputGroupText,
   Input,
 } from 'reactstrap';
 import { useState, useEffect } from 'react';
 
 import FileUploader from './FileUploader';
+import ErrorAlert from './ErrorAlert';
+import SuccessAlert from './SuccessAlert';
+import api from '../api/api';
 
-const TeacherModal = ({ show, setShow }) => {
+const TeacherModal = ({ show, setShow, refresh, setRefresh }) => {
   const [thumbnail, setThumbnail] = useState(null);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [status, setStatus] = useState('To Show');
+  const [status, setStatus] = useState(true);
   const [order, setOrder] = useState(0);
   const [photo, setPhoto] = useState(null);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleSave = () => {
-    console.log({
-      firstName,
-      lastName,
-      status,
-      order,
-      photo,
+  const resetState = () => {
+    setThumbnail(null);
+    setFirstName('');
+    setLastName('');
+    setStatus(true);
+    setOrder(0);
+    setPhoto(null);
+    setPhoto(null);
+    setErrorMsg('');
+    setShowError(false);
+    setShowSuccess(false);
+  };
+
+  const handleSave = async () => {
+    const formData = new FormData();
+
+    formData.append('image', photo);
+    formData.append('order', order);
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('status', status);
+
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    const data = await api('/teachers', {
+      method: 'POST',
+      headers,
+      body: formData,
     });
+
+    if (!data || data.error) {
+      setErrorMsg(data ? data.error : '');
+      setShowError(true);
+      setShowSuccess(false);
+    } else {
+      setShowSuccess(true);
+      setShowError(false);
+
+      setTimeout(() => {
+        setRefresh(!refresh);
+        resetState();
+        setShow(false);
+      }, 3000);
+    }
   };
 
   return show ? (
@@ -92,8 +132,8 @@ const TeacherModal = ({ show, setShow }) => {
                 id="status"
                 onChange={(e) => setStatus(e.target.value)}
               >
-                <option value="To Show">To Show</option>
-                <option value="Hidden">Hidden</option>
+                <option value={true}>To Show</option>
+                <option value={false}>Hidden</option>
               </Input>
             </FormGroup>
             <FormGroup className="mb-3 ml-auto">
@@ -138,6 +178,32 @@ const TeacherModal = ({ show, setShow }) => {
           Close
         </Button>
       </div>
+      {showError ? (
+        <Row className="align-items-center mt-0 justify-content-center">
+          <Col xs="10">
+            <ErrorAlert
+              msg={errorMsg}
+              show={showError}
+              setShow={setShowError}
+            />
+          </Col>
+        </Row>
+      ) : (
+        ''
+      )}
+      {showSuccess ? (
+        <Row className="align-items-center mt-0 justify-content-center">
+          <Col xs="10">
+            <SuccessAlert
+              msg="Added new teacher"
+              show={showSuccess}
+              setShow={setShowSuccess}
+            />
+          </Col>
+        </Row>
+      ) : (
+        ''
+      )}
     </Modal>
   ) : (
     ''

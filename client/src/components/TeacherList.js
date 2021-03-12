@@ -27,38 +27,12 @@ const TeacherList = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [activePage, setActivePage] = useState(1);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const pageLimit = 10;
 
   const toggleAddModal = () => {
     setShowAddModal(!showAddModal);
   };
-
-  // const handleUpdate = async () => {
-  //   const body = {
-  //     backgroundColor,
-  //     titleLabel,
-  //     titleLabelColor,
-  //   };
-
-  //   const headers = new Headers();
-  //   headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
-  //   headers.append('Content-Type', 'application/json');
-
-  //   const data = await api('/settings/teachers', {
-  //     method: 'PUT',
-  //     headers,
-  //     body: JSON.stringify(body),
-  //   });
-
-  //   if (!data || data.error) {
-  //     setErrorMsg(data ? data.error : '');
-  //     setShowError(true);
-  //     setShowSuccess(false);
-  //   } else {
-  //     setShowSuccess(true);
-  //     setShowError(false);
-  //   }
-  // };
 
   useEffect(() => {
     let queryString = `?page=${activePage}&limit=${pageLimit}`;
@@ -75,7 +49,7 @@ const TeacherList = () => {
       }
     };
     fetchData();
-  }, [activePage]);
+  }, [activePage, refresh]);
 
   return (
     <>
@@ -100,6 +74,8 @@ const TeacherList = () => {
                   <AddTeacherModal
                     show={showAddModal}
                     setShow={setShowAddModal}
+                    refresh={refresh}
+                    setRefresh={setRefresh}
                   />
                 </Row>
                 {showError ? (
