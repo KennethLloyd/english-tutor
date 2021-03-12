@@ -191,11 +191,9 @@ const editTeacher = async (req, res) => {
       throw err(404, 'Teacher not found');
     }
 
-    teacher.order = req.body.order;
-    teacher.firstName = req.body.firstName;
-    teacher.lastName = req.body.lastName;
-    teacher.status = req.body.status;
-    teacher.photoUrl = req.body.photoUrl ? req.body.photoUrl : teacher.photoUrl;
+    Object.keys(req.body).forEach((key) => {
+      teacher[key] = req.body[key];
+    });
 
     await teacher.save();
 

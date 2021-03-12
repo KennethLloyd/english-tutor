@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import {
   Button,
   Badge,
@@ -9,7 +9,15 @@ import {
 } from 'reactstrap';
 import { FaEllipsisV } from 'react-icons/fa';
 
-const Teacher = ({ details }) => {
+import EditTeacherModal from './EditTeacherModal';
+
+const Teacher = ({ details, refresh, setRefresh }) => {
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const toggleAddModal = () => {
+    setShowEditModal(!showEditModal);
+  };
+
   return (
     <tr className="align-items-center">
       <td>
@@ -57,14 +65,19 @@ const Teacher = ({ details }) => {
             <FaEllipsisV />
           </DropdownToggle>
           <DropdownMenu className="dropdown-menu-arrow" right>
-            <DropdownItem onClick={(e) => e.preventDefault()}>
-              Edit
-            </DropdownItem>
+            <DropdownItem onClick={toggleAddModal}>Edit</DropdownItem>
             <DropdownItem onClick={(e) => e.preventDefault()}>
               Delete
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
+        <EditTeacherModal
+          show={showEditModal}
+          setShow={setShowEditModal}
+          refresh={refresh}
+          setRefresh={setRefresh}
+          details={details}
+        />
       </td>
     </tr>
   );

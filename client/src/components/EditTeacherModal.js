@@ -15,28 +15,16 @@ import ErrorAlert from './ErrorAlert';
 import SuccessAlert from './SuccessAlert';
 import api from '../api/api';
 
-const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
-  const [thumbnail, setThumbnail] = useState(null);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [status, setStatus] = useState(true);
-  const [order, setOrder] = useState(0);
+const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
+  const [thumbnail, setThumbnail] = useState(details.photoUrl);
+  const [firstName, setFirstName] = useState(details.firstName);
+  const [lastName, setLastName] = useState(details.lastName);
+  const [status, setStatus] = useState(details.status);
+  const [order, setOrder] = useState(details.order);
   const [photo, setPhoto] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
-  const resetState = () => {
-    setThumbnail(null);
-    setFirstName('');
-    setLastName('');
-    setStatus(true);
-    setOrder(0);
-    setPhoto(null);
-    setErrorMsg('');
-    setShowError(false);
-    setShowSuccess(false);
-  };
 
   const handleSave = async () => {
     const formData = new FormData();
@@ -50,8 +38,8 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
-    const data = await api('/teachers', {
-      method: 'POST',
+    const data = await api(`/teachers/${details.id}`, {
+      method: 'PUT',
       headers,
       body: formData,
     });
@@ -66,7 +54,7 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
 
       setRefresh(!refresh);
       setTimeout(() => {
-        resetState();
+        setShowSuccess(false);
         setShow(false);
       }, 3000);
     }
@@ -80,7 +68,7 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
     >
       <div className="modal-header">
         <h3 className="modal-title" id="modal-title-default">
-          Add New Teacher
+          Edit Teacher
         </h3>
         <button
           aria-label="Close"
@@ -194,7 +182,7 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
         <Row className="align-items-center mt-0 justify-content-center">
           <Col xs="10">
             <SuccessAlert
-              msg="New teacher added"
+              msg="Teacher updated"
               show={showSuccess}
               setShow={setShowSuccess}
             />
@@ -209,4 +197,4 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
   );
 };
 
-export default AddTeacherModal;
+export default EditTeacherModal;

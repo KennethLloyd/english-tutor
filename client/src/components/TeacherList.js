@@ -107,7 +107,14 @@ const TeacherList = () => {
                   </thead>
                   <tbody>
                     {teachers.map((item) => {
-                      return <Teacher details={item} key={item.id} />;
+                      return (
+                        <Teacher
+                          details={item}
+                          key={item.id}
+                          refresh={refresh}
+                          setRefresh={setRefresh}
+                        />
+                      );
                     })}
                   </tbody>
                 </Table>
