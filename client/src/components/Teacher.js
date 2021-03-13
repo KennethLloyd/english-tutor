@@ -10,6 +10,7 @@ import {
 import { FaEllipsisV } from 'react-icons/fa';
 
 import EditTeacherModal from './EditTeacherModal';
+import DeleteTeacherModal from './DeleteTeacherModal';
 import api from '../api/api';
 
 const Teacher = ({
@@ -20,9 +21,14 @@ const Teacher = ({
   setShowError,
 }) => {
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const toggleAddModal = () => {
+  const toggleEditModal = () => {
     setShowEditModal(!showEditModal);
+  };
+
+  const toggleDeleteModal = () => {
+    setShowDeleteModal(!showDeleteModal);
   };
 
   const updateStatus = async (status) => {
@@ -105,10 +111,8 @@ const Teacher = ({
             <FaEllipsisV />
           </DropdownToggle>
           <DropdownMenu className="dropdown-menu-arrow" right>
-            <DropdownItem onClick={toggleAddModal}>Edit</DropdownItem>
-            <DropdownItem onClick={(e) => e.preventDefault()}>
-              Delete
-            </DropdownItem>
+            <DropdownItem onClick={toggleEditModal}>Edit</DropdownItem>
+            <DropdownItem onClick={toggleDeleteModal}>Delete</DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
         <EditTeacherModal
@@ -117,6 +121,15 @@ const Teacher = ({
           refresh={refresh}
           setRefresh={setRefresh}
           details={details}
+        />
+        <DeleteTeacherModal
+          show={showDeleteModal}
+          setShow={setShowDeleteModal}
+          refresh={refresh}
+          setRefresh={setRefresh}
+          id={details.id}
+          firstName={details.firstName}
+          lastName={details.lastName}
         />
       </td>
     </tr>
