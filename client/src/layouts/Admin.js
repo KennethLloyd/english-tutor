@@ -2,9 +2,9 @@ import React from 'react';
 import { useLocation, Switch, Redirect } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import AuthenticatedRoute from '../AuthenticatedRoute';
-import AdminNavbar from '../components/AdminNavbar.js';
-import AdminFooter from '../components/AdminFooter.js';
-import Sidebar from '../components/Sidebar.js';
+import AdminNavbar from '../components/Admin/AdminNavbar.js';
+import AdminFooter from '../components/Admin/AdminFooter.js';
+import Sidebar from '../components/Admin/Sidebar.js';
 
 import routes from '../routes.js';
 

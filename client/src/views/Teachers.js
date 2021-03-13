@@ -1,10 +1,9 @@
 import { Container } from 'reactstrap';
 
-import TeacherPageSettings from '../components/TeacherPageSettings.js';
-import TeacherList from '../components/TeacherList.js';
+import TeacherPageSettings from '../components/Admin/Teachers/TeacherPageSettings.js';
+import TeacherList from '../components/Admin/Teachers/TeacherList.js';
 
 const Teachers = () => {
-  console.log('HERE');
   return (
     <>
       <Container className="bg-gradient-info pt-5 pb-5" fluid>

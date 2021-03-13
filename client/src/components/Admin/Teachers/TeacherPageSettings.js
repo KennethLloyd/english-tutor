@@ -11,10 +11,10 @@ import {
 } from 'reactstrap';
 import { useState, useEffect } from 'react';
 
-import ColorPicker from './ColorPicker';
-import ErrorAlert from './ErrorAlert';
-import SuccessAlert from './SuccessAlert';
-import api from '../api/api';
+import ColorPicker from '../ColorPicker';
+import ErrorAlert from '../Alerts/ErrorAlert';
+import SuccessAlert from '../Alerts/SuccessAlert';
+import api from '../../../api/api';
 
 const TeachersPageSettings = () => {
   const [backgroundColor, setBackgroundColor] = useState('');

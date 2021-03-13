@@ -16,9 +16,9 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
 
-import AuthNavbar from '../components/AuthNavbar.js';
-import AuthFooter from '../components/AuthFooter.js';
-import ErrorAlert from '../components/ErrorAlert';
+import AuthNavbar from '../components/Admin/AuthNavbar.js';
+import AuthFooter from '../components/Admin/AuthFooter.js';
+import ErrorAlert from '../components/Admin/Alerts/ErrorAlert';
 
 import api from '../api/api';
 

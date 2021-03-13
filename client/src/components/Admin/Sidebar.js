@@ -18,15 +18,14 @@ import {
 const Sidebar = (props) => {
   const [collapseOpen, setCollapseOpen] = useState();
 
-  // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
     setCollapseOpen((data) => !data);
   };
-  // closes the collapse
+
   const closeCollapse = () => {
     setCollapseOpen(false);
   };
-  // creates the links that appear in the left menu / Sidebar
+
   const createLinks = (routes) => {
     return routes.map((prop, key) => {
       return (
@@ -67,7 +66,6 @@ const Sidebar = (props) => {
       id="sidenav-main"
     >
       <Container fluid>
-        {/* Toggler */}
         <button
           className="navbar-toggler"
           type="button"
@@ -75,7 +73,6 @@ const Sidebar = (props) => {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        {/* Brand */}
         {logo ? (
           <NavbarBrand className="pt-0" {...navbarBrandProps}>
             <img
@@ -85,9 +82,7 @@ const Sidebar = (props) => {
             />
           </NavbarBrand>
         ) : null}
-        {/* Collapse */}
         <Collapse navbar isOpen={collapseOpen}>
-          {/* Collapse header */}
           <div className="navbar-collapse-header d-md-none">
             <Row>
               {logo ? (
@@ -115,9 +110,7 @@ const Sidebar = (props) => {
               </Col>
             </Row>
           </div>
-          {/* Navigation */}
           <Nav navbar>{createLinks(routes)}</Nav>
-          {/* Divider */}
           <hr className="my-3" />
           <Nav className="mb-md-3" navbar>
             <NavItem role="button">

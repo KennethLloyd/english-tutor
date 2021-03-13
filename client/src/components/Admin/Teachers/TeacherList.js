@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
@@ -12,19 +11,17 @@ import {
 import { useState, useEffect } from 'react';
 import { FaPlusCircle } from 'react-icons/fa';
 
-import ErrorAlert from './ErrorAlert';
-import SuccessAlert from './SuccessAlert';
-import Pagination from './Pagination';
+import ErrorAlert from '../Alerts/ErrorAlert';
+import Pagination from '../Pagination';
 import Teacher from './Teacher';
 import AddTeacherModal from './AddTeacherModal';
-import api from '../api/api';
+import api from '../../../api/api';
 
 const TeacherList = () => {
   const [total, setTotal] = useState(0);
   const [teachers, setTeachers] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
   const [activePage, setActivePage] = useState(1);
   const [showAddModal, setShowAddModal] = useState(false);
   const [refresh, setRefresh] = useState(false);

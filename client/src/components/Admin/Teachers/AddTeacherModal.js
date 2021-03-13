@@ -10,10 +10,10 @@ import {
 } from 'reactstrap';
 import { useState } from 'react';
 
-import FileUploader from './FileUploader';
-import ErrorAlert from './ErrorAlert';
-import SuccessAlert from './SuccessAlert';
-import api from '../api/api';
+import FileUploader from '../FileUploader';
+import ErrorAlert from '../Alerts/ErrorAlert';
+import SuccessAlert from '../Alerts/SuccessAlert';
+import api from '../../../api/api';
 
 const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
   const [thumbnail, setThumbnail] = useState(null);

@@ -1,7 +1,7 @@
 import { Container } from 'reactstrap';
 
-import NavBarSettings from '../components/NavBarSettings.js';
-import HeroSettings from '../components/HeroSettings.js';
+import NavBarSettings from '../components/Admin/Main/NavBarSettings.js';
+import HeroSettings from '../components/Admin/Main/HeroSettings.js';
 
 const Index = () => {
   return (

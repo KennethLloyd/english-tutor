@@ -1,9 +1,9 @@
 import { Button, Modal, Row, Col } from 'reactstrap';
 import { useState } from 'react';
 
-import ErrorAlert from './ErrorAlert';
-import SuccessAlert from './SuccessAlert';
-import api from '../api/api';
+import ErrorAlert from '../Alerts/ErrorAlert';
+import SuccessAlert from '../Alerts/SuccessAlert';
+import api from '../../../api/api';
 
 const DeleteTeacherModal = ({
   show,
@@ -35,11 +35,11 @@ const DeleteTeacherModal = ({
       setShowSuccess(true);
       setShowError(false);
 
-      setRefresh(!refresh);
       setTimeout(() => {
+        setRefresh(!refresh);
         setShowSuccess(false);
         setShow(false);
-      }, 1000);
+      }, 3000);
     }
   };
 
