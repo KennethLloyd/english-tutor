@@ -10,12 +10,42 @@ import {
 import { FaEllipsisV } from 'react-icons/fa';
 
 import EditTeacherModal from './EditTeacherModal';
+import api from '../api/api';
 
-const Teacher = ({ details, refresh, setRefresh }) => {
+const Teacher = ({
+  details,
+  refresh,
+  setRefresh,
+  setErrorMsg,
+  setShowError,
+}) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const toggleAddModal = () => {
     setShowEditModal(!showEditModal);
+  };
+
+  const updateStatus = async (status) => {
+    const formData = new FormData();
+
+    formData.append('status', status);
+
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    const data = await api(`/teachers/${details.id}`, {
+      method: 'PUT',
+      headers,
+      body: formData,
+    });
+
+    if (!data || data.error) {
+      setErrorMsg(data ? data.error : '');
+      setShowError(true);
+    } else {
+      setShowError(false);
+      setRefresh(!refresh);
+    }
   };
 
   return (
@@ -44,11 +74,21 @@ const Teacher = ({ details, refresh, setRefresh }) => {
       </td>
       <td>
         {details.status === true ? (
-          <Button outline color="danger" size="sm">
+          <Button
+            outline
+            color="danger"
+            size="sm"
+            onClick={() => updateStatus(false)}
+          >
             Hide
           </Button>
         ) : (
-          <Button outline color="success" size="sm">
+          <Button
+            outline
+            color="success"
+            size="sm"
+            onClick={() => updateStatus(true)}
+          >
             Show
           </Button>
         )}

@@ -118,6 +118,7 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
                 name="select"
                 id="status"
                 onChange={(e) => setStatus(e.target.value)}
+                value={details.status}
               >
                 <option value={true}>To Show</option>
                 <option value={false}>Hidden</option>

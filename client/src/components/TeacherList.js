@@ -113,6 +113,8 @@ const TeacherList = () => {
                           key={item.id}
                           refresh={refresh}
                           setRefresh={setRefresh}
+                          setErrorMsg={setErrorMsg}
+                          setShowError={setShowError}
                         />
                       );
                     })}
