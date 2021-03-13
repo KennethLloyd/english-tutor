@@ -37,4 +37,6 @@ router.get(
   teacherController.getTeachers,
 );
 
+router.delete('/teachers/:id', authenticate, teacherController.deleteTeacher);
+
 export default router;
