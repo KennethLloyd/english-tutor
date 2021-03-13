@@ -304,12 +304,48 @@ const getTeachers = async (req, res) => {
   }
 };
 
+/**
+@api {delete} /api/teachers/:id Delete Teacher
+@apiVersion 1.0.0
+@apiName DeleteTeacher
+@apiGroup Teacher
+
+@apiSuccessExample {json} Success-Response:
+HTTP/1.1 200 OK
+{
+    "message": "Successfully deleted teacher"
+}
+*/
+
+const deleteTeacher = async (req, res) => {
+  try {
+    const teacher = await Teachers.findOne({ where: { id: req.params.id } });
+    if (!teacher) {
+      throw err(404, 'Teacher not found');
+    }
+
+    await teacher.destroy();
+
+    return res.send({
+      message: 'Successfully deleted teacher',
+    });
+  } catch (e) {
+    console.log(e);
+
+    if (e.status) {
+      return res.status(e.status).send({ error: e.message });
+    }
+    return res.status(500).send({ error: 'Internal Server Error' });
+  }
+};
+
 const teacherController = {
   updateTeacherPageSettings,
   getTeacherPageSettings,
   addTeacher,
   editTeacher,
   getTeachers,
+  deleteTeacher,
 };
 
 export default teacherController;
