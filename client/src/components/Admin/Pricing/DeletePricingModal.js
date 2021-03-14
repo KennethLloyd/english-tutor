@@ -5,14 +5,13 @@ import ErrorAlert from '../Alerts/ErrorAlert';
 import SuccessAlert from '../Alerts/SuccessAlert';
 import api from '../../../api/api';
 
-const DeleteTeacherModal = ({
+const DeletePricingModal = ({
   show,
   setShow,
   refresh,
   setRefresh,
   id,
-  firstName,
-  lastName,
+  header,
 }) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
@@ -25,7 +24,7 @@ const DeleteTeacherModal = ({
 
     setShowLoader(true);
 
-    const data = await api(`/teachers/${id}`, {
+    const data = await api(`/pricing/${id}`, {
       method: 'DELETE',
       headers,
     });
@@ -56,7 +55,7 @@ const DeleteTeacherModal = ({
     >
       <div className="modal-header">
         <h3 className="modal-title" id="modal-title-default">
-          Delete Teacher
+          Delete Pricing
         </h3>
         <button
           aria-label="Close"
@@ -69,11 +68,7 @@ const DeleteTeacherModal = ({
         </button>
       </div>
       <div className="modal-body">
-        Are you sure you want to delete{' '}
-        <strong>
-          {firstName} {lastName}
-        </strong>
-        ?
+        Are you sure you want to delete <strong>{header}</strong>?
       </div>
       <div className="modal-footer">
         <Button color="primary" type="button" onClick={handleSave}>
@@ -113,7 +108,7 @@ const DeleteTeacherModal = ({
         <Row className="align-items-center mt-0 justify-content-center">
           <Col xs="10">
             <SuccessAlert
-              msg="Teacher deleted"
+              msg="Pricing deleted"
               show={showSuccess}
               setShow={setShowSuccess}
             />
@@ -128,4 +123,4 @@ const DeleteTeacherModal = ({
   );
 };
 
-export default DeleteTeacherModal;
+export default DeletePricingModal;

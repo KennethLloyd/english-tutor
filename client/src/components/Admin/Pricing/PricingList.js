@@ -14,8 +14,8 @@ import { FaPlusCircle } from 'react-icons/fa';
 
 import ErrorAlert from '../Alerts/ErrorAlert';
 import Pagination from '../Pagination';
-import Teacher from './Teacher';
-import AddTeacherModal from './AddTeacherModal';
+import Pricing from './Pricing';
+import AddPricingModal from './AddPricingModal';
 import api from '../../../api/api';
 
 const PricingList = () => {
@@ -73,7 +73,7 @@ const PricingList = () => {
                     size="35px"
                     onClick={toggleAddModal}
                   />
-                  <AddTeacherModal
+                  <AddPricingModal
                     show={showAddModal}
                     setShow={setShowAddModal}
                     refresh={refresh}
@@ -117,7 +117,7 @@ const PricingList = () => {
                   <tbody>
                     {pricing.map((item) => {
                       return (
-                        <Teacher
+                        <Pricing
                           details={item}
                           key={item.id}
                           refresh={refresh}
