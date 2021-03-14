@@ -1,3 +1,20 @@
+## v1.7.0
+**2021-03-14**
+
+#### :sparkles: New Features
+
+* [`43417cb`](https://github.com/KennethLloyd/english-tutor/commit/43417cb6cc37381f72e7556dd0fb38cc3e79e9e1)  sequelize-cli to dependencies
+* [`0269391`](https://github.com/KennethLloyd/english-tutor/commit/026939130ca1d2f9e2684d2730ae771010b12331)  serving of react build from express
+* [`17278c8`](https://github.com/KennethLloyd/english-tutor/commit/17278c8ad68931ce537fff8a93914227b828dad5)  local upload folder when server starts
+* [`eac741c`](https://github.com/KennethLloyd/english-tutor/commit/eac741c86d8c1f4ef0cdce34d088045039d56b90)  upload folder for heroku
+* [`0f63df1`](https://github.com/KennethLloyd/english-tutor/commit/0f63df1968554ffc1c489dee6f101fcc79b76f52)  heroku postbuild command
+
+#### :cyclone: Miscellaneous Updates
+
+* [`ca992a6`](https://github.com/KennethLloyd/english-tutor/commit/ca992a670c0f8ed38e89e3bb7e880bb58ddae0e1) Run build folder in prod env
+* [`1d4ee41`](https://github.com/KennethLloyd/english-tutor/commit/1d4ee418eaa55ccbeb9c6cbe7e05f14eedea4539) Allow zero pricing features
+* [`595b220`](https://github.com/KennethLloyd/english-tutor/commit/595b2204a2d0d6d0cd163f1e7fa2159a05a0d9b6) Remove build folder for prod gitignore
+
 ## v1.6.0
 **2021-03-14**
 
