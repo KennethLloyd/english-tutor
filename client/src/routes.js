@@ -3,11 +3,7 @@ import { GiPriceTag } from 'react-icons/gi';
 
 import Index from './views/Index.js';
 import Teachers from './views/Teachers.js';
-// import Maps from 'views/examples/Maps.js';
-// import Register from 'views/examples/Register.js';
-// import Login from 'views/examples/Login.js';
-// import Tables from 'views/examples/Tables.js';
-// import Icons from 'views/examples/Icons.js';
+import Pricing from './views/Pricing.js';
 
 var routes = [
   {
@@ -28,7 +24,7 @@ var routes = [
     path: '/pricing',
     name: 'Pricing',
     icon: <GiPriceTag />,
-    // component: Maps,
+    component: Pricing,
     layout: '/admin',
   },
   {
