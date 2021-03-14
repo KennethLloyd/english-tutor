@@ -16,13 +16,19 @@ import ErrorAlert from '../Alerts/ErrorAlert';
 import SuccessAlert from '../Alerts/SuccessAlert';
 import api from '../../../api/api';
 
-const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
-  const [thumbnail, setThumbnail] = useState(details.photoUrl);
-  const [firstName, setFirstName] = useState(details.firstName);
-  const [lastName, setLastName] = useState(details.lastName);
-  const [status, setStatus] = useState(details.status);
-  const [order, setOrder] = useState(details.order);
-  const [photo, setPhoto] = useState(null);
+const EditContactModal = ({
+  show,
+  setShow,
+  refresh,
+  setRefresh,
+  details: info,
+}) => {
+  const [thumbnail, setThumbnail] = useState(info.iconUrl);
+  const [platformName, setPlatformName] = useState(info.platformName);
+  const [details, setDetails] = useState(info.details);
+  const [status, setStatus] = useState(info.status);
+  const [order, setOrder] = useState(info.order);
+  const [icon, setIcon] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -31,10 +37,10 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
   const handleSave = async () => {
     const formData = new FormData();
 
-    formData.append('image', photo);
+    formData.append('image', icon);
     formData.append('order', order);
-    formData.append('firstName', firstName);
-    formData.append('lastName', lastName);
+    formData.append('platformName', platformName);
+    formData.append('details', details);
     formData.append('status', status);
 
     const headers = new Headers();
@@ -42,7 +48,7 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
 
     setShowLoader(true);
 
-    const data = await api(`/teachers/${details.id}`, {
+    const data = await api(`/contacts/${info.id}`, {
       method: 'PUT',
       headers,
       body: formData,
@@ -74,7 +80,7 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
     >
       <div className="modal-header">
         <h3 className="modal-title" id="modal-title-default">
-          Edit Teacher
+          Edit Contact
         </h3>
         <button
           aria-label="Close"
@@ -89,28 +95,28 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
       <div className="modal-body">
         <Form role="form">
           <FormGroup className="mb-3">
-            <label htmlFor="firstName" className="modal-label">
-              First name
+            <label htmlFor="platformName" className="modal-label">
+              Platform name
             </label>
             <InputGroup className="input-group">
               <Input
                 type="text"
-                id="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                id="platformName"
+                value={platformName}
+                onChange={(e) => setPlatformName(e.target.value)}
               />
             </InputGroup>
           </FormGroup>
           <FormGroup className="mb-3">
-            <label htmlFor="lastName" className="modal-label">
-              Last name
+            <label htmlFor="details" className="modal-label">
+              Details
             </label>
             <InputGroup className="input-group">
               <Input
                 type="text"
-                id="lastName"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                id="details"
+                value={details}
+                onChange={(e) => setDetails(e.target.value)}
               />
             </InputGroup>
           </FormGroup>
@@ -124,7 +130,7 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
                 name="select"
                 id="status"
                 onChange={(e) => setStatus(e.target.value)}
-                value={details.status}
+                value={info.status}
               >
                 <option value={true}>To Show</option>
                 <option value={false}>Hidden</option>
@@ -146,11 +152,11 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
           </FormGroup>
           <FormGroup className="mb-3 ml-auto">
             <label htmlFor="upload" className="modal-label">
-              Photo
+              Icon
             </label>
             <div>
               <FileUploader
-                setImage={setPhoto}
+                setImage={setIcon}
                 thumbnail={thumbnail}
                 setThumbnail={setThumbnail}
               />
@@ -196,7 +202,7 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
         <Row className="align-items-center mt-0 justify-content-center">
           <Col xs="10">
             <SuccessAlert
-              msg="Teacher updated"
+              msg="Contact updated"
               show={showSuccess}
               setShow={setShowSuccess}
             />
@@ -211,4 +217,4 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
   );
 };
 
-export default EditTeacherModal;
+export default EditContactModal;
