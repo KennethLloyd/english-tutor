@@ -32,17 +32,18 @@ const Pricing = ({
   };
 
   const updateStatus = async (status) => {
-    const formData = new FormData();
-
-    formData.append('status', status);
+    const body = {
+      status,
+    };
 
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    headers.append('Content-Type', 'application/json');
 
     const data = await api(`/pricing/${details.id}`, {
       method: 'PUT',
       headers,
-      body: formData,
+      body: JSON.stringify(body),
     });
 
     if (!data || data.error) {

@@ -244,20 +244,22 @@ const editPricing = async (req, res) => {
       transaction: t,
     });
 
-    await Promise.all(
-      req.body.features.map(async (item, index) => {
-        return PricingFeatures.create(
-          {
-            pricingId: pricing.id,
-            feature: item,
-            order: index + 1,
-          },
-          {
-            transaction: t,
-          },
-        );
-      }),
-    );
+    if (req.body.features) {
+      await Promise.all(
+        req.body.features.map(async (item, index) => {
+          return PricingFeatures.create(
+            {
+              pricingId: pricing.id,
+              feature: item,
+              order: index + 1,
+            },
+            {
+              transaction: t,
+            },
+          );
+        }),
+      );
+    }
 
     await t.commit();
 
