@@ -3,8 +3,8 @@ import sequelize from '../db/sequelize.js';
 
 const { DataTypes } = Sequelize;
 
-const Pricing = sequelize.define(
-  'Pricing',
+const Pricings = sequelize.define(
+  'Pricings',
   {
     id: {
       type: DataTypes.UUID,
@@ -29,4 +29,4 @@ const Pricing = sequelize.define(
   },
 );
 
-export default Pricing;
+export default Pricings;

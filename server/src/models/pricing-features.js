@@ -18,6 +18,9 @@ const PricingFeatures = sequelize.define(
     feature: {
       type: DataTypes.TEXT,
     },
+    order: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
     timestamps: true, // adds createdAt and updatedAt for each new entry

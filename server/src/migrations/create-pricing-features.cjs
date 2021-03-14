@@ -15,6 +15,9 @@ module.exports = {
       feature: {
         type: Sequelize.TEXT,
       },
+      order: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
