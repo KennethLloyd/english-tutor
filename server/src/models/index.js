@@ -3,6 +3,8 @@ import HeroSettings from './hero-settings.js';
 import TeacherPageSettings from './teacher-page-settings.js';
 import Teachers from './teachers.js';
 import PricingPageSettings from './pricing-page-settings.js';
+import Pricing from './pricing.js';
+import PricingFeatures from './pricing-features.js';
 
 export {
   NavigationSettings,
@@ -10,4 +12,6 @@ export {
   TeacherPageSettings,
   Teachers,
   PricingPageSettings,
+  Pricing,
+  PricingFeatures,
 };
