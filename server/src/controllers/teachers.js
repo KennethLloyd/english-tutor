@@ -102,7 +102,7 @@ const getTeacherPageSettings = async (req, res) => {
 @api {post} /api/teachers Add Teacher
 @apiVersion 1.0.0
 @apiName AddTeacher
-@apiGroup Teacher
+@apiGroup Teachers
 
 @apiParam {File} [image] Photo to upload
 @apiParam {Number} order Order
@@ -155,7 +155,7 @@ const addTeacher = async (req, res) => {
 @api {put} /api/teachers/:id Edit Teacher
 @apiVersion 1.0.0
 @apiName EditTeacher
-@apiGroup Teacher
+@apiGroup Teachers
 
 @apiParam {File} [image] Photo to upload
 @apiParam {Number} [order] Order
@@ -308,7 +308,7 @@ const getTeachers = async (req, res) => {
 @api {delete} /api/teachers/:id Delete Teacher
 @apiVersion 1.0.0
 @apiName DeleteTeacher
-@apiGroup Teacher
+@apiGroup Teachers
 
 @apiSuccessExample {json} Success-Response:
 HTTP/1.1 200 OK
