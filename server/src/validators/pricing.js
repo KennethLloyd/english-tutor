@@ -28,7 +28,7 @@ const addPricing = async (req, res, next) => {
     order: Joi.number().required(),
     header: Joi.string().required(),
     price: Joi.string().required(),
-    features: Joi.array().items(Joi.string()).empty(''),
+    features: Joi.array().items(Joi.string().required()).empty(''),
     status: Joi.boolean().required(),
   });
 
@@ -49,7 +49,7 @@ const editPricing = async (req, res, next) => {
     order: Joi.number(),
     header: Joi.string(),
     price: Joi.string(),
-    features: Joi.array().items(Joi.string()).empty(''),
+    features: Joi.array().items(Joi.string().required()).empty(''),
     status: Joi.boolean(),
   });
 
