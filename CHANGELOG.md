@@ -1,3 +1,18 @@
+## v1.5.0
+**2021-03-14**
+
+#### :sparkles: New Features
+
+* [`1048d1d`](https://github.com/KennethLloyd/english-tutor/commit/1048d1dcdb41a516c5b8a886846bd60319a3c56f)  Pricing Page
+* [`1858d47`](https://github.com/KennethLloyd/english-tutor/commit/1858d471a914303942635e45b3958731e87533b6)  pricing controllers and routes
+* [`4253327`](https://github.com/KennethLloyd/english-tutor/commit/4253327128268ea1b2023ac5cfe79d7ab75895bd)  edit pricing modal integration
+* [`2dd9028`](https://github.com/KennethLloyd/english-tutor/commit/2dd9028d56fc373dff4cedbfd3778f8bc27a0694)  pricing model
+* [`40a47d1`](https://github.com/KennethLloyd/english-tutor/commit/40a47d1bb658d565378a76f00f81da13d4870afa)  pricing modal integration
+* [`ec34f84`](https://github.com/KennethLloyd/english-tutor/commit/ec34f84d5a62ff6041e966041224474fbfc3c1f9)  pricing validator
+* [`83d21d4`](https://github.com/KennethLloyd/english-tutor/commit/83d21d40b570faf7885a745e60592f2db635009a)  pricing page settings model
+* [`0cb28da`](https://github.com/KennethLloyd/english-tutor/commit/0cb28da374d332f60e895e8df0cee630f22ab964)  pricing list integration
+* [`f60767f`](https://github.com/KennethLloyd/english-tutor/commit/f60767fecfbbda486f25532d2173476dc6afbeb9)  pricing page settings integration
+
 ## v1.4.0
 **2021-03-14**
 
