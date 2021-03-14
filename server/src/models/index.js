@@ -6,6 +6,7 @@ import PricingPageSettings from './pricing-page-settings.js';
 import Pricings from './pricings.js';
 import PricingFeatures from './pricing-features.js';
 import ContactPageSettings from './contact-page-settings.js';
+import Contacts from './contacts.js';
 
 export {
   NavigationSettings,
@@ -16,4 +17,5 @@ export {
   Pricings,
   PricingFeatures,
   ContactPageSettings,
+  Contacts,
 };
