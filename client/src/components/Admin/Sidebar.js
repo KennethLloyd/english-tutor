@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
+import { NavLink as NavLinkRRD, Link, useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { ImExit } from 'react-icons/im';
-import { useHistory } from 'react-router';
 
 import {
   Collapse,
@@ -22,7 +21,7 @@ const Sidebar = (props) => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    history.go(0);
+    history.push('/admin/login');
   };
 
   const toggleCollapse = () => {
