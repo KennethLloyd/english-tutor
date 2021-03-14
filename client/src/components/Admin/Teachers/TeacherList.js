@@ -7,6 +7,7 @@ import {
   Col,
   Table,
   CardFooter,
+  Spinner,
 } from 'reactstrap';
 import { useState, useEffect } from 'react';
 import { FaPlusCircle } from 'react-icons/fa';
@@ -25,6 +26,7 @@ const TeacherList = () => {
   const [activePage, setActivePage] = useState(1);
   const [showAddModal, setShowAddModal] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
   const pageLimit = 10;
 
   const toggleAddModal = () => {
@@ -45,7 +47,10 @@ const TeacherList = () => {
         setTeachers(data.teachers);
       }
     };
+
+    setShowLoader(true);
     fetchData();
+    setShowLoader(false);
   }, [activePage, refresh]);
 
   return (
@@ -75,6 +80,13 @@ const TeacherList = () => {
                     setRefresh={setRefresh}
                   />
                 </Row>
+                {showLoader ? (
+                  <div className="d-flex justify-content-center mt-0 mb-3">
+                    <Spinner color="info" />
+                  </div>
+                ) : (
+                  ''
+                )}
                 {showError ? (
                   <Row className="align-items-center mt-4 justify-content-center">
                     <Col md="4">

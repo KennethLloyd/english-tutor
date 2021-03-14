@@ -8,6 +8,7 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from 'reactstrap';
 import { useState, useEffect } from 'react';
 
@@ -23,6 +24,7 @@ const TeachersPageSettings = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   const handleUpdate = async () => {
     const body = {
@@ -35,11 +37,15 @@ const TeachersPageSettings = () => {
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
     headers.append('Content-Type', 'application/json');
 
+    setShowLoader(true);
+
     const data = await api('/settings/teachers', {
       method: 'PUT',
       headers,
       body: JSON.stringify(body),
     });
+
+    setShowLoader(false);
 
     if (!data || data.error) {
       setErrorMsg(data ? data.error : '');
@@ -66,7 +72,9 @@ const TeachersPageSettings = () => {
         setTitleLabelColor(settings.titleLabelColor);
       }
     };
+    setShowLoader(true);
     fetchData();
+    setShowLoader(false);
   }, []);
 
   return (
@@ -141,6 +149,13 @@ const TeachersPageSettings = () => {
                         Save
                       </Button>
                     </Row>
+                    {showLoader ? (
+                      <div className="d-flex justify-content-center mt-3">
+                        <Spinner color="info" />
+                      </div>
+                    ) : (
+                      ''
+                    )}
                     {showError ? (
                       <Row className="align-items-center mt-4 justify-content-center">
                         <Col md="4">

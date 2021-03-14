@@ -8,6 +8,7 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from 'reactstrap';
 import { useState, useEffect } from 'react';
 
@@ -33,6 +34,7 @@ const HeroSettings = () => {
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   const handleHeroUpdate = async () => {
     const formData = new FormData();
@@ -50,11 +52,15 @@ const HeroSettings = () => {
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
+    setShowLoader(true);
+
     const data = await api('/settings/hero', {
       method: 'PUT',
       headers,
       body: formData,
     });
+
+    setShowLoader(false);
 
     if (!data || data.error) {
       setErrorMsg(data ? data.error : '');
@@ -87,7 +93,9 @@ const HeroSettings = () => {
         setActionButtonColor(settings.actionButtonColor);
       }
     };
+    setShowLoader(true);
     fetchData();
+    setShowLoader(false);
   }, []);
 
   return (
@@ -272,6 +280,13 @@ const HeroSettings = () => {
                         Save
                       </Button>
                     </Row>
+                    {showLoader ? (
+                      <div className="d-flex justify-content-center mt-3 mb-0">
+                        <Spinner color="info" />
+                      </div>
+                    ) : (
+                      ''
+                    )}
                     {showError ? (
                       <Row className="align-items-center mt-4 justify-content-center">
                         <Col md="4">

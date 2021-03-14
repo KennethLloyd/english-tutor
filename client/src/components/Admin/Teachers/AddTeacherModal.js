@@ -7,6 +7,7 @@ import {
   FormGroup,
   InputGroup,
   Input,
+  Spinner,
 } from 'reactstrap';
 import { useState } from 'react';
 
@@ -25,6 +26,7 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   const resetState = () => {
     setThumbnail(null);
@@ -50,11 +52,15 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
+    setShowLoader(true);
+
     const data = await api('/teachers', {
       method: 'POST',
       headers,
       body: formData,
     });
+
+    setShowLoader(false);
 
     if (!data || data.error) {
       setErrorMsg(data ? data.error : '');
@@ -177,6 +183,13 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
           Close
         </Button>
       </div>
+      {showLoader ? (
+        <div className="d-flex justify-content-center mt-0 mb-3">
+          <Spinner color="info" />
+        </div>
+      ) : (
+        ''
+      )}
       {showError ? (
         <Row className="align-items-center mt-0 justify-content-center">
           <Col xs="10">

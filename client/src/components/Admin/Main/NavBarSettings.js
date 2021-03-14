@@ -8,6 +8,7 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from 'reactstrap';
 import { useState, useEffect } from 'react';
 
@@ -25,6 +26,7 @@ const NavBarSettings = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   const handleNavUpdate = async () => {
     const formData = new FormData();
@@ -37,11 +39,15 @@ const NavBarSettings = () => {
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
+    setShowLoader(true);
+
     const data = await api('/settings/navigation', {
       method: 'PUT',
       headers,
       body: formData,
     });
+
+    setShowLoader(false);
 
     if (!data || data.error) {
       setErrorMsg(data ? data.error : '');
@@ -69,7 +75,9 @@ const NavBarSettings = () => {
         setContactLabel(settings.contactLabel);
       }
     };
+    setShowLoader(true);
     fetchData();
+    setShowLoader(false);
   }, []);
 
   return (
@@ -171,6 +179,13 @@ const NavBarSettings = () => {
                         Save
                       </Button>
                     </Row>
+                    {showLoader ? (
+                      <div className="d-flex justify-content-center mt-3 mb-0">
+                        <Spinner color="info" />
+                      </div>
+                    ) : (
+                      ''
+                    )}
                     {showError ? (
                       <Row className="align-items-center mt-4 justify-content-center">
                         <Col md="4">
