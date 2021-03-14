@@ -15,21 +15,27 @@ To setup in a new local environment:
 $ nvm use
 ```
 
-2. Open `/server` directory and setup configuration by editing config files for specific environment
+2. Open `/server/config` directory then edit `config.json` for your local environment
 
-3. Go back to the root folder and install dependencies
+3. Go back to the root folder then setup the database by running:
+
+```sh
+$ npm run db-migrate
+```
+
+4. Install the dependencies
 
 ```sh
 $ npm install
 ```
 
-4. Run APIdoc
+5. Run APIdoc
 
 ```sh
 $ npm run docs
 ```
 
-5. Run both the client and dev server
+6. Run both the client and dev server
 
 ```sh
 $ npm run dev
