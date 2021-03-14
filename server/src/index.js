@@ -8,6 +8,7 @@ import initRouters from './routers/index.js';
 
 const app = express();
 const port = process.env.PORT || 5000;
+const tempDir = path.join(__dirname, '../../uploads/');
 
 app.use(express.json()); // allows us to parse the request as json
 app.use(cors());
@@ -15,7 +16,10 @@ app.use('/apidoc', express.static(path.join(__dirname, '../docs')));
 
 (async () => {
   try {
-    fs.mkdirSync(path.join(__dirname, '../../uploads/'));
+    if (!fs.existsSync(tempDir)) {
+      fs.mkdirSync(tempDir);
+    }
+
     initRouters(app);
 
     if (process.env.NODE_ENV === 'production') {
