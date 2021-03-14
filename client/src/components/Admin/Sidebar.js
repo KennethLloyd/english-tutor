@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink as NavLinkRRD, Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { ImExit } from 'react-icons/im';
+import { useHistory } from 'react-router';
 
 import {
   Collapse,
@@ -17,6 +18,12 @@ import {
 
 const Sidebar = (props) => {
   const [collapseOpen, setCollapseOpen] = useState();
+  const history = useHistory();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    history.go(0);
+  };
 
   const toggleCollapse = () => {
     setCollapseOpen((data) => !data);
@@ -113,7 +120,7 @@ const Sidebar = (props) => {
           <Nav navbar>{createLinks(routes)}</Nav>
           <hr className="my-3" />
           <Nav className="mb-md-3" navbar>
-            <NavItem role="button">
+            <NavItem role="button" onClick={handleLogout}>
               <NavLink>
                 <ImExit />
                 &nbsp; &nbsp; &nbsp; Log Out
