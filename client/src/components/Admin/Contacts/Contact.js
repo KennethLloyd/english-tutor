@@ -9,11 +9,11 @@ import {
 } from 'reactstrap';
 import { FaEllipsisV } from 'react-icons/fa';
 
-import EditTeacherModal from './EditContactModal';
-import DeleteTeacherModal from './DeleteContactModal';
+import EditContactModal from './EditContactModal';
+import DeleteContactModal from './DeleteContactModal';
 import api from '../../../api/api';
 
-const Teacher = ({
+const Contact = ({
   details,
   refresh,
   setRefresh,
@@ -39,7 +39,7 @@ const Teacher = ({
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
-    const data = await api(`/teachers/${details.id}`, {
+    const data = await api(`/contacts/${details.id}`, {
       method: 'PUT',
       headers,
       body: formData,
@@ -60,10 +60,10 @@ const Teacher = ({
         <p className="mb-0">{details.order}</p>
       </td>
       <td>
-        <p className="mb-0">{details.firstName}</p>
+        <p className="mb-0">{details.platformName}</p>
       </td>
       <td>
-        <p className="mb-0">{details.lastName}</p>
+        <p className="mb-0">{details.details}</p>
       </td>
       <td>
         {details.status === true ? (
@@ -115,25 +115,24 @@ const Teacher = ({
             <DropdownItem onClick={toggleDeleteModal}>Delete</DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
-        <EditTeacherModal
+        <EditContactModal
           show={showEditModal}
           setShow={setShowEditModal}
           refresh={refresh}
           setRefresh={setRefresh}
           details={details}
         />
-        <DeleteTeacherModal
+        <DeleteContactModal
           show={showDeleteModal}
           setShow={setShowDeleteModal}
           refresh={refresh}
           setRefresh={setRefresh}
           id={details.id}
-          firstName={details.firstName}
-          lastName={details.lastName}
+          platformName={details.platformName}
         />
       </td>
     </tr>
   );
 };
 
-export default Teacher;
+export default Contact;
