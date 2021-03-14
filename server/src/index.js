@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { __dirname } from './helpers/utils.js';
 import initDB from './db/initialize.js';
 import initRouters from './routers/index.js';
@@ -14,6 +15,7 @@ app.use('/apidoc', express.static(path.join(__dirname, '../docs')));
 
 (async () => {
   try {
+    fs.mkdirSync(path.join(__dirname, '../../uploads/'));
     initRouters(app);
 
     if (process.env.NODE_ENV === 'production') {

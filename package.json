@@ -3,14 +3,13 @@
   "version": "1.6.0",
   "description": "English Courses Landing and Admin Website",
   "scripts": {
-    "build": "npm run build --prefix client",
+    "build": "npm run build --prefix client && npm run db-migrate",
     "preinstall": "npm install --prefix client && npm install --prefix server",
     "client": "npm start --prefix client",
     "db-migrate": "npm run db-migrate --prefix server",
     "server": "npm start --prefix server",
     "docs": "npm run docs --prefix server",
     "dev": "concurrently \"npm run dev --prefix server\" \"npm run client\"",
-    "heroku-postbuild": "npm run build",
     "start": "npm run server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "version": "auto-changelog --template changelog-template.hbs -p && git add CHANGELOG.md"
