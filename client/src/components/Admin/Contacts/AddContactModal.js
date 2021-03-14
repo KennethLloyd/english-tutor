@@ -16,13 +16,13 @@ import ErrorAlert from '../Alerts/ErrorAlert';
 import SuccessAlert from '../Alerts/SuccessAlert';
 import api from '../../../api/api';
 
-const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
+const AddContactModal = ({ show, setShow, refresh, setRefresh }) => {
   const [thumbnail, setThumbnail] = useState(null);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [platformName, setPlatformName] = useState('');
+  const [details, setDetails] = useState('');
   const [status, setStatus] = useState(true);
   const [order, setOrder] = useState(0);
-  const [photo, setPhoto] = useState(null);
+  const [icon, setIcon] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -30,11 +30,11 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
 
   const resetState = () => {
     setThumbnail(null);
-    setFirstName('');
-    setLastName('');
+    setPlatformName('');
+    setDetails('');
     setStatus(true);
     setOrder(0);
-    setPhoto(null);
+    setIcon(null);
     setErrorMsg('');
     setShowError(false);
     setShowSuccess(false);
@@ -43,10 +43,10 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
   const handleSave = async () => {
     const formData = new FormData();
 
-    formData.append('image', photo);
+    formData.append('image', icon);
     formData.append('order', order);
-    formData.append('firstName', firstName);
-    formData.append('lastName', lastName);
+    formData.append('platformName', platformName);
+    formData.append('details', details);
     formData.append('status', status);
 
     const headers = new Headers();
@@ -54,7 +54,7 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
 
     setShowLoader(true);
 
-    const data = await api('/teachers', {
+    const data = await api('/contacts', {
       method: 'POST',
       headers,
       body: formData,
@@ -86,7 +86,7 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
     >
       <div className="modal-header">
         <h3 className="modal-title" id="modal-title-default">
-          Add New Teacher
+          Add New Contact
         </h3>
         <button
           aria-label="Close"
@@ -101,28 +101,28 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
       <div className="modal-body">
         <Form role="form">
           <FormGroup className="mb-3">
-            <label htmlFor="firstName" className="modal-label">
-              First name
+            <label htmlFor="platformName" className="modal-label">
+              Platform name
             </label>
             <InputGroup className="input-group">
               <Input
                 type="text"
-                id="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                id="platformName"
+                value={platformName}
+                onChange={(e) => setPlatformName(e.target.value)}
               />
             </InputGroup>
           </FormGroup>
           <FormGroup className="mb-3">
-            <label htmlFor="lastName" className="modal-label">
-              Last name
+            <label htmlFor="details" className="modal-label">
+              Details
             </label>
             <InputGroup className="input-group">
               <Input
                 type="text"
-                id="lastName"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                id="details"
+                value={details}
+                onChange={(e) => setDetails(e.target.value)}
               />
             </InputGroup>
           </FormGroup>
@@ -157,11 +157,11 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
           </FormGroup>
           <FormGroup className="mb-3 ml-auto">
             <label htmlFor="upload" className="modal-label">
-              Photo
+              Icon
             </label>
             <div>
               <FileUploader
-                setImage={setPhoto}
+                setImage={setIcon}
                 thumbnail={thumbnail}
                 setThumbnail={setThumbnail}
               />
@@ -207,7 +207,7 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
         <Row className="align-items-center mt-0 justify-content-center">
           <Col xs="10">
             <SuccessAlert
-              msg="New teacher added"
+              msg="New contact added"
               show={showSuccess}
               setShow={setShowSuccess}
             />
@@ -222,4 +222,4 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
   );
 };
 
-export default AddTeacherModal;
+export default AddContactModal;
