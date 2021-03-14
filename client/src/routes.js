@@ -4,6 +4,7 @@ import { GiPriceTag } from 'react-icons/gi';
 import Index from './views/Index.js';
 import Teachers from './views/Teachers.js';
 import Pricing from './views/Pricing.js';
+import Contacts from './views/Contacts.js';
 
 var routes = [
   {
@@ -31,7 +32,7 @@ var routes = [
     path: '/contact',
     name: 'Contact',
     icon: <FaPhoneAlt />,
-    // component: Profile,
+    component: Contacts,
     layout: '/admin',
   },
 ];
