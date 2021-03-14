@@ -6,24 +6,26 @@ import initDB from './db/initialize.js';
 import initRouters from './routers/index.js';
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5000;
 
 app.use(express.json()); // allows us to parse the request as json
 app.use(cors());
-// app.use('/apidoc', express.static(path.join(__dirname, '../docs')));
-app.use(express.static(path.join(__dirname, '../../../client/build')));
-app.use(express.static(path.join(__dirname, '../../../client/public')));
+app.use('/apidoc', express.static(path.join(__dirname, '../docs')));
 
 (async () => {
   try {
     initRouters(app);
 
-    app.get('/admin', function (req, res, next) {
-      res.sendFile(path.join(__dirname, '../../../client/build/index.html'));
-    });
-    app.get('*', function (req, res, next) {
-      res.sendFile(path.join(__dirname, '../../../client/build/index.html'));
-    });
+    if (process.env.NODE_ENV === 'production') {
+      app.use(express.static(path.join(__dirname, '../../../client/build')));
+      app.get('/admin', function (req, res) {
+        res.sendFile(path.join(__dirname, '../../../client/build/index.html'));
+      });
+      app.get('*', function (req, res, next) {
+        res.sendFile(path.join(__dirname, '../../../client/build/index.html'));
+      });
+    }
+
     await initDB();
     console.log('Connection to database has been established successfully');
   } catch (error) {
