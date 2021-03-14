@@ -67,7 +67,7 @@ const PricingPageSettings = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await api('/settings/teachers');
+      const data = await api('/settings/pricing');
       if (!data) {
         setShowError(true);
       } else {
@@ -78,6 +78,10 @@ const PricingPageSettings = () => {
         setBackgroundColor(settings.backgroundColor);
         setTitleLabel(settings.titleLabel);
         setTitleLabelColor(settings.titleLabelColor);
+        setHeaderBackgroundColor(settings.headerBackgroundColor);
+        setHeaderTextColor(settings.headerTextColor);
+        setDetailsBackgroundColor(settings.detailsBackgroundColor);
+        setDetailsTextColor(settings.detailsTextColor);
       }
     };
     setShowLoader(true);
