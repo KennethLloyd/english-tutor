@@ -1,3 +1,20 @@
+## v1.6.0
+**2021-03-14**
+
+#### :sparkles: New Features
+
+* [`e572767`](https://github.com/KennethLloyd/english-tutor/commit/e572767fcea766cd20a40b5b7ca6c1b0ec360269)  minified css
+* [`9585800`](https://github.com/KennethLloyd/english-tutor/commit/9585800e9a560936d485801fb15553a2ef687b1a)  contact page settings
+* [`2a2d7f5`](https://github.com/KennethLloyd/english-tutor/commit/2a2d7f56125a66731df1599f791d84364e88092c)  contact routes and controllers
+* [`a109904`](https://github.com/KennethLloyd/english-tutor/commit/a109904b34b84e4c059b9dcc35f2367728c05bb7)  contact page validators
+* [`f997fd5`](https://github.com/KennethLloyd/english-tutor/commit/f997fd5b0a505e297e4966a47b314fc7ee675925)  contact page settings model
+* [`bd06a48`](https://github.com/KennethLloyd/english-tutor/commit/bd06a48ea08ea10ecec11f79ac1cd4337ae0c900)  edit contact modal
+* [`6b50010`](https://github.com/KennethLloyd/english-tutor/commit/6b50010ea479578b173bcbb3e8f3037e84e9d4e0)  contact list model
+* [`c5068f6`](https://github.com/KennethLloyd/english-tutor/commit/c5068f6156c2d453fe9cd94e266d93e0db6f3c1a)  new contact modal
+* [`e481981`](https://github.com/KennethLloyd/english-tutor/commit/e481981d03c1feb520c0f3fe81146cccd08fd81e)  contact list table
+* [`e853a35`](https://github.com/KennethLloyd/english-tutor/commit/e853a3532e18fa354e51077fe5da5d066e4551af)  contact page integrations
+* [`abd0eac`](https://github.com/KennethLloyd/english-tutor/commit/abd0eac98db6e41133ecc18f0e4432f4062d78e1)  logout
+
 ## v1.5.0
 **2021-03-14**
 
