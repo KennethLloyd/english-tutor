@@ -14,13 +14,13 @@ import { FaPlusCircle } from 'react-icons/fa';
 
 import ErrorAlert from '../Alerts/ErrorAlert';
 import Pagination from '../Pagination';
-import Teacher from './Teacher';
-import AddTeacherModal from './AddTeacherModal';
+import Contact from './Contact';
+import AddContactModal from './AddContactModal';
 import api from '../../../api/api';
 
-const TeacherList = () => {
+const ContactList = () => {
   const [total, setTotal] = useState(0);
-  const [teachers, setTeachers] = useState([]);
+  const [contacts, setContacts] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [activePage, setActivePage] = useState(1);
@@ -37,14 +37,14 @@ const TeacherList = () => {
     let queryString = `?page=${activePage}&limit=${pageLimit}`;
 
     const fetchData = async () => {
-      const data = await api(`/teachers${queryString}`);
+      const data = await api(`/contacts${queryString}`);
       if (!data) {
         setShowError(true);
       } else {
         setShowError(false);
 
         setTotal(data.total);
-        setTeachers(data.teachers);
+        setContacts(data.contacts);
       }
     };
 
@@ -62,7 +62,7 @@ const TeacherList = () => {
               <CardHeader className="bg-white border-0">
                 <Row className="align-items-center">
                   <Col xs="8">
-                    <h3 className="mb-0">Teachers List</h3>
+                    <h3 className="mb-0">Contact List</h3>
                   </Col>
                 </Row>
               </CardHeader>
@@ -73,7 +73,7 @@ const TeacherList = () => {
                     size="35px"
                     onClick={toggleAddModal}
                   />
-                  <AddTeacherModal
+                  <AddContactModal
                     show={showAddModal}
                     setShow={setShowAddModal}
                     refresh={refresh}
@@ -107,17 +107,17 @@ const TeacherList = () => {
                   <thead className="thead-light">
                     <tr>
                       <th scope="col">Order</th>
-                      <th scope="col">Last Name</th>
-                      <th scope="col">First Name</th>
+                      <th scope="col">Platform Name</th>
+                      <th scope="col">Details</th>
                       <th scope="col">Status</th>
                       <th scope="col">Action</th>
                       <th scope="col" />
                     </tr>
                   </thead>
                   <tbody>
-                    {teachers.map((item) => {
+                    {contacts.map((item) => {
                       return (
-                        <Teacher
+                        <Contact
                           details={item}
                           key={item.id}
                           refresh={refresh}
@@ -146,4 +146,4 @@ const TeacherList = () => {
   );
 };
 
-export default TeacherList;
+export default ContactList;

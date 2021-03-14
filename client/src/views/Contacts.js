@@ -1,7 +1,7 @@
 import { Container } from 'reactstrap';
 
 import ContactPageSettings from '../components/Admin/Contacts/ContactPageSettings.js';
-import ContactList from '../components/Admin/Teachers/TeacherList.js';
+import ContactList from '../components/Admin/Contacts/ContactList.js';
 
 const Contacts = () => {
   return (

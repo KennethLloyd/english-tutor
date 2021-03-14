@@ -9,8 +9,8 @@ import {
 } from 'reactstrap';
 import { FaEllipsisV } from 'react-icons/fa';
 
-import EditTeacherModal from './EditTeacherModal';
-import DeleteTeacherModal from './DeleteTeacherModal';
+import EditTeacherModal from './EditContactModal';
+import DeleteTeacherModal from './DeleteContactModal';
 import api from '../../../api/api';
 
 const Teacher = ({
