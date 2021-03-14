@@ -1,3 +1,42 @@
+## v1.4.0
+**2021-03-14**
+
+#### :sparkles: New Features
+
+* [`648c872`](https://github.com/KennethLloyd/english-tutor/commit/648c872315be437e674221594127a301ffcb96d0)  auth and unauth routes handler
+* [`7297cd8`](https://github.com/KennethLloyd/english-tutor/commit/7297cd888d8073e12d097cad70524b2bfebebf02)  DB migration script
+* [`670c9ab`](https://github.com/KennethLloyd/english-tutor/commit/670c9ab4a6369a7d9a8093c4899450a052cac7c9)  teacher list integration
+* [`f8c5e3c`](https://github.com/KennethLloyd/english-tutor/commit/f8c5e3c0eb08ae279c77d781be4e364916725c31)  teachers list table UI
+* [`c492b73`](https://github.com/KennethLloyd/english-tutor/commit/c492b73f5c244a12dd91a5811326798e4bad4f97)  edit teacher integration
+* [`7b9d33c`](https://github.com/KennethLloyd/english-tutor/commit/7b9d33c37c4661bc7e353279ba86d7fa8f643a76)  teacher list controllers
+* [`3a68093`](https://github.com/KennethLloyd/english-tutor/commit/3a6809332cde06bd58cc374eee2e436e4b8ec3af)  teachers page settings UI
+* [`d94d42c`](https://github.com/KennethLloyd/english-tutor/commit/d94d42c0ba2970ed795aa2936d3a6e411fadf4d5)  teacher modal UI
+* [`d78251d`](https://github.com/KennethLloyd/english-tutor/commit/d78251d1ca8dff6c6d1a47678f0e6cd90ffb47c6)  teacher list routes
+* [`37c4bb6`](https://github.com/KennethLloyd/english-tutor/commit/37c4bb60e248e1f28c69242ae3210c400d5c254c)  delete teacher modal
+* [`8098c64`](https://github.com/KennethLloyd/english-tutor/commit/8098c643676380bd81e2bfb52c3985e1518d33e9)  new teacher integration
+* [`fcb0a39`](https://github.com/KennethLloyd/english-tutor/commit/fcb0a39f75f89ec189a16765bea333c698df55d3)  teacher page settings controller
+* [`93f4e5b`](https://github.com/KennethLloyd/english-tutor/commit/93f4e5b23a2a244416ae79ce03b2600c0bf93fa8)  loading spinner
+* [`8fa9453`](https://github.com/KennethLloyd/english-tutor/commit/8fa9453fcca20e71dd8ccfe24f1af394e4e689fc)  teachers model
+* [`e5f226c`](https://github.com/KennethLloyd/english-tutor/commit/e5f226c83d47412b60a3ceefabac29dbbc38a9c7)  teacher page settings model
+* [`7297c1f`](https://github.com/KennethLloyd/english-tutor/commit/7297c1fef349be8d94ddeb7638040c5af7abea25)  teacher page settings routes
+* [`ba04133`](https://github.com/KennethLloyd/english-tutor/commit/ba04133d0089b8e202292f4cb2968b949e2993f3)  show/hide integration
+* [`4cfc76b`](https://github.com/KennethLloyd/english-tutor/commit/4cfc76be206b954b5a6b0c717b0b1a2adcd17f6b)  Teachers page
+* [`363e722`](https://github.com/KennethLloyd/english-tutor/commit/363e722074803cd521f71de1a1ad43bac3de9b18)  teachers validator
+* [`03864ab`](https://github.com/KennethLloyd/english-tutor/commit/03864aba4b5a22dc8179baf16d41fccfda80a695)  delete teacher controller
+* [`3a58b7b`](https://github.com/KennethLloyd/english-tutor/commit/3a58b7bd5ce7f00aba12296eecfb258305baaec4)  teacher page settings validator
+* [`c2a2e0e`](https://github.com/KennethLloyd/english-tutor/commit/c2a2e0e15d647d20aabea804b847f437a7f4c10f)  teacher page settings integration
+* [`1934aee`](https://github.com/KennethLloyd/english-tutor/commit/1934aeecb8add147daac3a4cce8d26c035fc3899)  delete teacher route
+
+#### :hammer: Fixes
+
+* [`c9f809d`](https://github.com/KennethLloyd/english-tutor/commit/c9f809deaee1007bdd52fe467affd23da1e44159)  not showing error alerts
+
+#### :cyclone: Miscellaneous Updates
+
+* [`eab7bb1`](https://github.com/KennethLloyd/english-tutor/commit/eab7bb1e33277814feb15a0ba558075573e9aa88) Group components to directories
+* [`d9895b3`](https://github.com/KennethLloyd/english-tutor/commit/d9895b3beb5251d5a349c2662c92ef95e56cbc27) Convert node-config to read config from file
+* [`b57a265`](https://github.com/KennethLloyd/english-tutor/commit/b57a265a18bfd82dfc6c04bfcc71a620718bbecf) Update readme
+
 ## v1.3.0
 **2021-03-08**
 
