@@ -10,7 +10,8 @@
     "server": "npm start --prefix server",
     "docs": "npm run docs --prefix server",
     "dev": "concurrently \"npm run dev --prefix server\" \"npm run client\"",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "npm run build",
+    "start": "npm run server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "version": "auto-changelog --template changelog-template.hbs -p && git add CHANGELOG.md"
   },
