@@ -10,6 +10,8 @@ import {
   Col,
   Container,
 } from 'reactstrap';
+import { css, cx } from '@emotion/css';
+import { lightenDarkenColor } from '../../utils/utils';
 
 const LandingNavbar = ({
   logo,
@@ -18,9 +20,12 @@ const LandingNavbar = ({
   contactLabel,
   color,
 }) => {
-  const textColor = {
-    color: color,
-  };
+  const textColor = css`
+    color: ${color};
+    &:hover {
+      color: ${lightenDarkenColor(color, 90)};
+    }
+  `;
 
   return (
     <>
@@ -51,23 +56,17 @@ const LandingNavbar = ({
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink className="nav-link-icon" to="/#teachers" tag={Link}>
-                  <span className="nav-link-inner--text" style={textColor}>
-                    {teachersLabel}
-                  </span>
+                  <span className={textColor}>{teachersLabel}</span>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink className="nav-link-icon" to="/#pricing" tag={Link}>
-                  <span className="nav-link-inner--text" style={textColor}>
-                    {pricingLabel}
-                  </span>
+                  <span className={textColor}>{pricingLabel}</span>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink className="nav-link-icon" to="/#contacts" tag={Link}>
-                  <span className="nav-link-inner--text" style={textColor}>
-                    {contactLabel}
-                  </span>
+                  <span className={textColor}>{contactLabel}</span>
                 </NavLink>
               </NavItem>
             </Nav>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Container } from 'reactstrap';
 import { css, cx } from '@emotion/css';
 import Navbar from '../components/Landing/Navbar';
+import { lightenDarkenColor } from '../utils/utils';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState(
@@ -63,6 +64,10 @@ const Home = () => {
     color: ${actionButtonTextColor};
     background-color: ${actionButtonColor};
     border-color: ${actionButtonColor};
+    &:hover {
+      background-color: ${lightenDarkenColor(actionButtonColor, 90)};
+      border-color: ${lightenDarkenColor(actionButtonColor, 90)};
+    }
   `;
 
   return (
