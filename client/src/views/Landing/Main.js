@@ -1,9 +1,33 @@
 import { useEffect, useState } from 'react';
+import { Button, Container } from 'reactstrap';
+import { css, cx } from '@emotion/css';
 import './index.css';
+import Navbar from '../../components/Landing/Navbar';
+import { lightenDarkenColor } from '../../utils/utils';
 
 const Main = () => {
   const [scrollClass, setScrollClass] = useState('');
   const [scrollTop, setScrollTop] = useState(0);
+  const [backgroundImage, setBackgroundImage] = useState(
+    'https://res.cloudinary.com/kennethlloyd/image/upload/v1615714976/english-courses/1615714975835-pexels-photo-5965839%201.png.png',
+  );
+  const [backgroundOpacity, setBackgroundOpacity] = useState(0.5);
+  const [titleText, setTitleText] = useState('English Tutor');
+  const [titleTextColor, setTitleTextColor] = useState('#000000');
+  const [subtitleText, setSubtitleText] = useState(
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Inhendrerit gravida rutrum quisque.',
+  );
+  const [subtitleTextColor, setSubtitleTextColor] = useState('#000000');
+  const [actionButtonText, setActionButtonText] = useState('LEARN MORE');
+  const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
+  const [actionButtonColor, setActionButtonColor] = useState('#5e72e4');
+
+  const [logo, setLogo] = useState(
+    'https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-dark.svg',
+  );
+  const [teachersLabel, setTeachersLabel] = useState('Teachers');
+  const [pricingLabel, setPricingLabel] = useState('Pricing');
+  const [contactLabel, setContactLabel] = useState('Contact');
 
   useEffect(() => {
     const onScroll = () => {
@@ -26,96 +50,76 @@ const Main = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, [scrollTop]);
 
+  const overlay = css`
+    background-color: rgba(255, 255, 255, ${backgroundOpacity});
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  `;
+
+  const jumbotron = css`
+    margin-top: 15rem;
+  `;
+
+  const titleTextStyle = css`
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: ${titleTextColor};
+  `;
+
+  const subtitleTextStyle = css`
+    font-size: 1.25rem;
+    font-weight: 400;
+    max-width: 840px;
+    color: ${subtitleTextColor};
+  `;
+
+  const actionButtonStyle = css`
+    color: ${actionButtonTextColor};
+    background-color: ${actionButtonColor};
+    border-color: ${actionButtonColor};
+    &:hover {
+      background-color: ${lightenDarkenColor(actionButtonColor, 90)};
+      border-color: ${lightenDarkenColor(actionButtonColor, 90)};
+    }
+  `;
+
   return (
     <div className={`position-relative ${scrollClass}`}>
-      <header className="fixed-top page-header">
-        <div className="container-fluid container-fluid-max">
-          <nav id="navbar" className="navbar navbar-expand-lg navbar-dark">
-            <a className="navbar-brand" href="#home">
-              HoneyDreams
-            </a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div
-              className="collapse navbar-collapse justify-content-lg-between"
-              id="navbarNav"
-            >
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link" href="#process">
-                    How It Works
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#featured-destinations">
-                    Featured Destinations
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#popular-destinations">
-                    Popular Destinations
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#request-quote">
-                    Request a Quote
-                  </a>
-                </li>
-              </ul>
-              <div className="text-white">
-                <a href="tel:1234567890" className="mr-2">
-                  <i className="fas fa-phone"></i>
-                  <div className="d-none d-xl-inline">1234567890</div>
-                </a>
-                <a href="mailto:info@honeydreams.com">
-                  <i className="fas fa-envelope"></i>
-                  <div className="d-none d-xl-inline">info@honeydreams.com</div>
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
+      <header className="page-header">
+        <Navbar
+          logo={logo}
+          teachersLabel={teachersLabel}
+          pricingLabel={pricingLabel}
+          contactLabel={contactLabel}
+          textColor={subtitleTextColor}
+          scrollClass={scrollClass}
+          headerColor={actionButtonColor}
+        />
       </header>
 
       <main>
         <section
           id="home"
-          className="d-flex align-items-center position-relative vh-100 cover hero"
+          className="d-flex align-items-center position-relative vh-100 hero"
           style={{
-            backgroundImage:
-              'url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/cappadocia.jpg)',
+            backgroundImage: `url(${backgroundImage})`,
           }}
         >
-          <div className="container-fluid container-fluid-max">
-            <div className="row">
-              <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-                <h1 className="text-white">
-                  Live an unforgettable experience in Cappadocia!
-                </h1>
-                <div className="mt-3">
-                  <a
-                    className="btn bg-red text-white mr-2"
-                    href=""
-                    role="button"
-                  >
-                    Book Now
-                  </a>
-                  <a className="btn bg-red text-white" href="" role="button">
-                    Select Your Package
-                  </a>
-                </div>
-              </div>
+          <Container className={`pl-xl-9 pr-xl-9 ${overlay}`} fluid>
+            <div className={jumbotron}>
+              <h1 className={titleTextStyle}>{titleText}</h1>
+              <p className={subtitleTextStyle}>{subtitleText}</p>
+              <p className="lead">
+                <Button className={actionButtonStyle}>
+                  {actionButtonText}
+                </Button>
+              </p>
             </div>
-          </div>
+          </Container>
         </section>
 
         <section id="process" className="process">

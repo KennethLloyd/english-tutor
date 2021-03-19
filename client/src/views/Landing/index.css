@@ -40,9 +40,6 @@ a:hover {
 
 /* SCROLL ANIMATIONS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.scroll .page-header {
-  background: var(--red);
-}
 
 .scroll .hero {
   transform: scale(0.98);
@@ -54,19 +51,12 @@ a:hover {
   transition: background 0.5s ease-in-out;
 }
 
-.page-header .navbar {
-  padding: 1rem 0;
-}
-
-.page-header .navbar-toggler {
-  /* the variable is inherited from BS4 built-in variables */
-  border-color: var(--white);
-}
-
 /* BANNER SECTION
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .hero {
   background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
   transition: transform 0.5s ease-in-out;
 }
 

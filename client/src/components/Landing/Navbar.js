@@ -18,18 +18,25 @@ const LandingNavbar = ({
   teachersLabel,
   pricingLabel,
   contactLabel,
-  color,
+  textColor,
+  headerColor,
+  scrollClass,
 }) => {
-  const textColor = css`
-    color: ${color};
+  const fontColor = css`
+    color: ${textColor};
     &:hover {
-      color: ${lightenDarkenColor(color, 90)};
+      color: ${lightenDarkenColor(textColor, 90)};
     }
   `;
 
   return (
     <>
-      <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md">
+      <Navbar
+        fixed="top"
+        className="navbar-top navbar-horizontal navbar-dark"
+        style={{ backgroundColor: scrollClass === 'scroll' ? headerColor : '' }}
+        expand="md"
+      >
         <Container className="pl-xl-9 pr-xl-9" fluid>
           <NavbarBrand to="/" tag={Link}>
             <img alt="logo" src={logo} />
@@ -55,18 +62,26 @@ const LandingNavbar = ({
             </div>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className="nav-link-icon" to="/#teachers" tag={Link}>
-                  <span className={textColor}>{teachersLabel}</span>
+                <NavLink
+                  className="nav-link-icon mr-6"
+                  to="/#teachers"
+                  tag={Link}
+                >
+                  <span className={fontColor}>{teachersLabel}</span>
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="nav-link-icon" to="/#pricing" tag={Link}>
-                  <span className={textColor}>{pricingLabel}</span>
+                <NavLink
+                  className="nav-link-icon mr-6"
+                  to="/#pricing"
+                  tag={Link}
+                >
+                  <span className={fontColor}>{pricingLabel}</span>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink className="nav-link-icon" to="/#contacts" tag={Link}>
-                  <span className={textColor}>{contactLabel}</span>
+                  <span className={fontColor}>{contactLabel}</span>
                 </NavLink>
               </NavItem>
             </Nav>
