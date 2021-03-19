@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Button, Container } from 'reactstrap';
 import { css, cx } from '@emotion/css';
-import Navbar from '../components/Landing/Navbar';
-import { lightenDarkenColor } from '../utils/utils';
+import Navbar from '../../components/Landing/Navbar';
+import { lightenDarkenColor } from '../../utils/utils';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState(
