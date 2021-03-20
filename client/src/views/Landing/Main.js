@@ -5,6 +5,7 @@ import './index.css';
 import Navbar from '../../components/Landing/Navbar';
 import Teachers from './Teachers';
 import Pricing from './Pricing';
+import Contacts from './Contacts';
 import { lightenDarkenColor } from '../../utils/utils';
 
 const Main = () => {
@@ -36,6 +37,9 @@ const Main = () => {
   );
   const [pricingBackgroundColor, setPricingBackgroundColor] = useState(
     '#f6f9fc',
+  );
+  const [contactBackgroundColor, setContactBackgroundColor] = useState(
+    '#F0F0F0',
   );
 
   useEffect(() => {
@@ -141,6 +145,15 @@ const Main = () => {
           `}
         >
           <Pricing />
+        </section>
+
+        <section
+          id="contact"
+          className={css`
+            background: ${contactBackgroundColor};
+          `}
+        >
+          <Contacts />
         </section>
 
         <section id="process" className="process">

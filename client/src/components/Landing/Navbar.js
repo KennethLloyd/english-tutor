@@ -88,7 +88,7 @@ const LandingNavbar = ({
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="nav-link-icon" to="/#contacts" tag={Link}>
+                <NavLink className="nav-link-icon" to="/#contact" tag={Link}>
                   <span className={fontColor}>{contactLabel}</span>
                 </NavLink>
               </NavItem>

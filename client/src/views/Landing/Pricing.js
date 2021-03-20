@@ -167,6 +167,8 @@ const Pricing = () => {
                     flex-direction: column;
                     justify-content: flex-start;
                     align-items: flex-start;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
                   `}
                 >
                   {pricing.features.map((featureItem) => {
