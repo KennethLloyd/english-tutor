@@ -30,7 +30,7 @@ const LandingNavbar = ({
         ? lightenDarkenColor(headerTextColor, -40)
         : lightenDarkenColor(textColor, 90)};
     }
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       color: black;
     }
   `;
