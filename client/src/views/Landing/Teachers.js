@@ -36,16 +36,17 @@ const Teachers = () => {
     <Container fluid>
       <Row className="text-center pt-5">
         <Col className="pb-4">
-          <h2
+          <h1
             className={css`
               color: ${titleLabelColor};
+              font-weight: 500;
             `}
           >
             {titleLabel}
-          </h2>
+          </h1>
         </Col>
       </Row>
-      <Row className="text-center py-5 justify-content-center">
+      <Row className="text-center py-5 px-xl-9 justify-content-center">
         {teachers.map((teacher) => {
           return (
             <Col sm="6" lg="4" className="mb-5">
@@ -69,7 +70,7 @@ const Teachers = () => {
                   }
                 `}
               />
-              <h3 className="mt-3 mb-3">
+              <h3 className="mt-3 mb-3 font-weight-normal">
                 {teacher.firstName} {teacher.lastName}
               </h3>
             </Col>

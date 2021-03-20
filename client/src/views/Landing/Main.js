@@ -4,6 +4,7 @@ import { css } from '@emotion/css';
 import './index.css';
 import Navbar from '../../components/Landing/Navbar';
 import Teachers from './Teachers';
+import Pricing from './Pricing';
 import { lightenDarkenColor } from '../../utils/utils';
 
 const Main = () => {
@@ -31,6 +32,9 @@ const Main = () => {
   const [contactLabel, setContactLabel] = useState('Contact');
 
   const [teacherBackgroundColor, setTeacherBackgroundColor] = useState(
+    '#F0F0F0',
+  );
+  const [pricingBackgroundColor, setPricingBackgroundColor] = useState(
     '#f6f9fc',
   );
 
@@ -128,6 +132,15 @@ const Main = () => {
           `}
         >
           <Teachers />
+        </section>
+
+        <section
+          id="pricing"
+          className={css`
+            background: ${pricingBackgroundColor};
+          `}
+        >
+          <Pricing />
         </section>
 
         <section id="process" className="process">
