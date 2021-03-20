@@ -1,4 +1,14 @@
-import { NavigationSettings, HeroSettings } from '../models/index.js';
+import {
+  NavigationSettings,
+  HeroSettings,
+  TeacherPageSettings,
+  Teachers,
+  PricingPageSettings,
+  Pricings,
+  PricingFeatures,
+  ContactPageSettings,
+  Contacts,
+} from '../models/index.js';
 
 /**
 @api {put} /api/settings/navigation Update Navigation Settings
@@ -234,11 +244,113 @@ const getHeroSettings = async (req, res) => {
   }
 };
 
+const getAllSettings = async (req, res) => {
+  try {
+    let navigationSettings = await NavigationSettings.findOne();
+    let heroSettings = await HeroSettings.findOne();
+    let teacherSettings = await TeacherPageSettings.findOne();
+    let teacherList = await Teachers.findAll({
+      where: {
+        status: true,
+      },
+      order: ['order'],
+    });
+    teacherList = teacherList.map((teacher) => teacher.toJSON());
+
+    let pricingSettings = await PricingPageSettings.findOne();
+    let pricingList = await Pricings.findAll({
+      where: {
+        status: true,
+      },
+      order: ['order'],
+    });
+    pricingList = await Promise.all(
+      pricingList.map(async (pricing) => {
+        pricing = pricing.toJSON();
+
+        const result = await PricingFeatures.findAll({
+          where: {
+            pricingId: pricing.id,
+          },
+          order: ['order'],
+        });
+
+        const features = result.map((item) => item.toJSON());
+
+        pricing = { ...pricing, features };
+
+        return pricing;
+      }),
+    );
+
+    let contactSettings = await ContactPageSettings.findOne();
+    let contactList = await Contacts.findAll({
+      where: {
+        status: true,
+      },
+      order: ['order'],
+    });
+    contactList = contactList.map((contact) => contact.toJSON());
+
+    if (!navigationSettings) {
+      navigationSettings = [];
+    }
+
+    if (!heroSettings) {
+      heroSettings = [];
+    }
+
+    if (!teacherSettings) {
+      teacherSettings = [];
+    }
+
+    if (!teacherList) {
+      teacherList = [];
+    }
+
+    if (!pricingSettings) {
+      pricingSettings = [];
+    }
+
+    if (!pricingList) {
+      pricingList = [];
+    }
+
+    if (!contactSettings) {
+      contactSettings = [];
+    }
+
+    if (!contactList) {
+      contactList = [];
+    }
+
+    return res.send({
+      message: 'Successfully retrieved all settings',
+      navigationSettings,
+      heroSettings,
+      teacherSettings,
+      teacherList,
+      pricingSettings,
+      pricingList,
+      contactSettings,
+      contactList,
+    });
+  } catch (e) {
+    console.log(e);
+
+    if (e.status) {
+      return res.status(e.status).send({ error: e.message });
+    }
+    return res.status(500).send({ error: 'Internal Server Error' });
+  }
+};
+
 const mainController = {
   updateNavigationSettings,
   updateHeroSettings,
   getNavigationSettings,
   getHeroSettings,
+  getAllSettings,
 };
 
 export default mainController;

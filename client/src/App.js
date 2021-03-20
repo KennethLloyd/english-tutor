@@ -4,7 +4,6 @@ import AuthenticatedRoute from './AuthenticatedRoute';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
 import Login from './layouts/Login';
 import Admin from './layouts/Admin';
-import Home from './views/Landing/Home';
 import Main from './views/Landing/Main';
 
 const App = () => {
