@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Button, Container } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import { css } from '@emotion/css';
 import './index.css';
 import Navbar from '../../components/Landing/Navbar';
+import Teachers from './Teachers';
 import { lightenDarkenColor } from '../../utils/utils';
 
 const Main = () => {
@@ -28,6 +29,10 @@ const Main = () => {
   const [teachersLabel, setTeachersLabel] = useState('Teachers');
   const [pricingLabel, setPricingLabel] = useState('Pricing');
   const [contactLabel, setContactLabel] = useState('Contact');
+
+  const [teacherBackgroundColor, setTeacherBackgroundColor] = useState(
+    '#F0F0F0',
+  );
 
   useEffect(() => {
     const onScroll = () => {
@@ -114,6 +119,15 @@ const Main = () => {
               </p>
             </div>
           </Container>
+        </section>
+
+        <section
+          id="teachers"
+          className={css`
+            background: ${teacherBackgroundColor};
+          `}
+        >
+          <Teachers />
         </section>
 
         <section id="process" className="process">
