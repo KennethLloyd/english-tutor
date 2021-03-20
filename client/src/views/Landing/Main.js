@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Container } from 'reactstrap';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/css';
 import './index.css';
 import Navbar from '../../components/Landing/Navbar';
 import { lightenDarkenColor } from '../../utils/utils';
@@ -32,16 +32,11 @@ const Main = () => {
   useEffect(() => {
     const onScroll = () => {
       let currentPosition = window.pageYOffset;
-      if (currentPosition > scrollTop) {
-        if (window.scrollY > 200) {
-          // down
-          setScrollClass('scroll');
-        }
+
+      if (window.scrollY > 200) {
+        setScrollClass('scroll'); // show header
       } else {
-        if (window.scrollY < 200) {
-          // up
-          setScrollClass('');
-        }
+        setScrollClass(''); // hide header
       }
       setScrollTop(currentPosition <= 0 ? 0 : currentPosition);
     };
@@ -89,17 +84,16 @@ const Main = () => {
 
   return (
     <div className={`position-relative ${scrollClass}`}>
-      <header className="page-header">
-        <Navbar
-          logo={logo}
-          teachersLabel={teachersLabel}
-          pricingLabel={pricingLabel}
-          contactLabel={contactLabel}
-          textColor={subtitleTextColor}
-          scrollClass={scrollClass}
-          headerColor={actionButtonColor}
-        />
-      </header>
+      <Navbar
+        logo={logo}
+        teachersLabel={teachersLabel}
+        pricingLabel={pricingLabel}
+        contactLabel={contactLabel}
+        textColor={subtitleTextColor}
+        scrollClass={scrollClass}
+        headerColor={actionButtonColor}
+        headerTextColor={actionButtonTextColor}
+      />
 
       <main>
         <section

@@ -10,7 +10,7 @@ import {
   Col,
   Container,
 } from 'reactstrap';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/css';
 import { lightenDarkenColor } from '../../utils/utils';
 
 const LandingNavbar = ({
@@ -20,10 +20,11 @@ const LandingNavbar = ({
   contactLabel,
   textColor,
   headerColor,
+  headerTextColor,
   scrollClass,
 }) => {
   const fontColor = css`
-    color: ${textColor};
+    color: ${scrollClass === 'scroll' ? headerTextColor : textColor};
     &:hover {
       color: ${lightenDarkenColor(textColor, 90)};
     }
@@ -34,7 +35,9 @@ const LandingNavbar = ({
       <Navbar
         fixed="top"
         className="navbar-top navbar-horizontal navbar-dark"
-        style={{ backgroundColor: scrollClass === 'scroll' ? headerColor : '' }}
+        style={{
+          backgroundColor: scrollClass === 'scroll' ? headerColor : '',
+        }}
         expand="md"
       >
         <Container className="pl-xl-9 pr-xl-9" fluid>
