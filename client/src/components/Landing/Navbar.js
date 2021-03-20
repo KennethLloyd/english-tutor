@@ -46,7 +46,7 @@ const LandingNavbar = ({
         expand="md"
       >
         <Container className="pl-xl-9 pr-xl-9" fluid>
-          <NavbarBrand to="/" tag={Link}>
+          <NavbarBrand to="/#home" tag={Link}>
             <img alt="logo" src={logo} />
           </NavbarBrand>
           <button className="navbar-toggler" id="navbar-collapse-main">
@@ -56,7 +56,7 @@ const LandingNavbar = ({
             <div className="navbar-collapse-header d-md-none">
               <Row>
                 <Col className="collapse-brand" xs="6">
-                  <Link to="/">
+                  <Link to="/#home">
                     <img alt="logo" src={logo} />
                   </Link>
                 </Col>

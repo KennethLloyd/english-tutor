@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Container, Row, Col } from 'reactstrap';
 import { css } from '@emotion/css';
+import { HashLink as Link } from 'react-router-hash-link';
 import './index.css';
 import Navbar from '../../components/Landing/Navbar';
 import Footer from '../../components/Landing/Footer';
@@ -123,7 +124,7 @@ const Main = () => {
               <p className={subtitleTextStyle}>{subtitleText}</p>
               <p className="lead">
                 <Button className={actionButtonStyle}>
-                  {actionButtonText}
+                  <Link to="/#contact">{actionButtonText}</Link>
                 </Button>
               </p>
             </div>

@@ -37,7 +37,7 @@ const Footer = () => {
               }
             `}
           >
-            <a>Back to Top</a>
+            <a href="/#home">Back to Top</a>
           </Col>
         </Row>
       </Container>
