@@ -55,6 +55,7 @@ const Teachers = () => {
                   background-repeat: no-repeat;
                   background-size: cover;
                   background-position: 50% 50%;
+                  transition: transform 0.5s;
 
                   overflow: hidden;
                   -webkit-border-radius: 240px;
@@ -62,6 +63,10 @@ const Teachers = () => {
                   border-radius: 240px;
                   width: 240px;
                   height: 240px;
+
+                  &:hover {
+                    transform: scale(1.1);
+                  }
                 `}
               />
               <h3 className="mt-3 mb-3">

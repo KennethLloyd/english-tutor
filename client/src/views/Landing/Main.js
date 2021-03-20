@@ -31,7 +31,7 @@ const Main = () => {
   const [contactLabel, setContactLabel] = useState('Contact');
 
   const [teacherBackgroundColor, setTeacherBackgroundColor] = useState(
-    '#F0F0F0',
+    '#f6f9fc',
   );
 
   useEffect(() => {

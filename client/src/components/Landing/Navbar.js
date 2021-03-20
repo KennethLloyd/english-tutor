@@ -26,7 +26,9 @@ const LandingNavbar = ({
   const fontColor = css`
     color: ${isScrolled ? headerTextColor : textColor};
     &:hover {
-      color: ${lightenDarkenColor(textColor, 90)};
+      color: ${isScrolled
+        ? lightenDarkenColor(headerTextColor, -40)
+        : lightenDarkenColor(textColor, 90)};
     }
     @media (max-width: 768px) {
       color: black;
