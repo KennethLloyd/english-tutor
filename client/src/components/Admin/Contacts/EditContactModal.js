@@ -68,6 +68,7 @@ const EditContactModal = ({
       setTimeout(() => {
         setShowSuccess(false);
         setShow(false);
+        setShowSuccess(false);
       }, 3000);
     }
   };

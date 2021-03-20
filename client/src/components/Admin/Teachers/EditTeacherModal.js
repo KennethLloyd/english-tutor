@@ -62,6 +62,7 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
       setTimeout(() => {
         setShowSuccess(false);
         setShow(false);
+        setShowSuccess(false);
       }, 3000);
     }
   };

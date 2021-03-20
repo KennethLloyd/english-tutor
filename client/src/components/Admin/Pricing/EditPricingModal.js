@@ -65,6 +65,7 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
       setTimeout(() => {
         setRefresh(!refresh);
         setShow(false);
+        setShowSuccess(false);
       }, 3000);
     }
   };
