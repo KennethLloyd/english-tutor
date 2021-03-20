@@ -90,7 +90,7 @@ const Main = () => {
         pricingLabel={pricingLabel}
         contactLabel={contactLabel}
         textColor={subtitleTextColor}
-        scrollClass={scrollClass}
+        isScrolled={scrollClass === 'scroll' ? true : false}
         headerColor={actionButtonColor}
         headerTextColor={actionButtonTextColor}
       />

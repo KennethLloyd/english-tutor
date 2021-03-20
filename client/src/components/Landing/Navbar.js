@@ -21,12 +21,15 @@ const LandingNavbar = ({
   textColor,
   headerColor,
   headerTextColor,
-  scrollClass,
+  isScrolled,
 }) => {
   const fontColor = css`
-    color: ${scrollClass === 'scroll' ? headerTextColor : textColor};
+    color: ${isScrolled ? headerTextColor : textColor};
     &:hover {
       color: ${lightenDarkenColor(textColor, 90)};
+    }
+    @media (max-width: 768px) {
+      color: black;
     }
   `;
 
@@ -36,7 +39,7 @@ const LandingNavbar = ({
         fixed="top"
         className="navbar-top navbar-horizontal navbar-dark"
         style={{
-          backgroundColor: scrollClass === 'scroll' ? headerColor : '',
+          backgroundColor: isScrolled ? headerColor : '',
         }}
         expand="md"
       >
