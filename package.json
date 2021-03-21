@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "English Courses Landing and Admin Website",
   "scripts": {
-    "build": "npm run build --prefix client",
+    "build": "npm run build --prefix client && npm run db-migrate",
     "docs": "apidoc -i server/src/controllers -o client/public/apidoc -f .js",
     "preinstall": "npm install --prefix client && npm install --prefix server",
     "client": "npm start --prefix client",

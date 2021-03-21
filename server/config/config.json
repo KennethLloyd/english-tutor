@@ -19,10 +19,10 @@
     "adminLogo": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-dark.svg"
   },
   "production": {
-    "username": "sql6398804",
-    "password": "qVhDf5eLXz",
-    "database": "sql6398804",
-    "host": "sql6.freemysqlhosting.net",
+    "username": "freedbtech_mrtutor",
+    "password": "12345aA!",
+    "database": "freedbtech_englishtutor",
+    "host": "freedb.tech",
     "dialect": "mysql",
     "jwtSecret": "english-tutor-secret",
     "adminSalt": "f844b09ff50c",
