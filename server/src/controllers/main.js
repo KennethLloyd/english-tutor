@@ -9,6 +9,7 @@ import {
   ContactPageSettings,
   Contacts,
 } from '../models/index.js';
+import { loadConfig } from '../helpers/utils.js';
 
 /**
 @api {put} /api/settings/navigation Update Navigation Settings
@@ -515,12 +516,35 @@ const getAllSettings = async (req, res) => {
   }
 };
 
+const getAdminConfig = async (req, res) => {
+  try {
+    const config = await loadConfig();
+    const adminConfig = {
+      appName: config.appName,
+      adminLogo: config.adminLogo,
+    };
+
+    return res.send({
+      message: 'Successfully retrieved admin config',
+      adminConfig,
+    });
+  } catch (e) {
+    console.log(e);
+
+    if (e.status) {
+      return res.status(e.status).send({ error: e.message });
+    }
+    return res.status(500).send({ error: 'Internal Server Error' });
+  }
+};
+
 const mainController = {
   updateNavigationSettings,
   updateHeroSettings,
   getNavigationSettings,
   getHeroSettings,
   getAllSettings,
+  getAdminConfig,
 };
 
 export default mainController;

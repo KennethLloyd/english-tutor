@@ -57,7 +57,7 @@ const Admin = (props) => {
         routes={routes}
         logo={{
           innerLink: '/admin',
-          imgSrc: process.env.REACT_APP_ADMIN_LOGO,
+          imgSrc: props.adminLogo,
           imgAlt: '...',
         }}
       />
