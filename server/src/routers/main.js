@@ -23,4 +23,7 @@ router.put(
 router.get('/settings/navigation', mainController.getNavigationSettings);
 router.get('/settings/hero', mainController.getHeroSettings);
 
+router.get('/settings/all', mainController.getAllSettings);
+router.get('/admin-config', mainController.getAdminConfig);
+
 export default router;

@@ -13,7 +13,7 @@ const AdminFooter = () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              English Tutor
+              All Rights Reserved
             </a>
           </div>
         </Col>

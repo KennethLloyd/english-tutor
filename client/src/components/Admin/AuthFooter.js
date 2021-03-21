@@ -13,7 +13,7 @@ const AuthFooter = () => {
                   className="font-weight-bold ml-1"
                   href="https://www.creative-tim.com?ref=adr-auth-footer"
                 >
-                  English Tutor
+                  All Rights Reserved
                 </a>
               </div>
             </Col>

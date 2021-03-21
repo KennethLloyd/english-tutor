@@ -4484,7 +4484,7 @@ input[type='button'].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 0.5rem 1rem;
 }
 .navbar .container,
 .navbar .container-fluid,
@@ -17408,7 +17408,7 @@ textarea[resize='horizontal'] {
   letter-spacing: 0.05px;
 }
 .navbar-horizontal .navbar-brand img {
-  height: 30px;
+  height: 40px;
 }
 
 .navbar-horizontal .navbar-dark .navbar-brand {
