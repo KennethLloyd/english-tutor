@@ -66,9 +66,9 @@ const Teachers = ({ config, list }) => {
         </Col>
       </Row>
       <Row className="text-center py-5 px-xl-9 justify-content-center">
-        {teachers.map((teacher) => {
+        {teachers.map((teacher, index) => {
           return (
-            <Col sm="6" lg="4" className="mb-5">
+            <Col sm="6" lg="4" className="mb-5" key={index}>
               <img
                 className={css`
                   background: url(${teacher.photoUrl});

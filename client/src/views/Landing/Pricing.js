@@ -113,9 +113,14 @@ const Pricing = ({ config, list }) => {
         </Col>
       </Row>
       <Row className="text-center py-5 px-xl-9 justify-content-center">
-        {pricings.map((pricing) => {
+        {pricings.map((pricing, index) => {
           return (
-            <Col sm="6" lg="4" className="mb-5 d-flex justify-content-center">
+            <Col
+              sm="6"
+              lg="4"
+              className="mb-5 d-flex justify-content-center"
+              key={index}
+            >
               <Card
                 className={css`
                   width: 360px;
@@ -166,9 +171,9 @@ const Pricing = ({ config, list }) => {
                     border-bottom-right-radius: 10px;
                   `}
                 >
-                  {pricing.features.map((featureItem) => {
+                  {pricing.features.map((featureItem, idx) => {
                     return (
-                      <div className="mb-3">
+                      <div className="mb-3" key={idx}>
                         <FcCheckmark size="25" />
                         &nbsp;{' '}
                         <span

@@ -90,9 +90,9 @@ const Contacts = ({ config, list }) => {
               >
                 {contactCardTitle}
               </CardTitle>
-              {contacts.map((contact) => {
+              {contacts.map((contact, index) => {
                 return (
-                  <div className="mb-2 d-flex">
+                  <div className="mb-2 d-flex" key={index}>
                     <div
                       className={css`
                         display: flex;
