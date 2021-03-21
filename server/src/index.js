@@ -12,7 +12,6 @@ const tempDir = path.join(__dirname, '../../uploads/');
 
 app.use(express.json()); // allows us to parse the request as json
 app.use(cors());
-app.use('/apidoc', express.static(path.join(__dirname, '../docs')));
 
 (async () => {
   try {

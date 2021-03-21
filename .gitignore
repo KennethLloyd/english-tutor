@@ -7,6 +7,7 @@
 /client/.pnp
 /client/.pnp.js
 /client/build
+/client/public/apidoc
 
 # testing
 /client/coverage

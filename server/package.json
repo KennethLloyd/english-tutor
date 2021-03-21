@@ -29,9 +29,6 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "apidoc": {
-    "title": "API Documentation"
-  },
   "keywords": [
     "api",
     "boilerplate",
@@ -46,7 +43,6 @@
   "author": "Kenneth Lloyd Verastigue",
   "license": "ISC",
   "dependencies": {
-    "apidoc": "^0.26.0",
     "cloudinary": "^1.25.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
