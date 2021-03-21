@@ -4,7 +4,7 @@ English courses SPA Landing and Admin Website
 
 Requirements:
 
-1. MariaDB 10+
+1. MariaDB 10+/MySQL 5.7+
 2. Node 14+
 
 To setup in a new local environment:

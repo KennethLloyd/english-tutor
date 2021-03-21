@@ -65,17 +65,23 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
       setTimeout(() => {
         setRefresh(!refresh);
         setShow(false);
+        setShowSuccess(false);
       }, 3000);
     }
   };
 
   const handleAddFeature = (order) => {
-    const newFeature = {
-      order,
-      feature: '',
-    };
+    if (order < 8) {
+      const newFeature = {
+        order,
+        feature: '',
+      };
 
-    setFeatures([...features, newFeature]);
+      setFeatures([...features, newFeature]);
+    } else {
+      setErrorMsg('Max features reached');
+      setShowError(true);
+    }
   };
 
   const onFeatureChange = (index, value) => {

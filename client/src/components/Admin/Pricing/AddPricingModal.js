@@ -82,12 +82,17 @@ const AddPricingModal = ({ show, setShow, refresh, setRefresh }) => {
   };
 
   const handleAddFeature = (order) => {
-    const newFeature = {
-      order,
-      feature: '',
-    };
+    if (order < 8) {
+      const newFeature = {
+        order,
+        feature: '',
+      };
 
-    setFeatures([...features, newFeature]);
+      setFeatures([...features, newFeature]);
+    } else {
+      setErrorMsg('Max features reached');
+      setShowError(true);
+    }
   };
 
   const onFeatureChange = (index, value) => {

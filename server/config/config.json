@@ -12,7 +12,11 @@
     "cloudinaryName": "kennethlloyd",
     "cloudinaryApiKey": "373772964774591",
     "cloudinaryApiSecret": "DO8Pbx9iP0AXhK4UiSvTy8QoY3k",
-    "cloudinaryFolder": "english-courses"
+    "cloudinaryFolder": "english-courses",
+    "appName": "English Tutor",
+    "appDescription": "English Courses Landing Page",
+    "appFavicon": "https://res.cloudinary.com/kennethlloyd/image/upload/v1616301347/english-courses/favicon.ico",
+    "adminLogo": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-dark.svg"
   },
   "production": {
     "username": "sql6398804",
@@ -27,6 +31,10 @@
     "cloudinaryName": "kennethlloyd",
     "cloudinaryApiKey": "373772964774591",
     "cloudinaryApiSecret": "DO8Pbx9iP0AXhK4UiSvTy8QoY3k",
-    "cloudinaryFolder": "english-courses"
+    "cloudinaryFolder": "english-courses",
+    "appName": "English Tutor",
+    "appDescription": "English Courses Landing Page",
+    "appFavicon": "https://res.cloudinary.com/kennethlloyd/image/upload/v1616301347/english-courses/favicon.ico",
+    "adminLogo": "https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-dark.svg"
   }
 }
