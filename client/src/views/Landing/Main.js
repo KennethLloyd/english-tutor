@@ -46,9 +46,12 @@ const Main = () => {
   const [pricingBackgroundColor, setPricingBackgroundColor] = useState(
     '#f6f9fc',
   );
+  const [contactList, setContactList] = useState([]);
+  const [contactConfig, setContactConfig] = useState({});
   const [contactBackgroundColor, setContactBackgroundColor] = useState(
     '#F0F0F0',
   );
+  const [footerConfig, setFooterConfig] = useState({});
 
   useEffect(() => {
     const onScroll = () => {
@@ -68,7 +71,7 @@ const Main = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await api(`/settings/alls`);
+      const data = await api(`/settings/all`);
       if (data) {
         if (data.navigationSettings) {
           const navSettings = data.navigationSettings;
@@ -78,6 +81,7 @@ const Main = () => {
           setPricingLabel(navSettings.pricingLabel);
           setContactLabel(navSettings.contactLabel);
         }
+
         if (data.heroSettings) {
           const { heroSettings } = data;
 
@@ -93,6 +97,7 @@ const Main = () => {
           setActionButtonTextColor(heroSettings.actionButtonTextColor);
           setActionButtonColor(heroSettings.actionButtonColor);
         }
+
         if (data.teacherSettings) {
           const { teacherSettings } = data;
 
@@ -102,6 +107,7 @@ const Main = () => {
         if (data.teacherList && data.teacherList.length) {
           setTeacherList(data.teacherList);
         }
+
         if (data.pricingSettings) {
           const { pricingSettings } = data;
 
@@ -110,6 +116,28 @@ const Main = () => {
         }
         if (data.pricingList && data.pricingList.length) {
           setPricingList(data.pricingList);
+        }
+
+        if (data.contactList && data.contactList.length) {
+          setContactList(data.contactList);
+        }
+        if (data.contactSettings) {
+          const { contactSettings } = data;
+
+          setContactBackgroundColor(contactSettings.backgroundColor);
+          setContactConfig(contactSettings);
+
+          const {
+            footerLabel,
+            footerBackgroundColor,
+            footerTextColor,
+          } = contactSettings;
+
+          setFooterConfig({
+            footerLabel,
+            footerBackgroundColor,
+            footerTextColor,
+          });
         }
       }
 
@@ -214,7 +242,7 @@ const Main = () => {
             background: ${contactBackgroundColor};
           `}
         >
-          <Contacts />
+          <Contacts config={contactConfig} list={contactList} />
         </section>
       </main>
 
