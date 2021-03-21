@@ -11,7 +11,7 @@ import Contacts from './Contacts';
 import { lightenDarkenColor } from '../../utils/utils';
 import api from '../../api/api';
 
-const Main = () => {
+const Main = ({ title }) => {
   const [loaded, setLoaded] = useState(false);
   const [scrollClass, setScrollClass] = useState('');
   const [scrollTop, setScrollTop] = useState(0);
@@ -52,6 +52,10 @@ const Main = () => {
     '#F0F0F0',
   );
   const [footerConfig, setFooterConfig] = useState({});
+
+  useEffect(() => {
+    document.title = title || '';
+  }, [title]);
 
   useEffect(() => {
     const onScroll = () => {

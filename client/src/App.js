@@ -10,15 +10,23 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact render={() => <Main />} />
+        <Route
+          path="/"
+          exact
+          render={() => <Main title={process.env.REACT_APP_NAME} />}
+        />
         <UnauthenticatedRoute
           path="/admin/login"
           exact
-          render={(props) => <Login {...props} />}
+          render={(props) => (
+            <Login title={process.env.REACT_APP_ADMIN_NAME} {...props} />
+          )}
         />
         <AuthenticatedRoute
           path="/admin"
-          render={(props) => <Admin {...props} />}
+          render={(props) => (
+            <Admin title={process.env.REACT_APP_ADMIN_NAME} {...props} />
+          )}
         />
       </Switch>
     </Router>

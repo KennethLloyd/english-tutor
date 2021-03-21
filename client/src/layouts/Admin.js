@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation, Switch, Redirect } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import AuthenticatedRoute from '../AuthenticatedRoute';
@@ -9,14 +9,18 @@ import Sidebar from '../components/Admin/Sidebar.js';
 import routes from '../routes.js';
 
 const Admin = (props) => {
-  const mainContent = React.useRef(null);
+  const mainContent = useRef(null);
   const location = useLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
   }, [location]);
+
+  useEffect(() => {
+    document.title = props.title || '';
+  }, [props.title]);
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -53,8 +57,7 @@ const Admin = (props) => {
         routes={routes}
         logo={{
           innerLink: '/admin',
-          imgSrc:
-            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-dark.svg',
+          imgSrc: process.env.REACT_APP_ADMIN_LOGO,
           imgAlt: '...',
         }}
       />
