@@ -8,7 +8,8 @@ import Main from './views/Landing/Main';
 import api from './api/api';
 
 const App = () => {
-  const [appName, setAppName] = useState('English Tutor');
+  const [appName, setAppName] = useState('');
+  const [appFavicon, setAppFavicon] = useState('');
   const [adminLogo, setAdminLogo] = useState('');
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const App = () => {
         const { adminConfig } = data;
 
         setAppName(adminConfig.appName);
+        setAppFavicon(adminConfig.appFavicon);
         setAdminLogo(adminConfig.adminLogo);
       }
     };
@@ -27,16 +29,27 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact render={() => <Main title={appName} />} />
+        <Route
+          path="/"
+          exact
+          render={() => <Main title={appName} appIcon={appFavicon} />}
+        />
         <UnauthenticatedRoute
           path="/admin/login"
           exact
-          render={(props) => <Login title={appName} {...props} />}
+          render={(props) => (
+            <Login title={appName} appIcon={appFavicon} {...props} />
+          )}
         />
         <AuthenticatedRoute
           path="/admin"
           render={(props) => (
-            <Admin title={appName} adminLogo={adminLogo} {...props} />
+            <Admin
+              title={appName}
+              adminLogo={adminLogo}
+              appIcon={appFavicon}
+              {...props}
+            />
           )}
         />
       </Switch>

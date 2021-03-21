@@ -22,7 +22,11 @@ import ErrorAlert from '../components/Admin/Alerts/ErrorAlert';
 
 import api from '../api/api';
 
-const Login = ({ title }) => {
+const getFaviconEl = () => {
+  return document.getElementById('favicon');
+};
+
+const Login = ({ title, appIcon }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
@@ -31,7 +35,11 @@ const Login = ({ title }) => {
 
   useEffect(() => {
     document.title = title || '';
-  }, [title]);
+    if (appIcon) {
+      const favicon = getFaviconEl();
+      favicon.href = appIcon;
+    }
+  }, [title, appIcon]);
 
   useEffect(() => {
     document.body.classList.add('bg-default');

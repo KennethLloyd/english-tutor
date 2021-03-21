@@ -8,6 +8,10 @@ import Sidebar from '../components/Admin/Sidebar.js';
 
 import routes from '../routes.js';
 
+const getFaviconEl = () => {
+  return document.getElementById('favicon');
+};
+
 const Admin = (props) => {
   const mainContent = useRef(null);
   const location = useLocation();
@@ -20,7 +24,11 @@ const Admin = (props) => {
 
   useEffect(() => {
     document.title = props.title || '';
-  }, [props.title]);
+    if (props.appIcon) {
+      const favicon = getFaviconEl();
+      favicon.href = props.appIcon;
+    }
+  }, [props.title, props.appIcon]);
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
