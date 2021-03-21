@@ -1,11 +1,14 @@
-import { useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { css } from '@emotion/css';
 
-const Footer = () => {
-  const [label, setLabel] = useState('© 2021 All Rights Reserved');
-  const [backgroundColor, setBackgroundColor] = useState('#2BACE3');
-  const [textColor, setTextColor] = useState('#FFFFFF');
+const Footer = ({ config }) => {
+  const label = config.footerLabel
+    ? config.footerLabel
+    : '© 2021 All Rights Reserved';
+  const backgroundColor = config.footerBackgroundColor
+    ? config.footerBackgroundColor
+    : '#2BACE3';
+  const textColor = config.footerTextColor ? config.footerTextColor : '#FFFFFF';
 
   return (
     <footer

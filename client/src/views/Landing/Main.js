@@ -27,10 +27,10 @@ const Main = () => {
   const [subtitleTextColor, setSubtitleTextColor] = useState('#000000');
   const [actionButtonText, setActionButtonText] = useState('LEARN MORE');
   const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
-  const [actionButtonColor, setActionButtonColor] = useState('#5e72e4');
+  const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
 
   const [logo, setLogo] = useState(
-    'https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-dark.svg',
+    'https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-light.svg',
   );
   const [teachersLabel, setTeachersLabel] = useState('Teachers');
   const [pricingLabel, setPricingLabel] = useState('Pricing');
@@ -246,7 +246,7 @@ const Main = () => {
         </section>
       </main>
 
-      <Footer />
+      <Footer config={footerConfig} />
     </div>
   ) : (
     <></>
