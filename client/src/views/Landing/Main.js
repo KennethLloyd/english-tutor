@@ -15,19 +15,15 @@ const Main = ({ title, description, appIcon }) => {
   const [loaded, setLoaded] = useState(false);
   const [scrollClass, setScrollClass] = useState('');
   const [scrollTop, setScrollTop] = useState(0);
-  const [backgroundImage, setBackgroundImage] = useState(
-    'https://res.cloudinary.com/kennethlloyd/image/upload/v1615714976/english-courses/1615714975835-pexels-photo-5965839%201.png.png',
-  );
+  const [backgroundImage, setBackgroundImage] = useState('');
   const [backgroundOpacity, setBackgroundOpacity] = useState(0.45);
-  const [titleText, setTitleText] = useState('English Tutor');
-  const [titleTextColor, setTitleTextColor] = useState('#000000');
-  const [subtitleText, setSubtitleText] = useState(
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Inhendrerit gravida rutrum quisque.',
-  );
-  const [subtitleTextColor, setSubtitleTextColor] = useState('#000000');
-  const [actionButtonText, setActionButtonText] = useState('LEARN MORE');
-  const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
-  const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
+  const [titleText, setTitleText] = useState('');
+  const [titleTextColor, setTitleTextColor] = useState('');
+  const [subtitleText, setSubtitleText] = useState('');
+  const [subtitleTextColor, setSubtitleTextColor] = useState('');
+  const [actionButtonText, setActionButtonText] = useState('');
+  const [actionButtonTextColor, setActionButtonTextColor] = useState('');
+  const [actionButtonColor, setActionButtonColor] = useState('');
 
   const [logo, setLogo] = useState('');
   const [teachersLabel, setTeachersLabel] = useState('');
@@ -36,19 +32,13 @@ const Main = ({ title, description, appIcon }) => {
 
   const [teacherList, setTeacherList] = useState([]);
   const [teacherConfig, setTeacherConfig] = useState({});
-  const [teacherBackgroundColor, setTeacherBackgroundColor] = useState(
-    '#FFFFFF',
-  );
+  const [teacherBackgroundColor, setTeacherBackgroundColor] = useState('');
   const [pricingList, setPricingList] = useState([]);
   const [pricingConfig, setPricingConfig] = useState({});
-  const [pricingBackgroundColor, setPricingBackgroundColor] = useState(
-    '#f6f9fc',
-  );
+  const [pricingBackgroundColor, setPricingBackgroundColor] = useState('');
   const [contactList, setContactList] = useState([]);
   const [contactConfig, setContactConfig] = useState({});
-  const [contactBackgroundColor, setContactBackgroundColor] = useState(
-    '#F0F0F0',
-  );
+  const [contactBackgroundColor, setContactBackgroundColor] = useState('');
   const [footerConfig, setFooterConfig] = useState({});
 
   useEffect(() => {
