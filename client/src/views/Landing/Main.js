@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 import { css } from '@emotion/css';
 import { HashLink as Link } from 'react-router-hash-link';
 import './index.css';
@@ -9,6 +9,7 @@ import Teachers from './Teachers';
 import Pricing from './Pricing';
 import Contacts from './Contacts';
 import { lightenDarkenColor } from '../../utils/utils';
+import api from '../../api/api';
 
 const Main = () => {
   const [scrollClass, setScrollClass] = useState('');
@@ -16,7 +17,7 @@ const Main = () => {
   const [backgroundImage, setBackgroundImage] = useState(
     'https://res.cloudinary.com/kennethlloyd/image/upload/v1615714976/english-courses/1615714975835-pexels-photo-5965839%201.png.png',
   );
-  const [backgroundOpacity, setBackgroundOpacity] = useState(0.5);
+  const [backgroundOpacity, setBackgroundOpacity] = useState(0.45);
   const [titleText, setTitleText] = useState('English Tutor');
   const [titleTextColor, setTitleTextColor] = useState('#000000');
   const [subtitleText, setSubtitleText] = useState(
@@ -59,6 +60,39 @@ const Main = () => {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, [scrollTop]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await api(`/settings/all`);
+      if (data) {
+        if (data.navigationSettings) {
+          const navSettings = data.navigationSettings;
+
+          setLogo(navSettings.logoUrl);
+          setTeachersLabel(navSettings.teachersLabel);
+          setPricingLabel(navSettings.pricingLabel);
+          setContactLabel(navSettings.contactLabel);
+        }
+        if (data.heroSettings) {
+          const { heroSettings } = data;
+
+          setBackgroundImage(heroSettings.backgroundImageUrl);
+          setBackgroundOpacity(
+            parseFloat(heroSettings.backgroundOpacity) / 100,
+          );
+          setTitleText(heroSettings.titleText);
+          setTitleTextColor(heroSettings.titleTextColor);
+          setSubtitleText(heroSettings.subtitleText);
+          setSubtitleTextColor(heroSettings.subtitleTextColor);
+          setActionButtonText(heroSettings.actionButtonText);
+          setActionButtonTextColor(heroSettings.actionButtonTextColor);
+          setActionButtonColor(heroSettings.actionButtonColor);
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const overlay = css`
     background-color: rgba(255, 255, 255, ${backgroundOpacity});

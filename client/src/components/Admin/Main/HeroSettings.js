@@ -137,7 +137,7 @@ const HeroSettings = () => {
                           className="form-control-label-settings"
                           htmlFor="background-opacity"
                         >
-                          Background Opacity
+                          Background Opacity <small>(0-100)</small>
                         </label>
                       </Col>
                       <Col md="6">
@@ -145,8 +145,18 @@ const HeroSettings = () => {
                           className="form-control-alternative"
                           id="background-opacity"
                           type="number"
+                          min="0"
+                          max="100"
                           value={backgroundOpacity}
-                          onChange={(e) => setBackgroundOpacity(e.target.value)}
+                          onChange={(e) => {
+                            if (
+                              (parseInt(e.target.value) >= 0 &&
+                                parseInt(e.target.value) <= 100) ||
+                              e.target.value === ''
+                            ) {
+                              setBackgroundOpacity(e.target.value);
+                            }
+                          }}
                         />
                       </Col>
                     </Row>
