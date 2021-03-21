@@ -1,36 +1,85 @@
-import { useState } from 'react';
 import { css } from '@emotion/css';
 import { Container, Row, Col } from 'reactstrap';
 
-const Teachers = () => {
-  const [titleLabel, setTitleLabel] = useState('Meet Our Teachers');
-  const [titleLabelColor, setTitleLabelColor] = useState('#000000');
-  const [teachers, setTeachers] = useState([
-    {
-      id: '413a14bf-5c0c-49d7-b0f5-371b896debbb',
-      order: 1,
-      firstName: 'Minnie',
-      lastName: 'Kim',
-      photoUrl:
-        'https://res.cloudinary.com/kennethlloyd/image/upload/v1615362964/english-courses/1615362962532-ypQiRrj.jpeg.jpg',
-    },
-    {
-      id: 'a7698bc3-619e-494e-aa48-214c51fdd10a',
-      order: 2,
-      firstName: 'Shuhua',
-      lastName: 'Yeh',
-      photoUrl:
-        'https://res.cloudinary.com/kennethlloyd/image/upload/v1615363042/english-courses/1615363040813-l1xCFvU.jpeg.jpg',
-    },
-    {
-      id: 'a6898bc3-619e-494e-aa48-214c51fdd10a',
-      order: 3,
-      firstName: 'Miyeon',
-      lastName: 'Cho',
-      photoUrl:
-        'https://res.cloudinary.com/kennethlloyd/image/upload/v1615300678/english-courses/1615300677280-DKyGika.jpeg.jpg',
-    },
-  ]);
+const Teachers = ({ config, list }) => {
+  const titleLabel = config.titleLabel
+    ? config.titleLabel
+    : 'Meet Our Teachers';
+
+  const titleLabelColor = config.titleLabelColor
+    ? config.titleLabelColor
+    : '#000000';
+
+  const teachers = list.length
+    ? list
+    : [
+        {
+          id: '064e4d37-80e0-4aa9-a260-57ea4e2b7081',
+          order: 1,
+          firstName: 'Koby',
+          lastName: 'Whitehead',
+          status: true,
+          photoUrl:
+            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715186/english-courses/1615715186567-koby.png.png',
+          createdAt: '2021-03-14T09:46:26.000Z',
+          updatedAt: '2021-03-14T09:46:26.000Z',
+        },
+        {
+          id: '7a39f22c-7d1a-423e-b2dc-34c5cff500a6',
+          order: 2,
+          firstName: 'Leny',
+          lastName: 'Greenaway',
+          status: true,
+          photoUrl:
+            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715206/english-courses/1615715206426-lennie.png.png',
+          createdAt: '2021-03-14T09:46:46.000Z',
+          updatedAt: '2021-03-14T09:46:46.000Z',
+        },
+        {
+          id: '2c804f3d-8d16-4955-b7c4-2804fac007d1',
+          order: 3,
+          firstName: 'Mateo',
+          lastName: 'Vickers',
+          status: true,
+          photoUrl:
+            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715222/english-courses/1615715222418-mateo.png.png',
+          createdAt: '2021-03-14T09:47:02.000Z',
+          updatedAt: '2021-03-14T09:47:18.000Z',
+        },
+        {
+          id: '9a9a6334-c2b9-44da-b15a-94bd85ed72b5',
+          order: 4,
+          firstName: 'Dolores',
+          lastName: 'Morrow',
+          status: true,
+          photoUrl:
+            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715256/english-courses/1615715256610-dolores.png.png',
+          createdAt: '2021-03-14T09:47:36.000Z',
+          updatedAt: '2021-03-14T09:47:36.000Z',
+        },
+        {
+          id: '8f6aaccb-905d-464e-abfb-20698f83f19f',
+          order: 5,
+          firstName: 'Brandon',
+          lastName: 'Joyner',
+          status: true,
+          photoUrl:
+            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715275/english-courses/1615715275543-brandon.png.png',
+          createdAt: '2021-03-14T09:47:55.000Z',
+          updatedAt: '2021-03-14T09:47:55.000Z',
+        },
+        {
+          id: '0e69712d-4765-47bf-a635-4ef7edaaf1e6',
+          order: 6,
+          firstName: 'Mariah',
+          lastName: 'Benitez',
+          status: true,
+          photoUrl:
+            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715293/english-courses/1615715293268-mariah.png.png',
+          createdAt: '2021-03-14T09:48:13.000Z',
+          updatedAt: '2021-03-14T09:48:13.000Z',
+        },
+      ];
 
   return (
     <Container fluid>

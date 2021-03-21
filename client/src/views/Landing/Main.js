@@ -12,6 +12,7 @@ import { lightenDarkenColor } from '../../utils/utils';
 import api from '../../api/api';
 
 const Main = () => {
+  const [loaded, setLoaded] = useState(false);
   const [scrollClass, setScrollClass] = useState('');
   const [scrollTop, setScrollTop] = useState(0);
   const [backgroundImage, setBackgroundImage] = useState(
@@ -35,8 +36,10 @@ const Main = () => {
   const [pricingLabel, setPricingLabel] = useState('Pricing');
   const [contactLabel, setContactLabel] = useState('Contact');
 
+  const [teacherList, setTeacherList] = useState([]);
+  const [teacherConfig, setTeacherConfig] = useState({});
   const [teacherBackgroundColor, setTeacherBackgroundColor] = useState(
-    '#F0F0F0',
+    '#FFFFFF',
   );
   const [pricingBackgroundColor, setPricingBackgroundColor] = useState(
     '#f6f9fc',
@@ -88,7 +91,18 @@ const Main = () => {
           setActionButtonTextColor(heroSettings.actionButtonTextColor);
           setActionButtonColor(heroSettings.actionButtonColor);
         }
+        if (data.teacherSettings) {
+          const { teacherSettings } = data;
+
+          setTeacherBackgroundColor(teacherSettings.backgroundColor);
+          setTeacherConfig(teacherSettings);
+        }
+        if (data.teacherList && data.teacherList.length) {
+          setTeacherList(data.teacherList);
+        }
       }
+
+      setLoaded(true);
     };
 
     fetchData();
@@ -131,7 +145,7 @@ const Main = () => {
     }
   `;
 
-  return (
+  return loaded ? (
     <div className={`position-relative ${scrollClass}`}>
       <Navbar
         logo={logo}
@@ -171,7 +185,7 @@ const Main = () => {
             background: ${teacherBackgroundColor};
           `}
         >
-          <Teachers />
+          <Teachers config={teacherConfig} list={teacherList} />
         </section>
 
         <section
@@ -195,6 +209,8 @@ const Main = () => {
 
       <Footer />
     </div>
+  ) : (
+    <></>
   );
 };
 
