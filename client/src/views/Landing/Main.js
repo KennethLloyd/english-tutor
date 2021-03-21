@@ -204,9 +204,13 @@ const Main = ({ title, description, appIcon }) => {
               <h1 className={titleTextStyle}>{titleText}</h1>
               <p className={subtitleTextStyle}>{subtitleText}</p>
               <p className="lead">
-                <Button className={actionButtonStyle}>
-                  <a href="/#contact">{actionButtonText}</a>
-                </Button>
+                {actionButtonText ? (
+                  <Button className={actionButtonStyle}>
+                    <a href="/#contact">{actionButtonText}</a>
+                  </Button>
+                ) : (
+                  ''
+                )}
               </p>
             </div>
           </Container>
