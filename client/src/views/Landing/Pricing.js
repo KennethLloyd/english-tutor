@@ -1,112 +1,102 @@
-import { useState } from 'react';
 import { css } from '@emotion/css';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  CardHeader,
-} from 'reactstrap';
+import { Container, Row, Col, Card, CardBody, CardHeader } from 'reactstrap';
 import { FcCheckmark } from 'react-icons/fc';
 
-const Pricing = () => {
-  const [titleLabel, setTitleLabel] = useState('Pricing And Plans');
-  const [titleLabelColor, setTitleLabelColor] = useState('#000000');
-  const [headerBackgroundColor, setHeaderBackgroundColor] = useState('#2BACE3');
-  const [headerTextColor, setHeaderTextColor] = useState('#FFFFFF');
-  const [detailsBackgroundColor, setDetailsBackgroundColor] = useState(
-    '#FFFFFF',
-  );
-  const [detailsTextColor, setDetailsTextColor] = useState('#525F7F');
-  const [pricings, setPricings] = useState([
-    {
-      id: '3b1838cf-4828-43cf-8541-ed53b689acc1',
-      order: 2,
-      header: '1 Lesson',
-      price: '10 dollars per hour',
-      features: [
+const Pricing = ({ config, list }) => {
+  const titleLabel = config.titleLabel
+    ? config.titleLabel
+    : 'Pricing And Plans';
+
+  const titleLabelColor = config.titleLabelColor
+    ? config.titleLabelColor
+    : '#000000';
+
+  const headerBackgroundColor = config.headerBackgroundColor
+    ? config.headerBackgroundColor
+    : '#2BACE3';
+
+  const headerTextColor = config.headerTextColor
+    ? config.headerTextColor
+    : '#FFFFFF';
+
+  const detailsBackgroundColor = config.detailsBackgroundColor
+    ? config.detailsBackgroundColor
+    : '#FFFFFF';
+
+  const detailsTextColor = config.detailsTextColor
+    ? config.detailsTextColor
+    : '#525F7F';
+
+  const pricings = list.length
+    ? list
+    : [
         {
-          id: '6932e483-20e0-4634-9cb7-2c7fd07a8d6a',
-          pricingId: '3b1838cf-4828-43cf-8541-ed53b689acc1',
-          feature: 'everlasting support',
-          order: 1,
+          header: '1 Lesson',
+          price: '$10',
+          features: [
+            {
+              feature: '60 minute lessons',
+            },
+            {
+              feature: 'commodo elit at imperdiet',
+            },
+            {
+              feature: 'pharetra vel turpis nunc',
+            },
+          ],
         },
         {
-          id: 'e89cf876-0c8e-490d-a8b0-36a94d1fc5e0',
-          pricingId: '3b1838cf-4828-43cf-8541-ed53b689acc1',
-          feature: '24/7 availability',
-          order: 2,
-        },
-      ],
-    },
-    {
-      id: '01a34331-bbcd-4595-bd74-37ab2d4a103a',
-      order: 5,
-      header: '5 Lessons',
-      price: 'free for you',
-      features: [
-        {
-          id: '7723f975-3f1b-47f6-9675-e9df5f1ec5f2',
-          pricingId: '01a34331-bbcd-4595-bd74-37ab2d4a103a',
-          feature: 'reddest red',
-          order: 1,
-        },
-        {
-          id: '8d485e2e-d735-484b-af8a-b4c6c1206ef4',
-          pricingId: '01a34331-bbcd-4595-bd74-37ab2d4a103a',
-          feature: 'mahiwaga',
-          order: 2,
+          header: '5 Lessons',
+          price: '$45',
+          features: [
+            {
+              feature: '60 minute lessons',
+            },
+            {
+              feature: 'commodo elit at imperdiet',
+            },
+            {
+              feature: 'pharetra vel turpis nunc',
+            },
+            {
+              feature: 'commodo elit at imperdiet',
+            },
+            {
+              feature: 'commodo elit at imperdiet',
+            },
+          ],
         },
         {
-          id: '4046246b-d6fb-487a-8af9-18b33f434be3',
-          pricingId: '01a34331-bbcd-4595-bd74-37ab2d4a103a',
-          feature: 'jeon jelly',
-          order: 3,
+          header: '10 Lessons',
+          price: '$80',
+          features: [
+            {
+              feature: '60 minute lessons',
+            },
+            {
+              feature: 'commodo elit at imperdiet',
+            },
+            {
+              feature: 'pharetra vel turpis nunc',
+            },
+            {
+              feature: 'pharetra vel turpis nunc',
+            },
+            {
+              feature: 'pharetra vel turpis nunc',
+            },
+            {
+              feature: 'pharetra vel turpis nunc',
+            },
+            {
+              feature: 'pharetra vel turpis nunc',
+            },
+            {
+              feature: 'pharetra vel turpis nunc',
+            },
+          ],
         },
-        {
-          id: '67dca04b-14b1-48af-91a0-920d5632ce29',
-          pricingId: '01a34331-bbcd-4595-bd74-37ab2d4a103a',
-          feature: 'whos that pokemon',
-          order: 4,
-        },
-      ],
-    },
-    {
-      id: '01a34331-bbcd-4595-bd74-3qqqb2d4a103a',
-      order: 6,
-      header: '10 Lessons',
-      price: '60$ per month',
-      features: [
-        {
-          id: '7723f975-3f1b-47f6-9675-e9df5f1ec5f2',
-          pricingId: '01a34331-bbcd-4595-bd74-37ab2d4a103a',
-          feature: 'reddest red',
-          order: 1,
-        },
-        {
-          id: '8d485e2e-d735-484b-af8a-b4c6c1206ef4',
-          pricingId: '01a34331-bbcd-4595-bd74-37ab2d4a103a',
-          feature: 'mahiwaga',
-          order: 2,
-        },
-        {
-          id: '4046246b-d6fb-487a-8af9-18b33f434be3',
-          pricingId: '01a34331-bbcd-4595-bd74-37ab2d4a103a',
-          feature: 'jeon jelly',
-          order: 3,
-        },
-        {
-          id: '67dca04b-14b1-48af-91a0-920d5632ce29',
-          pricingId: '01a34331-bbcd-4595-bd74-37ab2d4a103a',
-          feature: 'whos that pokemon',
-          order: 4,
-        },
-      ],
-    },
-  ]);
+      ];
 
   return (
     <Container fluid>
@@ -130,6 +120,11 @@ const Pricing = () => {
                 className={css`
                   width: 360px;
                   border-radius: 10px;
+                  transition: transform 0.5s;
+
+                  &:hover {
+                    transform: scale(1.1);
+                  }
                 `}
               >
                 <CardHeader

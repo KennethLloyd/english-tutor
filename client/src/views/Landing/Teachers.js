@@ -14,70 +14,40 @@ const Teachers = ({ config, list }) => {
     ? list
     : [
         {
-          id: '064e4d37-80e0-4aa9-a260-57ea4e2b7081',
-          order: 1,
           firstName: 'Koby',
           lastName: 'Whitehead',
-          status: true,
           photoUrl:
             'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715186/english-courses/1615715186567-koby.png.png',
-          createdAt: '2021-03-14T09:46:26.000Z',
-          updatedAt: '2021-03-14T09:46:26.000Z',
         },
         {
-          id: '7a39f22c-7d1a-423e-b2dc-34c5cff500a6',
-          order: 2,
           firstName: 'Leny',
           lastName: 'Greenaway',
-          status: true,
           photoUrl:
             'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715206/english-courses/1615715206426-lennie.png.png',
-          createdAt: '2021-03-14T09:46:46.000Z',
-          updatedAt: '2021-03-14T09:46:46.000Z',
         },
         {
-          id: '2c804f3d-8d16-4955-b7c4-2804fac007d1',
-          order: 3,
           firstName: 'Mateo',
           lastName: 'Vickers',
-          status: true,
           photoUrl:
             'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715222/english-courses/1615715222418-mateo.png.png',
-          createdAt: '2021-03-14T09:47:02.000Z',
-          updatedAt: '2021-03-14T09:47:18.000Z',
         },
         {
-          id: '9a9a6334-c2b9-44da-b15a-94bd85ed72b5',
-          order: 4,
           firstName: 'Dolores',
           lastName: 'Morrow',
-          status: true,
           photoUrl:
             'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715256/english-courses/1615715256610-dolores.png.png',
-          createdAt: '2021-03-14T09:47:36.000Z',
-          updatedAt: '2021-03-14T09:47:36.000Z',
         },
         {
-          id: '8f6aaccb-905d-464e-abfb-20698f83f19f',
-          order: 5,
           firstName: 'Brandon',
           lastName: 'Joyner',
-          status: true,
           photoUrl:
             'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715275/english-courses/1615715275543-brandon.png.png',
-          createdAt: '2021-03-14T09:47:55.000Z',
-          updatedAt: '2021-03-14T09:47:55.000Z',
         },
         {
-          id: '0e69712d-4765-47bf-a635-4ef7edaaf1e6',
-          order: 6,
           firstName: 'Mariah',
           lastName: 'Benitez',
-          status: true,
           photoUrl:
             'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715293/english-courses/1615715293268-mariah.png.png',
-          createdAt: '2021-03-14T09:48:13.000Z',
-          updatedAt: '2021-03-14T09:48:13.000Z',
         },
       ];
 
@@ -118,6 +88,7 @@ const Teachers = ({ config, list }) => {
                     transform: scale(1.1);
                   }
                 `}
+                alt=""
               />
               <h3 className="mt-3 mb-3 font-weight-normal">
                 {teacher.firstName} {teacher.lastName}

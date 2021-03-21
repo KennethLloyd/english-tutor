@@ -41,6 +41,8 @@ const Main = () => {
   const [teacherBackgroundColor, setTeacherBackgroundColor] = useState(
     '#FFFFFF',
   );
+  const [pricingList, setPricingList] = useState([]);
+  const [pricingConfig, setPricingConfig] = useState({});
   const [pricingBackgroundColor, setPricingBackgroundColor] = useState(
     '#f6f9fc',
   );
@@ -66,7 +68,7 @@ const Main = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await api(`/settings/all`);
+      const data = await api(`/settings/alls`);
       if (data) {
         if (data.navigationSettings) {
           const navSettings = data.navigationSettings;
@@ -99,6 +101,15 @@ const Main = () => {
         }
         if (data.teacherList && data.teacherList.length) {
           setTeacherList(data.teacherList);
+        }
+        if (data.pricingSettings) {
+          const { pricingSettings } = data;
+
+          setPricingBackgroundColor(pricingSettings.backgroundColor);
+          setPricingConfig(pricingSettings);
+        }
+        if (data.pricingList && data.pricingList.length) {
+          setPricingList(data.pricingList);
         }
       }
 
@@ -194,7 +205,7 @@ const Main = () => {
             background: ${pricingBackgroundColor};
           `}
         >
-          <Pricing />
+          <Pricing config={pricingConfig} list={pricingList} />
         </section>
 
         <section
