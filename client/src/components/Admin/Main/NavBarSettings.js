@@ -28,7 +28,9 @@ const NavBarSettings = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
-  const handleNavUpdate = async () => {
+  const handleNavUpdate = async (e) => {
+    e.preventDefault();
+
     const formData = new FormData();
 
     formData.append('image', logo);
@@ -69,10 +71,12 @@ const NavBarSettings = () => {
 
         const { settings } = data;
 
-        setLogoThumbnail(settings.logoUrl);
-        setTeachersLabel(settings.teachersLabel);
-        setPricingLabel(settings.pricingLabel);
-        setContactLabel(settings.contactLabel);
+        if (settings) {
+          setLogoThumbnail(settings.logoUrl);
+          setTeachersLabel(settings.teachersLabel);
+          setPricingLabel(settings.pricingLabel);
+          setContactLabel(settings.contactLabel);
+        }
       }
     };
     setShowLoader(true);

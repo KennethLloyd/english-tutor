@@ -23,29 +23,31 @@ const HeroSettings = () => {
   const [backgroundImageThumbnail, setBackgroundImageThumbnail] = useState(
     null,
   );
-  const [backgroundOpacity, setBackgroundOpacity] = useState(80);
+  const [backgroundOpacity, setBackgroundOpacity] = useState(0);
   const [titleText, setTitleText] = useState('');
-  const [titleTextColor, setTitleTextColor] = useState('');
+  const [titleTextColor, setTitleTextColor] = useState('#FFFFFF');
   const [subtitleText, setSubtitleText] = useState('');
-  const [subtitleTextColor, setSubtitleTextColor] = useState('');
+  const [subtitleTextColor, setSubtitleTextColor] = useState('#FFFFFF');
   const [actionButtonText, setActionButtonText] = useState('');
-  const [actionButtonTextColor, setActionButtonTextColor] = useState('');
-  const [actionButtonColor, setActionButtonColor] = useState('');
+  const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
+  const [actionButtonColor, setActionButtonColor] = useState('#FFFFFF');
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
-  const handleHeroUpdate = async () => {
+  const handleHeroUpdate = async (e) => {
+    e.preventDefault();
+
     const formData = new FormData();
 
     formData.append('image', backgroundImage);
     formData.append('backgroundOpacity', backgroundOpacity);
     formData.append('titleText', titleText);
     formData.append('titleTextColor', titleTextColor);
-    formData.append('subtitleText', subtitleText);
+    formData.append('subtitleText', subtitleText || '');
     formData.append('subtitleTextColor', subtitleTextColor);
-    formData.append('actionButtonText', actionButtonText);
+    formData.append('actionButtonText', actionButtonText || '');
     formData.append('actionButtonTextColor', actionButtonTextColor);
     formData.append('actionButtonColor', actionButtonColor);
 
@@ -82,15 +84,17 @@ const HeroSettings = () => {
 
         const { settings } = data;
 
-        setBackgroundImageThumbnail(settings.backgroundImageUrl);
-        setBackgroundOpacity(settings.backgroundOpacity);
-        setTitleText(settings.titleText);
-        setTitleTextColor(settings.titleTextColor);
-        setSubtitleText(settings.subtitleText);
-        setSubtitleTextColor(settings.subtitleTextColor);
-        setActionButtonText(settings.actionButtonText);
-        setActionButtonTextColor(settings.actionButtonTextColor);
-        setActionButtonColor(settings.actionButtonColor);
+        if (settings) {
+          setBackgroundImageThumbnail(settings.backgroundImageUrl);
+          setBackgroundOpacity(settings.backgroundOpacity);
+          setTitleText(settings.titleText);
+          setTitleTextColor(settings.titleTextColor);
+          setSubtitleText(settings.subtitleText);
+          setSubtitleTextColor(settings.subtitleTextColor);
+          setActionButtonText(settings.actionButtonText);
+          setActionButtonTextColor(settings.actionButtonTextColor);
+          setActionButtonColor(settings.actionButtonColor);
+        }
       }
     };
     setShowLoader(true);
@@ -112,7 +116,7 @@ const HeroSettings = () => {
                 </Row>
               </CardHeader>
               <CardBody>
-                <Form>
+                <Form autoComplete="off" onSubmit={handleHeroUpdate}>
                   <div className="pl-lg-4">
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
@@ -147,6 +151,7 @@ const HeroSettings = () => {
                           type="number"
                           min="0"
                           max="100"
+                          required
                           value={backgroundOpacity}
                           onChange={(e) => {
                             if (
@@ -175,6 +180,7 @@ const HeroSettings = () => {
                           id="title-text"
                           type="text"
                           value={titleText}
+                          required
                           onChange={(e) => setTitleText(e.target.value)}
                         />
                       </Col>
@@ -282,11 +288,7 @@ const HeroSettings = () => {
                       </Col>
                     </Row>
                     <Row className="justify-content-center">
-                      <Button
-                        color="primary"
-                        onClick={handleHeroUpdate}
-                        size="md"
-                      >
+                      <Button color="primary" type="submit" size="md">
                         Save
                       </Button>
                     </Row>
