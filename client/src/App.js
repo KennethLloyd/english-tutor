@@ -9,6 +9,7 @@ import api from './api/api';
 
 const App = () => {
   const [appName, setAppName] = useState('');
+  const [appDescription, setAppDescription] = useState('');
   const [appFavicon, setAppFavicon] = useState('');
   const [adminLogo, setAdminLogo] = useState('');
 
@@ -19,6 +20,7 @@ const App = () => {
         const { adminConfig } = data;
 
         setAppName(adminConfig.appName);
+        setAppDescription(adminConfig.appDescription);
         setAppFavicon(adminConfig.appFavicon);
         setAdminLogo(adminConfig.adminLogo);
       }
@@ -32,7 +34,13 @@ const App = () => {
         <Route
           path="/"
           exact
-          render={() => <Main title={appName} appIcon={appFavicon} />}
+          render={() => (
+            <Main
+              title={appName}
+              description={appDescription}
+              appIcon={appFavicon}
+            />
+          )}
         />
         <UnauthenticatedRoute
           path="/admin/login"

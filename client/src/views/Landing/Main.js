@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Container } from 'reactstrap';
+import { Helmet } from 'react-helmet';
 import { css } from '@emotion/css';
 import './index.css';
 import Navbar from '../../components/Landing/Navbar';
@@ -10,11 +11,7 @@ import Contacts from './Contacts';
 import { lightenDarkenColor } from '../../utils/utils';
 import api from '../../api/api';
 
-const getFaviconEl = () => {
-  return document.getElementById('favicon');
-};
-
-const Main = ({ title, appIcon }) => {
+const Main = ({ title, description, appIcon }) => {
   const [loaded, setLoaded] = useState(false);
   const [scrollClass, setScrollClass] = useState('');
   const [scrollTop, setScrollTop] = useState(0);
@@ -55,14 +52,6 @@ const Main = ({ title, appIcon }) => {
     '#F0F0F0',
   );
   const [footerConfig, setFooterConfig] = useState({});
-
-  useEffect(() => {
-    document.title = title || '';
-    if (appIcon) {
-      const favicon = getFaviconEl();
-      favicon.href = appIcon;
-    }
-  }, [title, appIcon]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -197,6 +186,12 @@ const Main = ({ title, appIcon }) => {
 
   return loaded ? (
     <div className={`position-relative ${scrollClass}`}>
+      <Helmet>
+        <title>{title}</title>
+        <link rel="icon" type="image/png" href={appIcon} />
+        <meta name="description" content={description} />
+        <meta name="theme-color" content={actionButtonColor} />
+      </Helmet>
       <Navbar
         logo={logo}
         teachersLabel={teachersLabel}

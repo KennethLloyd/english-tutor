@@ -521,6 +521,7 @@ const getAdminConfig = async (req, res) => {
     const config = await loadConfig();
     const adminConfig = {
       appName: config.appName,
+      appDescription: config.appDescription,
       appFavicon: config.appFavicon,
       adminLogo: config.adminLogo,
     };
