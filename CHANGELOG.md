@@ -1,3 +1,45 @@
+## v2.0.0
+**2021-03-21**
+
+#### :sparkles: New Features
+
+* [`4fe157d`](https://github.com/KennethLloyd/english-tutor/commit/4fe157d6cf23411ffea5bf5510059d05818cff68)  main landing page
+* [`b364bff`](https://github.com/KennethLloyd/english-tutor/commit/b364bfffef9181ee1fea4112b3757507604a7dc5)  main template
+* [`c2fe870`](https://github.com/KennethLloyd/english-tutor/commit/c2fe870394d9e837f3a08bbf5ad07d31753eefb7)  footer
+* [`fee6b05`](https://github.com/KennethLloyd/english-tutor/commit/fee6b05b7f382cfc9ec2b5988013b39d77e5610a)  pricing landing page integration
+* [`209c7f1`](https://github.com/KennethLloyd/english-tutor/commit/209c7f18799a60430f2ef8df34c555fa103034b9)  pricing screen
+* [`91c8e20`](https://github.com/KennethLloyd/english-tutor/commit/91c8e201c14e90ee1230942ae0662cd0bfbed746)  Get All Settings route
+* [`bea68bd`](https://github.com/KennethLloyd/english-tutor/commit/bea68bd77bc8f6423b1e6a536ec79eec39af3d74)  contact screen
+* [`c4eabfc`](https://github.com/KennethLloyd/english-tutor/commit/c4eabfc4d2754a2f5cc161b3931d8b10be902e06)  landing contact page integration
+* [`987b2cf`](https://github.com/KennethLloyd/english-tutor/commit/987b2cf5cc05b6825546040ca3a51ecd394af623)  teacher landing page integration
+* [`bb3eb3f`](https://github.com/KennethLloyd/english-tutor/commit/bb3eb3f54491fc5452c0879a70eda39884cc0891)  Teachers page
+* [`c0520bf`](https://github.com/KennethLloyd/english-tutor/commit/c0520bf8ab2f2be1f370550f5fb906398f82d87a)   react-helmet for dynamic metatags
+* [`8b09dcf`](https://github.com/KennethLloyd/english-tutor/commit/8b09dcfb840d6eb813b5046520cad266c8b60a1f)  favicon to admin config
+* [`a019965`](https://github.com/KennethLloyd/english-tutor/commit/a0199654dbb50e0eab7983c2bbdd05256b26dbca)  lighten darken function
+* [`1265fd1`](https://github.com/KennethLloyd/english-tutor/commit/1265fd1eded700d1121c104bf30c3ebabf7c8ca9)  main landing page integration
+* [`cd9085d`](https://github.com/KennethLloyd/english-tutor/commit/cd9085d9c1f7db4757693129b30c44332ff70102)  pricing features limit
+* [`2de194a`](https://github.com/KennethLloyd/english-tutor/commit/2de194a077adaed7c44f981453a4687f9c310ec0)  hash routing
+* [`be4235e`](https://github.com/KennethLloyd/english-tutor/commit/be4235e01b0b0bf2a4f630a7e7b560193ae20f33)  landing footer integration
+* [`f11a0ea`](https://github.com/KennethLloyd/english-tutor/commit/f11a0ea3c199a631f3d423b6554a26e725a254b8)  back to top functionality
+
+#### :hammer: Fixes
+
+* [`70c2b07`](https://github.com/KennethLloyd/english-tutor/commit/70c2b07ccc0e67a457e1e644347c959d80f12b6b)  apidoc
+* [`b24d355`](https://github.com/KennethLloyd/english-tutor/commit/b24d3553c57974472f61ca544ccacf412c957d44)  proxy
+* [`506972a`](https://github.com/KennethLloyd/english-tutor/commit/506972a779a78e519024214b88caf797d52cf795)  missing key prop in landing screens
+* [`1d2b9d6`](https://github.com/KennethLloyd/english-tutor/commit/1d2b9d669c973a30853aed1aa3302c50e371b178)  header scroll text color
+* [`0b9f21e`](https://github.com/KennethLloyd/english-tutor/commit/0b9f21e4acb37e5806ad6bb78d893576fafe4984)  success alert still showing after edit
+* [`ecdeb58`](https://github.com/KennethLloyd/english-tutor/commit/ecdeb58425fd298d1a9914e6e2c1e10d53647b3a)  action button redirect to contact
+
+#### :cyclone: Miscellaneous Updates
+
+* [`8d64778`](https://github.com/KennethLloyd/english-tutor/commit/8d64778fd71eaf7bec47f060d202e01e75217728) Animate main landing scroll
+* [`b8b638d`](https://github.com/KennethLloyd/english-tutor/commit/b8b638d951ee64c8659a3c623769a3f30bf3b8cd) Get admin config from backend to frontend
+* [`33dc359`](https://github.com/KennethLloyd/english-tutor/commit/33dc359f0fa71c81f6d5173d47cd30d85ad4d974) Change app name to dynamic
+* [`cb69f04`](https://github.com/KennethLloyd/english-tutor/commit/cb69f045267e4d420d0a25aa4b6d8c8b875ee8d8) Match header and text color to action button
+* [`09af920`](https://github.com/KennethLloyd/english-tutor/commit/09af9200e4a70442f808aaa0b066403471c9f92b) Magnify teacher photo on hover
+* [`c7e02a2`](https://github.com/KennethLloyd/english-tutor/commit/c7e02a25fc5e1a7e42292792d18a92d34bf6f05a) Update readme
+
 ## v1.7.0
 **2021-03-14**
 
