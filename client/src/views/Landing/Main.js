@@ -29,12 +29,10 @@ const Main = ({ title, description, appIcon }) => {
   const [actionButtonTextColor, setActionButtonTextColor] = useState('#FFFFFF');
   const [actionButtonColor, setActionButtonColor] = useState('#2BACE3');
 
-  const [logo, setLogo] = useState(
-    'https://res.cloudinary.com/kennethlloyd/image/upload/v1615110700/english-courses/english-tutor-logo-light.svg',
-  );
-  const [teachersLabel, setTeachersLabel] = useState('Teachers');
-  const [pricingLabel, setPricingLabel] = useState('Pricing');
-  const [contactLabel, setContactLabel] = useState('Contact');
+  const [logo, setLogo] = useState('');
+  const [teachersLabel, setTeachersLabel] = useState('');
+  const [pricingLabel, setPricingLabel] = useState('');
+  const [contactLabel, setContactLabel] = useState('');
 
   const [teacherList, setTeacherList] = useState([]);
   const [teacherConfig, setTeacherConfig] = useState({});

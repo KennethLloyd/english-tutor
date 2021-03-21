@@ -2,9 +2,9 @@ import Joi from 'joi';
 
 const updateNavigationSettings = async (req, res, next) => {
   const bodySchema = Joi.object({
-    teachersLabel: Joi.string(),
-    pricingLabel: Joi.string(),
-    contactLabel: Joi.string(),
+    teachersLabel: Joi.string().required(),
+    pricingLabel: Joi.string().required(),
+    contactLabel: Joi.string().required(),
   });
 
   try {

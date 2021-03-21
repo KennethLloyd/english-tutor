@@ -94,7 +94,7 @@ const NavBarSettings = () => {
                 </Row>
               </CardHeader>
               <CardBody>
-                <Form>
+                <Form autoComplete="off" onSubmit={handleNavUpdate}>
                   <div className="pl-lg-4">
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
@@ -129,6 +129,8 @@ const NavBarSettings = () => {
                           type="text"
                           value={teachersLabel}
                           onChange={(e) => setTeachersLabel(e.target.value)}
+                          autoComplete="off"
+                          required
                         />
                       </Col>
                     </Row>
@@ -148,6 +150,8 @@ const NavBarSettings = () => {
                           type="text"
                           value={pricingLabel}
                           onChange={(e) => setPricingLabel(e.target.value)}
+                          autoComplete="off"
+                          required
                         />
                       </Col>
                     </Row>
@@ -167,15 +171,13 @@ const NavBarSettings = () => {
                           type="text"
                           value={contactLabel}
                           onChange={(e) => setContactLabel(e.target.value)}
+                          autoComplete="off"
+                          required
                         />
                       </Col>
                     </Row>
                     <Row className="justify-content-center">
-                      <Button
-                        color="primary"
-                        onClick={handleNavUpdate}
-                        size="md"
-                      >
+                      <Button color="primary" size="md" type="submit">
                         Save
                       </Button>
                     </Row>
