@@ -215,7 +215,7 @@ const Main = ({ title }) => {
               <p className={subtitleTextStyle}>{subtitleText}</p>
               <p className="lead">
                 <Button className={actionButtonStyle}>
-                  <Link to="/#contact">{actionButtonText}</Link>
+                  <a href="/#contact">{actionButtonText}</a>
                 </Button>
               </p>
             </div>
