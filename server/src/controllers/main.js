@@ -463,10 +463,6 @@ const getAllSettings = async (req, res) => {
       pricingList = [];
     }
 
-    if (!contactSettings) {
-      contactSettings = {};
-    }
-
     if (!contactList) {
       contactList = [];
     }

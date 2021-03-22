@@ -8,7 +8,7 @@ const updateContactPageSettings = async (req, res, next) => {
     contactCardTitle: Joi.string().required(),
     contactCardTitleColor: Joi.string(),
     contactCardBackgroundColor: Joi.string(),
-    footerLabel: Joi.string(),
+    footerLabel: Joi.string().allow(''),
     footerBackgroundColor: Joi.string(),
     footerTextColor: Joi.string(),
   });
