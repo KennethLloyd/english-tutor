@@ -12,7 +12,6 @@ import { lightenDarkenColor } from '../../utils/utils';
 import api from '../../api/api';
 
 const Main = ({ title, description, appIcon }) => {
-  const [loaded, setLoaded] = useState(false);
   const [scrollClass, setScrollClass] = useState('');
   const [scrollTop, setScrollTop] = useState(0);
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -134,8 +133,6 @@ const Main = ({ title, description, appIcon }) => {
           });
         }
       }
-
-      setLoaded(true);
     };
 
     fetchData();
@@ -178,7 +175,7 @@ const Main = ({ title, description, appIcon }) => {
     }
   `;
 
-  return loaded ? (
+  return (
     <div className={`position-relative ${scrollClass}`}>
       <Helmet>
         <title>{title}</title>
@@ -252,8 +249,6 @@ const Main = ({ title, description, appIcon }) => {
 
       <Footer config={footerConfig} />
     </div>
-  ) : (
-    <></>
   );
 };
 
