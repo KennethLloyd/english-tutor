@@ -18,23 +18,25 @@ import SuccessAlert from '../Alerts/SuccessAlert';
 import api from '../../../api/api';
 
 const ContactPageSettings = () => {
-  const [backgroundColor, setBackgroundColor] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
   const [titleLabel, setTitleLabel] = useState('');
-  const [titleLabelColor, setTitleLabelColor] = useState('');
+  const [titleLabelColor, setTitleLabelColor] = useState('#FFFFFF');
   const [contactCardTitle, setContactCardTitle] = useState('');
-  const [contactCardTitleColor, setContactCardTitleColor] = useState('');
+  const [contactCardTitleColor, setContactCardTitleColor] = useState('#FFFFFF');
   const [contactCardBackgroundColor, setContactCardBackgroundColor] = useState(
-    '',
+    '#FFFFFF',
   );
   const [footerLabel, setFooterLabel] = useState('');
-  const [footerBackgroundColor, setFooterBackgroundColor] = useState('');
-  const [footerTextColor, setFooterTextColor] = useState('');
+  const [footerBackgroundColor, setFooterBackgroundColor] = useState('#FFFFFF');
+  const [footerTextColor, setFooterTextColor] = useState('#FFFFFF');
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
     const body = {
       backgroundColor,
       titleLabel,
@@ -81,15 +83,17 @@ const ContactPageSettings = () => {
 
         const { settings } = data;
 
-        setBackgroundColor(settings.backgroundColor);
-        setTitleLabel(settings.titleLabel);
-        setTitleLabelColor(settings.titleLabelColor);
-        setContactCardTitle(settings.contactCardTitle);
-        setContactCardTitleColor(settings.contactCardTitleColor);
-        setContactCardBackgroundColor(settings.contactCardBackgroundColor);
-        setFooterLabel(settings.footerLabel);
-        setFooterBackgroundColor(settings.footerBackgroundColor);
-        setFooterTextColor(settings.footerTextColor);
+        if (settings) {
+          setBackgroundColor(settings.backgroundColor);
+          setTitleLabel(settings.titleLabel);
+          setTitleLabelColor(settings.titleLabelColor);
+          setContactCardTitle(settings.contactCardTitle);
+          setContactCardTitleColor(settings.contactCardTitleColor);
+          setContactCardBackgroundColor(settings.contactCardBackgroundColor);
+          setFooterLabel(settings.footerLabel);
+          setFooterBackgroundColor(settings.footerBackgroundColor);
+          setFooterTextColor(settings.footerTextColor);
+        }
       }
     };
     setShowLoader(true);
@@ -111,7 +115,7 @@ const ContactPageSettings = () => {
                 </Row>
               </CardHeader>
               <CardBody>
-                <Form>
+                <Form autoComplete="off" onSubmit={handleUpdate}>
                   <div className="pl-lg-4">
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
@@ -132,7 +136,7 @@ const ContactPageSettings = () => {
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="title-label"
                         >
                           Title Label
@@ -145,6 +149,8 @@ const ContactPageSettings = () => {
                           type="text"
                           value={titleLabel}
                           onChange={(e) => setTitleLabel(e.target.value)}
+                          autoComplete="off"
+                          required
                         />
                       </Col>
                     </Row>
@@ -167,7 +173,7 @@ const ContactPageSettings = () => {
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="contact-card-title"
                         >
                           Contact Card Title
@@ -180,6 +186,8 @@ const ContactPageSettings = () => {
                           type="textarea"
                           value={contactCardTitle}
                           onChange={(e) => setContactCardTitle(e.target.value)}
+                          autoComplete="off"
+                          required
                         />
                       </Col>
                     </Row>
@@ -231,6 +239,7 @@ const ContactPageSettings = () => {
                           type="textarea"
                           value={footerLabel}
                           onChange={(e) => setFooterLabel(e.target.value)}
+                          autoComplete="off"
                         />
                       </Col>
                     </Row>
@@ -267,7 +276,7 @@ const ContactPageSettings = () => {
                       </Col>
                     </Row>
                     <Row className="justify-content-center">
-                      <Button color="primary" onClick={handleUpdate} size="md">
+                      <Button color="primary" type="submit" size="md">
                         Save
                       </Button>
                     </Row>

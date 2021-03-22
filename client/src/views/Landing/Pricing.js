@@ -82,35 +82,39 @@ const Pricing = ({ config, list }) => {
                       {pricing.price}
                     </h1>
                   </CardHeader>
-                  <CardBody
-                    className={css`
-                      background: ${detailsBackgroundColor};
-                      min-height: 400px;
-                      display: flex;
-                      flex-direction: column;
-                      justify-content: flex-start;
-                      align-items: flex-start;
-                      border-bottom-left-radius: 10px;
-                      border-bottom-right-radius: 10px;
-                    `}
-                  >
-                    {pricing.features.map((featureItem, idx) => {
-                      return (
-                        <div className="mb-3" key={idx}>
-                          <FcCheckmark size="25" />
-                          &nbsp;{' '}
-                          <span
-                            className={css`
-                              color: ${detailsTextColor};
-                              font-weight: 300;
-                            `}
-                          >
-                            {featureItem.feature}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </CardBody>
+                  {pricing.features.length ? (
+                    <CardBody
+                      className={css`
+                        background: ${detailsBackgroundColor};
+                        min-height: 400px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                      `}
+                    >
+                      {pricing.features.map((featureItem, idx) => {
+                        return (
+                          <div className="mb-3" key={idx}>
+                            <FcCheckmark size="25" />
+                            &nbsp;{' '}
+                            <span
+                              className={css`
+                                color: ${detailsTextColor};
+                                font-weight: 300;
+                              `}
+                            >
+                              {featureItem.feature}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </CardBody>
+                  ) : (
+                    ''
+                  )}
                 </Card>
               </Col>
             );
