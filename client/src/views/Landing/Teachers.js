@@ -6,46 +6,7 @@ const Teachers = ({ config, list }) => {
 
   const titleLabelColor = config.titleLabelColor;
 
-  const teachers = list.length
-    ? list
-    : [
-        {
-          firstName: 'Koby',
-          lastName: 'Whitehead',
-          photoUrl:
-            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715186/english-courses/1615715186567-koby.png.png',
-        },
-        {
-          firstName: 'Leny',
-          lastName: 'Greenaway',
-          photoUrl:
-            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715206/english-courses/1615715206426-lennie.png.png',
-        },
-        {
-          firstName: 'Mateo',
-          lastName: 'Vickers',
-          photoUrl:
-            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715222/english-courses/1615715222418-mateo.png.png',
-        },
-        {
-          firstName: 'Dolores',
-          lastName: 'Morrow',
-          photoUrl:
-            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715256/english-courses/1615715256610-dolores.png.png',
-        },
-        {
-          firstName: 'Brandon',
-          lastName: 'Joyner',
-          photoUrl:
-            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715275/english-courses/1615715275543-brandon.png.png',
-        },
-        {
-          firstName: 'Mariah',
-          lastName: 'Benitez',
-          photoUrl:
-            'https://res.cloudinary.com/kennethlloyd/image/upload/v1615715293/english-courses/1615715293268-mariah.png.png',
-        },
-      ];
+  const teachers = list;
 
   return (
     <Container fluid>
