@@ -3,29 +3,12 @@ import { Container, Row, Col, Card, CardBody, CardHeader } from 'reactstrap';
 import { FcCheckmark } from 'react-icons/fc';
 
 const Pricing = ({ config, list }) => {
-  const titleLabel = config.titleLabel
-    ? config.titleLabel
-    : 'Pricing And Plans';
-
-  const titleLabelColor = config.titleLabelColor
-    ? config.titleLabelColor
-    : '#000000';
-
-  const headerBackgroundColor = config.headerBackgroundColor
-    ? config.headerBackgroundColor
-    : '#2BACE3';
-
-  const headerTextColor = config.headerTextColor
-    ? config.headerTextColor
-    : '#FFFFFF';
-
-  const detailsBackgroundColor = config.detailsBackgroundColor
-    ? config.detailsBackgroundColor
-    : '#FFFFFF';
-
-  const detailsTextColor = config.detailsTextColor
-    ? config.detailsTextColor
-    : '#525F7F';
+  const titleLabel = config.titleLabel;
+  const titleLabelColor = config.titleLabelColor;
+  const headerBackgroundColor = config.headerBackgroundColor;
+  const headerTextColor = config.headerTextColor;
+  const detailsBackgroundColor = config.detailsBackgroundColor;
+  const detailsTextColor = config.detailsTextColor;
 
   const pricings = list.length
     ? list

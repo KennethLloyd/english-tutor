@@ -455,16 +455,8 @@ const getAllSettings = async (req, res) => {
     });
     contactList = contactList.map((contact) => contact.toJSON());
 
-    if (!teacherSettings) {
-      teacherSettings = {};
-    }
-
     if (!teacherList) {
       teacherList = [];
-    }
-
-    if (!pricingSettings) {
-      pricingSettings = {};
     }
 
     if (!pricingList) {

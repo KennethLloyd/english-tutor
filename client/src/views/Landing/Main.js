@@ -32,13 +32,19 @@ const Main = ({ title, description, appIcon }) => {
 
   const [teacherList, setTeacherList] = useState([]);
   const [teacherConfig, setTeacherConfig] = useState({});
-  const [teacherBackgroundColor, setTeacherBackgroundColor] = useState('');
+  const [teacherBackgroundColor, setTeacherBackgroundColor] = useState(
+    '#FFFFFF',
+  );
   const [pricingList, setPricingList] = useState([]);
   const [pricingConfig, setPricingConfig] = useState({});
-  const [pricingBackgroundColor, setPricingBackgroundColor] = useState('');
+  const [pricingBackgroundColor, setPricingBackgroundColor] = useState(
+    '#FFFFFF',
+  );
   const [contactList, setContactList] = useState([]);
   const [contactConfig, setContactConfig] = useState({});
-  const [contactBackgroundColor, setContactBackgroundColor] = useState('');
+  const [contactBackgroundColor, setContactBackgroundColor] = useState(
+    '#FFFFFF',
+  );
   const [footerConfig, setFooterConfig] = useState({});
 
   useEffect(() => {
