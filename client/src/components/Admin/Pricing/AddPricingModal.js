@@ -10,7 +10,7 @@ import {
   Spinner,
 } from 'reactstrap';
 import { useState } from 'react';
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaPlusCircle, FaTrash } from 'react-icons/fa';
 
 import ErrorAlert from '../Alerts/ErrorAlert';
 import SuccessAlert from '../Alerts/SuccessAlert';
@@ -95,6 +95,13 @@ const AddPricingModal = ({ show, setShow, refresh, setRefresh }) => {
       setErrorMsg('Max features reached');
       setShowError(true);
     }
+  };
+
+  const handleRemoveFeature = (index) => {
+    const featureClone = [...features];
+    featureClone.splice(index, 1);
+
+    setFeatures([...featureClone]);
   };
 
   const onFeatureChange = (index, value) => {
@@ -192,7 +199,10 @@ const AddPricingModal = ({ show, setShow, refresh, setRefresh }) => {
           </FormGroup>
           {features.map((item, index) => {
             return (
-              <FormGroup key={index} className="mb-3 ml-auto">
+              <FormGroup
+                key={index}
+                className="mb-3 ml-auto d-flex align-items-center"
+              >
                 <InputGroup className="input-group">
                   <Input
                     type="text"
@@ -201,6 +211,11 @@ const AddPricingModal = ({ show, setShow, refresh, setRefresh }) => {
                     onChange={(e) => onFeatureChange(index, e.target.value)}
                   />
                 </InputGroup>
+                <FaTrash
+                  className="icon-danger ml-3"
+                  size="20px"
+                  onClick={() => handleRemoveFeature(index)}
+                />
               </FormGroup>
             );
           })}
