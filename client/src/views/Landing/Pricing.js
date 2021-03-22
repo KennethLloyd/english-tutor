@@ -10,76 +10,7 @@ const Pricing = ({ config, list }) => {
   const detailsBackgroundColor = config.detailsBackgroundColor;
   const detailsTextColor = config.detailsTextColor;
 
-  const pricings = list.length
-    ? list
-    : [
-        {
-          header: '1 Lesson',
-          price: '$10',
-          features: [
-            {
-              feature: '60 minute lessons',
-            },
-            {
-              feature: 'commodo elit at imperdiet',
-            },
-            {
-              feature: 'pharetra vel turpis nunc',
-            },
-          ],
-        },
-        {
-          header: '5 Lessons',
-          price: '$45',
-          features: [
-            {
-              feature: '60 minute lessons',
-            },
-            {
-              feature: 'commodo elit at imperdiet',
-            },
-            {
-              feature: 'pharetra vel turpis nunc',
-            },
-            {
-              feature: 'commodo elit at imperdiet',
-            },
-            {
-              feature: 'commodo elit at imperdiet',
-            },
-          ],
-        },
-        {
-          header: '10 Lessons',
-          price: '$80',
-          features: [
-            {
-              feature: '60 minute lessons',
-            },
-            {
-              feature: 'commodo elit at imperdiet',
-            },
-            {
-              feature: 'pharetra vel turpis nunc',
-            },
-            {
-              feature: 'pharetra vel turpis nunc',
-            },
-            {
-              feature: 'pharetra vel turpis nunc',
-            },
-            {
-              feature: 'pharetra vel turpis nunc',
-            },
-            {
-              feature: 'pharetra vel turpis nunc',
-            },
-            {
-              feature: 'pharetra vel turpis nunc',
-            },
-          ],
-        },
-      ];
+  const pricings = list;
 
   return (
     <Container fluid>
@@ -124,15 +55,19 @@ const Pricing = ({ config, list }) => {
                     justify-content: space-around;
                   `}
                 >
-                  <h1
-                    className={css`
-                      font-size: 2.2rem;
-                      font-weight: 400;
-                      color: ${headerTextColor};
-                    `}
-                  >
-                    {pricing.header}
-                  </h1>
+                  {pricing.header ? (
+                    <h1
+                      className={css`
+                        font-size: 2.2rem;
+                        font-weight: 400;
+                        color: ${headerTextColor};
+                      `}
+                    >
+                      {pricing.header}
+                    </h1>
+                  ) : (
+                    ''
+                  )}
                   <h1
                     className={css`
                       color: ${headerTextColor};

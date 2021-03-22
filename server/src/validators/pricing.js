@@ -26,7 +26,7 @@ const updatePricingPageSettings = async (req, res, next) => {
 const addPricing = async (req, res, next) => {
   const bodySchema = Joi.object({
     order: Joi.number().required(),
-    header: Joi.string().required(),
+    header: Joi.string().allow(''),
     price: Joi.string().required(),
     features: Joi.array().items(Joi.string()).empty(''),
     status: Joi.boolean().required(),
@@ -47,7 +47,7 @@ const addPricing = async (req, res, next) => {
 const editPricing = async (req, res, next) => {
   const bodySchema = Joi.object({
     order: Joi.number(),
-    header: Joi.string(),
+    header: Joi.string().allow(''),
     price: Joi.string(),
     features: Joi.array().items(Joi.string()).empty(''),
     status: Joi.boolean(),

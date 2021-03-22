@@ -65,7 +65,7 @@ const EditTeacherModal = ({ show, setShow, refresh, setRefresh, details }) => {
         setShowSuccess(false);
         setShow(false);
         setShowSuccess(false);
-      }, 3000);
+      }, 1500);
     }
   };
 

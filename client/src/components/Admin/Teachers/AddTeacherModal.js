@@ -76,7 +76,7 @@ const AddTeacherModal = ({ show, setShow, refresh, setRefresh }) => {
       setTimeout(() => {
         resetState();
         setShow(false);
-      }, 3000);
+      }, 1500);
     }
   };
 
