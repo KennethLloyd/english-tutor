@@ -188,7 +188,7 @@ const Main = ({ title, description, appIcon }) => {
         teachersLabel={teachersLabel}
         pricingLabel={pricingLabel}
         contactLabel={contactLabel}
-        textColor={subtitleTextColor}
+        textColor={titleTextColor}
         isScrolled={scrollClass === 'scroll' ? true : false}
         headerColor={actionButtonColor}
         headerTextColor={actionButtonTextColor}
