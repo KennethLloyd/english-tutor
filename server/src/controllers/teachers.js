@@ -80,10 +80,6 @@ const getTeacherPageSettings = async (req, res) => {
   try {
     let settings = await TeacherPageSettings.findOne();
 
-    if (!settings) {
-      settings = [];
-    }
-
     return res.send({
       message: 'Successfully retrieved teacher page settings',
       settings,

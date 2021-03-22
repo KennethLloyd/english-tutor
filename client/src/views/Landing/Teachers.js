@@ -2,13 +2,9 @@ import { css } from '@emotion/css';
 import { Container, Row, Col } from 'reactstrap';
 
 const Teachers = ({ config, list }) => {
-  const titleLabel = config.titleLabel
-    ? config.titleLabel
-    : 'Meet Our Teachers';
+  const titleLabel = config.titleLabel;
 
-  const titleLabelColor = config.titleLabelColor
-    ? config.titleLabelColor
-    : '#000000';
+  const titleLabelColor = config.titleLabelColor;
 
   const teachers = list.length
     ? list

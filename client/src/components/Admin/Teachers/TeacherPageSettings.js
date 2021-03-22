@@ -18,15 +18,17 @@ import SuccessAlert from '../Alerts/SuccessAlert';
 import api from '../../../api/api';
 
 const TeachersPageSettings = () => {
-  const [backgroundColor, setBackgroundColor] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
   const [titleLabel, setTitleLabel] = useState('');
-  const [titleLabelColor, setTitleLabelColor] = useState('');
+  const [titleLabelColor, setTitleLabelColor] = useState('#FFFFFF');
   const [errorMsg, setErrorMsg] = useState('');
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
     const body = {
       backgroundColor,
       titleLabel,
@@ -67,9 +69,11 @@ const TeachersPageSettings = () => {
 
         const { settings } = data;
 
-        setBackgroundColor(settings.backgroundColor);
-        setTitleLabel(settings.titleLabel);
-        setTitleLabelColor(settings.titleLabelColor);
+        if (settings) {
+          setBackgroundColor(settings.backgroundColor);
+          setTitleLabel(settings.titleLabel);
+          setTitleLabelColor(settings.titleLabelColor);
+        }
       }
     };
     setShowLoader(true);
@@ -91,7 +95,7 @@ const TeachersPageSettings = () => {
                 </Row>
               </CardHeader>
               <CardBody>
-                <Form>
+                <Form autoComplete="off" onSubmit={handleUpdate}>
                   <div className="pl-lg-4">
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
@@ -112,7 +116,7 @@ const TeachersPageSettings = () => {
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="title-label"
                         >
                           Title Label
@@ -125,6 +129,8 @@ const TeachersPageSettings = () => {
                           type="text"
                           value={titleLabel}
                           onChange={(e) => setTitleLabel(e.target.value)}
+                          autoComplete="off"
+                          required
                         />
                       </Col>
                     </Row>
@@ -145,7 +151,7 @@ const TeachersPageSettings = () => {
                       </Col>
                     </Row>
                     <Row className="justify-content-center">
-                      <Button color="primary" onClick={handleUpdate} size="md">
+                      <Button color="primary" type="submit" size="md">
                         Save
                       </Button>
                     </Row>

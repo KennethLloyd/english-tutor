@@ -162,6 +162,7 @@ const HeroSettings = () => {
                               setBackgroundOpacity(e.target.value);
                             }
                           }}
+                          autoComplete="off"
                         />
                       </Col>
                     </Row>
@@ -182,6 +183,7 @@ const HeroSettings = () => {
                           value={titleText}
                           required
                           onChange={(e) => setTitleText(e.target.value)}
+                          autoComplete="off"
                         />
                       </Col>
                     </Row>
@@ -217,6 +219,7 @@ const HeroSettings = () => {
                           type="textarea"
                           value={subtitleText}
                           onChange={(e) => setSubtitleText(e.target.value)}
+                          autoComplete="off"
                         />
                       </Col>
                     </Row>
@@ -252,6 +255,7 @@ const HeroSettings = () => {
                           type="text"
                           value={actionButtonText}
                           onChange={(e) => setActionButtonText(e.target.value)}
+                          autoComplete="off"
                         />
                       </Col>
                     </Row>
