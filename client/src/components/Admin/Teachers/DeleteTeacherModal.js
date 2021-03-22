@@ -44,7 +44,7 @@ const DeleteTeacherModal = ({
         setRefresh(!refresh);
         setShowSuccess(false);
         setShow(false);
-      }, 3000);
+      }, 1500);
     }
   };
 

@@ -21535,6 +21535,23 @@ button:focus,
   transform: translateY(-0.1em);
 }
 
+.icon-danger {
+  color: var(--danger);
+  filter: drop-shadow(0 4px 6px rgba(50, 50, 93, 0.11))
+    drop-shadow(0 1px 3px rgba(0, 0, 0, 0.08));
+  cursor: pointer;
+}
+.icon-danger:hover,
+.icon-danger:focus {
+  filter: drop-shadow(0 0.5em 0.5em -0.4em rgba(50, 50, 93, 0.11));
+  transform: translateY(-0.1em);
+}
+
 .modal-label {
   font-size: 0.9rem;
+}
+
+.required:after {
+  content: ' *';
+  color: red;
 }

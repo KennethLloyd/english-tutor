@@ -178,10 +178,6 @@ const getNavigationSettings = async (req, res) => {
   try {
     let settings = await NavigationSettings.findOne();
 
-    if (!settings) {
-      settings = [];
-    }
-
     return res.send({
       message: 'Successfully retrieved navigation settings',
       settings,
@@ -226,10 +222,6 @@ HTTP/1.1 200 OK
 const getHeroSettings = async (req, res) => {
   try {
     let settings = await HeroSettings.findOne();
-
-    if (!settings) {
-      settings = [];
-    }
 
     return res.send({
       message: 'Successfully retrieved hero settings',
@@ -463,32 +455,12 @@ const getAllSettings = async (req, res) => {
     });
     contactList = contactList.map((contact) => contact.toJSON());
 
-    if (!navigationSettings) {
-      navigationSettings = [];
-    }
-
-    if (!heroSettings) {
-      heroSettings = [];
-    }
-
-    if (!teacherSettings) {
-      teacherSettings = [];
-    }
-
     if (!teacherList) {
       teacherList = [];
     }
 
-    if (!pricingSettings) {
-      pricingSettings = [];
-    }
-
     if (!pricingList) {
       pricingList = [];
-    }
-
-    if (!contactSettings) {
-      contactSettings = [];
     }
 
     if (!contactList) {
@@ -524,6 +496,7 @@ const getAdminConfig = async (req, res) => {
       appDescription: config.appDescription,
       appFavicon: config.appFavicon,
       adminLogo: config.adminLogo,
+      adminSalt: config.adminSalt,
     };
 
     return res.send({

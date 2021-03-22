@@ -2,9 +2,9 @@ import Joi from 'joi';
 
 const updateNavigationSettings = async (req, res, next) => {
   const bodySchema = Joi.object({
-    teachersLabel: Joi.string(),
-    pricingLabel: Joi.string(),
-    contactLabel: Joi.string(),
+    teachersLabel: Joi.string().required(),
+    pricingLabel: Joi.string().required(),
+    contactLabel: Joi.string().required(),
   });
 
   try {
@@ -22,11 +22,11 @@ const updateNavigationSettings = async (req, res, next) => {
 const updateHeroSettings = async (req, res, next) => {
   const bodySchema = Joi.object({
     backgroundOpacity: Joi.number().max(100),
-    titleText: Joi.string(),
-    titleTextColor: Joi.string(),
-    subtitleText: Joi.string(),
+    titleText: Joi.string().required(),
+    titleTextColor: Joi.string().required(),
+    subtitleText: Joi.string().allow(''),
     subtitleTextColor: Joi.string(),
-    actionButtonText: Joi.string(),
+    actionButtonText: Joi.string().allow(''),
     actionButtonTextColor: Joi.string(),
     actionButtonColor: Joi.string(),
   });

@@ -3,7 +3,7 @@ import Joi from 'joi';
 const updateTeacherPageSettings = async (req, res, next) => {
   const bodySchema = Joi.object({
     backgroundColor: Joi.string(),
-    titleLabel: Joi.string(),
+    titleLabel: Joi.string().required(),
     titleLabelColor: Joi.string(),
   });
 

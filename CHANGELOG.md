@@ -1,3 +1,28 @@
+## v2.0.17
+**2021-03-22**
+
+#### :hammer: Fixes
+
+* [`d402705`](https://github.com/KennethLloyd/english-tutor/commit/d402705837bd45138e625b63b49a88f0c89f35d4)  darker background even with zero opacity
+* [`e55abb9`](https://github.com/KennethLloyd/english-tutor/commit/e55abb92a4a35f58800abba7ebd77996cdd9c43a)  broken img in landing page if no uploaded logo
+* [`b24ec84`](https://github.com/KennethLloyd/english-tutor/commit/b24ec848db81e66235db4ab3fed5fb02e3d1add8)  null db values overwriting initial state
+
+#### :cyclone: Miscellaneous Updates
+
+* [`64bf6b8`](https://github.com/KennethLloyd/english-tutor/commit/64bf6b8c747a113a458a64d14ba0798350595934) Improve validation in pricing page settings
+* [`c1b9cfe`](https://github.com/KennethLloyd/english-tutor/commit/c1b9cfea2104efd0deb4344bd93bab01d633c4ab) Improve validation in contact page settings
+* [`05fb5f8`](https://github.com/KennethLloyd/english-tutor/commit/05fb5f8b5b2dfb80ff11eb7de37eb4fbc84da73d) Improve validation in pricing modals
+* [`8fecb48`](https://github.com/KennethLloyd/english-tutor/commit/8fecb48d5a0ce5b7429b1daeb0cfea34861e7cc9) Improve validation in teachers list
+* [`70650d3`](https://github.com/KennethLloyd/english-tutor/commit/70650d3e6d327951e4e7233d569a7c3d3677dadc) Improve validation in contact modals
+* [`9aba147`](https://github.com/KennethLloyd/english-tutor/commit/9aba147fe2a1b1484e7c3d4f6293db4be2866b1b) Improve validation of hero settings
+* [`64dfa70`](https://github.com/KennethLloyd/english-tutor/commit/64dfa7073573edcabbda59cdb8dee4b424c3a647) Improve validation of teacher page settings
+* [`cecc255`](https://github.com/KennethLloyd/english-tutor/commit/cecc25512b7edf6a23463d9d5e240120519d7894) Move password hashing to frontend
+* [`593a36f`](https://github.com/KennethLloyd/english-tutor/commit/593a36f702ea05a9027c86083dd464559f399143) Improve navbar setting validation
+* [`13f3116`](https://github.com/KennethLloyd/english-tutor/commit/13f3116a9642588cc172651221139da52e0865db) Remove footer placeholder
+* [`91d9e4b`](https://github.com/KennethLloyd/english-tutor/commit/91d9e4bf93449892b68f0ca0cca6fddc12de6eab) Place asterisk for reqd fields of navbar and hero settings
+* [`2e7a582`](https://github.com/KennethLloyd/english-tutor/commit/2e7a582d39cc54c2572ce0d8e600c2c313aa2b03) Hide action button if no action button text
+* [`54af75d`](https://github.com/KennethLloyd/english-tutor/commit/54af75d683ec1d8cae8a26388c8398ac25a5f4f3) Remove hardcoded template
+
 ## v2.0.0
 **2021-03-21**
 

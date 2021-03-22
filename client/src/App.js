@@ -12,6 +12,7 @@ const App = () => {
   const [appDescription, setAppDescription] = useState('');
   const [appFavicon, setAppFavicon] = useState('');
   const [adminLogo, setAdminLogo] = useState('');
+  const [adminSalt, setAdminSalt] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +24,7 @@ const App = () => {
         setAppDescription(adminConfig.appDescription);
         setAppFavicon(adminConfig.appFavicon);
         setAdminLogo(adminConfig.adminLogo);
+        setAdminSalt(adminConfig.adminSalt);
       }
     };
     fetchData();
@@ -46,7 +48,12 @@ const App = () => {
           path="/admin/login"
           exact
           render={(props) => (
-            <Login title={appName} appIcon={appFavicon} {...props} />
+            <Login
+              title={appName}
+              appIcon={appFavicon}
+              salt={adminSalt}
+              {...props}
+            />
           )}
         />
         <AuthenticatedRoute

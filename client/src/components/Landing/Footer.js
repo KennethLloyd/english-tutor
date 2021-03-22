@@ -2,13 +2,9 @@ import { Container, Row, Col } from 'reactstrap';
 import { css } from '@emotion/css';
 
 const Footer = ({ config }) => {
-  const label = config.footerLabel
-    ? config.footerLabel
-    : '© 2021 All Rights Reserved';
-  const backgroundColor = config.footerBackgroundColor
-    ? config.footerBackgroundColor
-    : '#2BACE3';
-  const textColor = config.footerTextColor ? config.footerTextColor : '#FFFFFF';
+  const label = config.footerLabel;
+  const backgroundColor = config.footerBackgroundColor;
+  const textColor = config.footerTextColor;
 
   return (
     <footer
