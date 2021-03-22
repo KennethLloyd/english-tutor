@@ -138,7 +138,7 @@ const HeroSettings = () => {
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="background-opacity"
                         >
                           Background Opacity <small>(0-100)</small>
@@ -168,7 +168,7 @@ const HeroSettings = () => {
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="title-text"
                         >
                           Title Text

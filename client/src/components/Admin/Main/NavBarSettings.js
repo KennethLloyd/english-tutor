@@ -120,7 +120,7 @@ const NavBarSettings = () => {
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="teachers-label"
                         >
                           Teachers Label
@@ -141,7 +141,7 @@ const NavBarSettings = () => {
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="pricing-label"
                         >
                           Pricing Label
@@ -162,7 +162,7 @@ const NavBarSettings = () => {
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="contact-label"
                         >
                           Contact Label

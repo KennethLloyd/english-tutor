@@ -21538,3 +21538,8 @@ button:focus,
 .modal-label {
   font-size: 0.9rem;
 }
+
+.required:after {
+  content: ' *';
+  color: red;
+}
