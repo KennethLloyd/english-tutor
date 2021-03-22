@@ -104,10 +104,6 @@ const getContactPageSettings = async (req, res) => {
   try {
     let settings = await ContactPageSettings.findOne();
 
-    if (!settings) {
-      settings = [];
-    }
-
     return res.send({
       message: 'Successfully retrieved contact page settings',
       settings,

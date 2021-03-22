@@ -102,10 +102,6 @@ const getPricingPageSettings = async (req, res) => {
   try {
     let settings = await PricingPageSettings.findOne();
 
-    if (!settings) {
-      settings = [];
-    }
-
     return res.send({
       message: 'Successfully retrieved pricing page settings',
       settings,

@@ -3,12 +3,12 @@ import Joi from 'joi';
 const updateContactPageSettings = async (req, res, next) => {
   const bodySchema = Joi.object({
     backgroundColor: Joi.string(),
-    titleLabel: Joi.string(),
+    titleLabel: Joi.string().required(),
     titleLabelColor: Joi.string(),
-    contactCardTitle: Joi.string(),
+    contactCardTitle: Joi.string().required(),
     contactCardTitleColor: Joi.string(),
     contactCardBackgroundColor: Joi.string(),
-    footerLabel: Joi.string(),
+    footerLabel: Joi.string().allow(''),
     footerBackgroundColor: Joi.string(),
     footerTextColor: Joi.string(),
   });

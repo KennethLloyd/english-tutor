@@ -10,7 +10,7 @@ import {
   Spinner,
 } from 'reactstrap';
 import { useState } from 'react';
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaPlusCircle, FaTrash } from 'react-icons/fa';
 
 import ErrorAlert from '../Alerts/ErrorAlert';
 import SuccessAlert from '../Alerts/SuccessAlert';
@@ -27,7 +27,9 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.preventDefault();
+
     const featuresLabel = features
       .map((f) => f.feature.trim())
       .filter((f) => f !== '');
@@ -66,7 +68,7 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
         setRefresh(!refresh);
         setShow(false);
         setShowSuccess(false);
-      }, 3000);
+      }, 1500);
     }
   };
 
@@ -82,6 +84,13 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
       setErrorMsg('Max features reached');
       setShowError(true);
     }
+  };
+
+  const handleRemoveFeature = (index) => {
+    const featureClone = [...features];
+    featureClone.splice(index, 1);
+
+    setFeatures([...featureClone]);
   };
 
   const onFeatureChange = (index, value) => {
@@ -112,7 +121,7 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
         </button>
       </div>
       <div className="modal-body">
-        <Form role="form">
+        <Form role="form" autoComplete="off" onSubmit={handleSave}>
           <FormGroup className="mb-3">
             <label htmlFor="header" className="modal-label">
               Header
@@ -123,11 +132,12 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
                 id="header"
                 value={header}
                 onChange={(e) => setHeader(e.target.value)}
+                autoComplete="off"
               />
             </InputGroup>
           </FormGroup>
           <FormGroup className="mb-3">
-            <label htmlFor="price" className="modal-label">
+            <label htmlFor="price" className="modal-label required">
               Price
             </label>
             <InputGroup className="input-group">
@@ -136,6 +146,8 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
                 id="price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+                required
+                autoComplete="off"
               />
             </InputGroup>
           </FormGroup>
@@ -156,7 +168,7 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
               </Input>
             </FormGroup>
             <FormGroup className="mb-3 ml-auto">
-              <label htmlFor="order" className="modal-label">
+              <label htmlFor="order" className="modal-label required">
                 Order
               </label>
               <InputGroup className="input-group">
@@ -165,6 +177,7 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
                   id="order"
                   value={order}
                   onChange={(e) => setOrder(e.target.value)}
+                  required
                 />
               </InputGroup>
             </FormGroup>
@@ -176,7 +189,10 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
           </FormGroup>
           {features.map((item, index) => {
             return (
-              <FormGroup key={index} className="mb-3 ml-auto">
+              <FormGroup
+                key={index}
+                className="mb-3 ml-auto d-flex align-items-center"
+              >
                 <InputGroup className="input-group">
                   <Input
                     type="text"
@@ -185,29 +201,34 @@ const EditPricingModal = ({ show, setShow, refresh, setRefresh, details }) => {
                     onChange={(e) => onFeatureChange(index, e.target.value)}
                   />
                 </InputGroup>
+                <FaTrash
+                  className="icon-danger ml-3"
+                  size="20px"
+                  onClick={() => handleRemoveFeature(index)}
+                />
               </FormGroup>
             );
           })}
           <FaPlusCircle
-            className="icon-primary ml-0"
+            className="icon-primary ml-0 mb-5"
             size="35px"
             onClick={() => handleAddFeature(features.length)}
           />
+          <FormGroup className="d-flex">
+            <Button color="primary" type="submit">
+              Save
+            </Button>
+            <Button
+              className="ml-auto"
+              color="link"
+              data-dismiss="modal"
+              type="button"
+              onClick={() => setShow(false)}
+            >
+              Close
+            </Button>
+          </FormGroup>
         </Form>
-      </div>
-      <div className="modal-footer">
-        <Button color="primary" type="button" onClick={handleSave}>
-          Save
-        </Button>
-        <Button
-          className="ml-auto"
-          color="link"
-          data-dismiss="modal"
-          type="button"
-          onClick={() => setShow(false)}
-        >
-          Close
-        </Button>
       </div>
       {showLoader ? (
         <div className="d-flex justify-content-center mt-0 mb-3">

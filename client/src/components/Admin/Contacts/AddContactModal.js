@@ -40,7 +40,9 @@ const AddContactModal = ({ show, setShow, refresh, setRefresh }) => {
     setShowSuccess(false);
   };
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.preventDefault();
+
     const formData = new FormData();
 
     formData.append('image', icon);
@@ -74,7 +76,7 @@ const AddContactModal = ({ show, setShow, refresh, setRefresh }) => {
       setTimeout(() => {
         resetState();
         setShow(false);
-      }, 3000);
+      }, 1500);
     }
   };
 
@@ -99,9 +101,9 @@ const AddContactModal = ({ show, setShow, refresh, setRefresh }) => {
         </button>
       </div>
       <div className="modal-body">
-        <Form role="form">
+        <Form role="form" autoComplete="off" onSubmit={handleSave}>
           <FormGroup className="mb-3">
-            <label htmlFor="platformName" className="modal-label">
+            <label htmlFor="platformName" className="modal-label required">
               Platform name
             </label>
             <InputGroup className="input-group">
@@ -110,11 +112,13 @@ const AddContactModal = ({ show, setShow, refresh, setRefresh }) => {
                 id="platformName"
                 value={platformName}
                 onChange={(e) => setPlatformName(e.target.value)}
+                required
+                autoComplete="off"
               />
             </InputGroup>
           </FormGroup>
           <FormGroup className="mb-3">
-            <label htmlFor="details" className="modal-label">
+            <label htmlFor="details" className="modal-label required">
               Details
             </label>
             <InputGroup className="input-group">
@@ -123,6 +127,8 @@ const AddContactModal = ({ show, setShow, refresh, setRefresh }) => {
                 id="details"
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
+                required
+                autoComplete="off"
               />
             </InputGroup>
           </FormGroup>
@@ -142,7 +148,7 @@ const AddContactModal = ({ show, setShow, refresh, setRefresh }) => {
               </Input>
             </FormGroup>
             <FormGroup className="mb-3 ml-auto">
-              <label htmlFor="order" className="modal-label">
+              <label htmlFor="order" className="modal-label required">
                 Order
               </label>
               <InputGroup className="input-group">
@@ -151,11 +157,12 @@ const AddContactModal = ({ show, setShow, refresh, setRefresh }) => {
                   id="order"
                   value={order}
                   onChange={(e) => setOrder(e.target.value)}
+                  required
                 />
               </InputGroup>
             </FormGroup>
           </FormGroup>
-          <FormGroup className="mb-3 ml-auto">
+          <FormGroup className="mb-5 ml-auto">
             <label htmlFor="upload" className="modal-label">
               Icon
             </label>
@@ -167,21 +174,21 @@ const AddContactModal = ({ show, setShow, refresh, setRefresh }) => {
               />
             </div>
           </FormGroup>
+          <FormGroup className="d-flex">
+            <Button color="primary" type="submit">
+              Save
+            </Button>
+            <Button
+              className="ml-auto"
+              color="link"
+              data-dismiss="modal"
+              type="button"
+              onClick={() => setShow(false)}
+            >
+              Close
+            </Button>
+          </FormGroup>
         </Form>
-      </div>
-      <div className="modal-footer">
-        <Button color="primary" type="button" onClick={handleSave}>
-          Save
-        </Button>
-        <Button
-          className="ml-auto"
-          color="link"
-          data-dismiss="modal"
-          type="button"
-          onClick={() => setShow(false)}
-        >
-          Close
-        </Button>
       </div>
       {showLoader ? (
         <div className="d-flex justify-content-center mt-0 mb-3">

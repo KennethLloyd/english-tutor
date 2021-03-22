@@ -15,6 +15,7 @@ import {
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
+import crypto from 'crypto';
 
 import AuthNavbar from '../components/Admin/AuthNavbar.js';
 import AuthFooter from '../components/Admin/AuthFooter.js';
@@ -26,7 +27,7 @@ const getFaviconEl = () => {
   return document.getElementById('favicon');
 };
 
-const Login = ({ title, appIcon }) => {
+const Login = ({ title, appIcon, salt }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
@@ -52,6 +53,10 @@ const Login = ({ title, appIcon }) => {
     try {
       e.preventDefault();
 
+      const hashedPassword = crypto
+        .pbkdf2Sync(password, salt, 1000, 64, 'sha512')
+        .toString('hex');
+
       const data = await api('/auth/login', {
         method: 'POST',
         headers: {
@@ -59,7 +64,7 @@ const Login = ({ title, appIcon }) => {
         },
         body: JSON.stringify({
           username,
-          password,
+          password: hashedPassword,
         }),
       });
 
@@ -116,7 +121,7 @@ const Login = ({ title, appIcon }) => {
                   <div className="text-center text-muted mb-4">
                     <small>Please use your admin credentials</small>
                   </div>
-                  <Form onSubmit={handleLogin}>
+                  <Form autoComplete="off" onSubmit={handleLogin}>
                     <FormGroup className="mb-3">
                       <InputGroup className="input-group-alternative">
                         <InputGroupAddon addonType="prepend">
@@ -129,6 +134,8 @@ const Login = ({ title, appIcon }) => {
                           type="string"
                           value={username}
                           onChange={(e) => setUsername(e.target.value)}
+                          required
+                          autoComplete="off"
                         />
                       </InputGroup>
                     </FormGroup>
@@ -144,6 +151,8 @@ const Login = ({ title, appIcon }) => {
                           type="password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
+                          required
+                          autoComplete="off"
                         />
                       </InputGroup>
                     </FormGroup>

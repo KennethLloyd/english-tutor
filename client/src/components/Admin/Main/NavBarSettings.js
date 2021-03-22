@@ -28,7 +28,9 @@ const NavBarSettings = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
-  const handleNavUpdate = async () => {
+  const handleNavUpdate = async (e) => {
+    e.preventDefault();
+
     const formData = new FormData();
 
     formData.append('image', logo);
@@ -69,10 +71,12 @@ const NavBarSettings = () => {
 
         const { settings } = data;
 
-        setLogoThumbnail(settings.logoUrl);
-        setTeachersLabel(settings.teachersLabel);
-        setPricingLabel(settings.pricingLabel);
-        setContactLabel(settings.contactLabel);
+        if (settings) {
+          setLogoThumbnail(settings.logoUrl);
+          setTeachersLabel(settings.teachersLabel);
+          setPricingLabel(settings.pricingLabel);
+          setContactLabel(settings.contactLabel);
+        }
       }
     };
     setShowLoader(true);
@@ -94,7 +98,7 @@ const NavBarSettings = () => {
                 </Row>
               </CardHeader>
               <CardBody>
-                <Form>
+                <Form autoComplete="off" onSubmit={handleNavUpdate}>
                   <div className="pl-lg-4">
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
@@ -116,7 +120,7 @@ const NavBarSettings = () => {
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="teachers-label"
                         >
                           Teachers Label
@@ -129,13 +133,15 @@ const NavBarSettings = () => {
                           type="text"
                           value={teachersLabel}
                           onChange={(e) => setTeachersLabel(e.target.value)}
+                          autoComplete="off"
+                          required
                         />
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="pricing-label"
                         >
                           Pricing Label
@@ -148,13 +154,15 @@ const NavBarSettings = () => {
                           type="text"
                           value={pricingLabel}
                           onChange={(e) => setPricingLabel(e.target.value)}
+                          autoComplete="off"
+                          required
                         />
                       </Col>
                     </Row>
                     <Row className="align-items-center mt-0 mb-4">
                       <Col md="3">
                         <label
-                          className="form-control-label-settings"
+                          className="form-control-label-settings required"
                           htmlFor="contact-label"
                         >
                           Contact Label
@@ -167,15 +175,13 @@ const NavBarSettings = () => {
                           type="text"
                           value={contactLabel}
                           onChange={(e) => setContactLabel(e.target.value)}
+                          autoComplete="off"
+                          required
                         />
                       </Col>
                     </Row>
                     <Row className="justify-content-center">
-                      <Button
-                        color="primary"
-                        onClick={handleNavUpdate}
-                        size="md"
-                      >
+                      <Button color="primary" size="md" type="submit">
                         Save
                       </Button>
                     </Row>
