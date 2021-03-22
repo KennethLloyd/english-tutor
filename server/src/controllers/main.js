@@ -496,6 +496,7 @@ const getAdminConfig = async (req, res) => {
       appDescription: config.appDescription,
       appFavicon: config.appFavicon,
       adminLogo: config.adminLogo,
+      adminSalt: config.adminSalt,
     };
 
     return res.send({

@@ -11,7 +11,7 @@ import { err, loadConfig } from '../helpers/utils.js';
 @apiParamExample {json} Request-Example:
 {
 	 "username": "tutormeplz",
-	 "password": "secret123"
+	 "password": "kjsdkjsdj6777336d7sdbsjdbsjbdj"
 }
 
 @apiSuccess {String} token Auth token
@@ -33,11 +33,7 @@ const logIn = async (req, res) => {
       throw err(400, 'Invalid credentials');
     }
 
-    const hashedPassword = crypto
-      .pbkdf2Sync(req.body.password, config.adminSalt, 1000, 64, 'sha512')
-      .toString('hex');
-
-    if (adminPasswordHash !== hashedPassword) {
+    if (adminPasswordHash !== req.body.password) {
       throw err(400, 'Invalid credentials');
     }
 
