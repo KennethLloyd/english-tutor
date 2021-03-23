@@ -1,3 +1,10 @@
+## v2.1.0
+**2021-03-23**
+
+#### :sparkles: New Features
+
+* [`42e917a`](https://github.com/KennethLloyd/english-tutor/commit/42e917a0f56f9229eaf5c0816dbc57ce43b8a486)  landing page template in db migration script
+
 ## v2.0.17
 **2021-03-22**
 
