@@ -17,7 +17,7 @@ $ nvm use
 
 2. Open `/server/config` directory then edit `config.json` for your local environment
 
-3. Go back to the root folder then setup the database by running:
+3. Go back to the root folder then setup the database and template by running:
 
 ```sh
 $ npm run db-migrate
