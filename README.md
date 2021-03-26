@@ -1,6 +1,6 @@
-# english-courses
+# landing-page-admin
 
-English courses SPA Landing and Admin Website
+Customizable Landing Page with Admin Panel
 
 Requirements:
 
